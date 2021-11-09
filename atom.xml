@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>阿祥</title>
+  
+  <subtitle>阿祥的小窝</subtitle>
+  <link href="http://rrxxpp.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://rrxxpp.github.io/"/>
+  <updated>2021-11-09T07:06:13.537Z</updated>
+  <id>http://rrxxpp.github.io/</id>
+  
+  <author>
+    <name>Axiang</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello Tracy</title>
+    <link href="http://rrxxpp.github.io/2021/11/08/hello-world/"/>
+    <id>http://rrxxpp.github.io/2021/11/08/hello-world/</id>
+    <published>2021-11-08T06:23:03.272Z</published>
+    <updated>2021-11-09T07:06:13.537Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Hi. Nice to meet you.&lt;/p&gt;
+&lt;p&gt;第一篇文章还没想好写什么，什么类型也没想好，记录生活？还是记录工作？留到后面慢慢想吧。&lt;/p&gt;
+&lt;p&gt;以下可以忽略了，只是一些码农的东西，以后再补充。&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
