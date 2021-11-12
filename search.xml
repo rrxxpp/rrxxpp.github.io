@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>随感</title>
-    <url>/2021/11/08/hello-world/</url>
-    <content><![CDATA[<p>螃蟹在剥我的壳，笔记本在写我.</p>
-<p>漫天的我落在枫叶上的雪花上.</p>
-<p>而你在想我。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>Android ImageView scaleType 扩展，类似centerCrop，但从顶部开始显示。</title>
     <url>/2021/11/12/android-image-topcrop/</url>
     <content><![CDATA[<p>项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：</p>
@@ -36,6 +28,9 @@
 <p><strong>综合考虑，决定使用宽度填充，高度等比例缩放，多余部分填充，UI图片下方保留安全区域，与centerCrop类似，只是图片从顶部保留，自定义View如下：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public class TopCropImageView extends androidx.appcompat.widget.AppCompatImageView &#123;</span><br><span class="line"></span><br><span class="line">    public TopCropImageView(Context context) &#123;</span><br><span class="line">        super(context);</span><br><span class="line">        setScaleType(ScaleType.MATRIX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TopCropImageView(Context context, @Nullable AttributeSet attrs) &#123;</span><br><span class="line">        super(context, attrs);</span><br><span class="line">        setScaleType(ScaleType.MATRIX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TopCropImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) &#123;</span><br><span class="line">        super(context, attrs, defStyleAttr);</span><br><span class="line">        setScaleType(ScaleType.MATRIX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected boolean setFrame(int l, int t, int r, int b) &#123;</span><br><span class="line">        if (getDrawable() == null)&#123;</span><br><span class="line">            return super.setFrame(l,t,r,b);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //获取图片矩阵</span><br><span class="line">        Matrix matrix = getImageMatrix();</span><br><span class="line">        // 控件与图片比例</span><br><span class="line">        float scaleFactor = getWidth() / (float)getDrawable().getIntrinsicWidth();</span><br><span class="line">        // 缩放</span><br><span class="line">        matrix.setScale(scaleFactor, scaleFactor, 0, 0);</span><br><span class="line">        setImageMatrix(matrix);</span><br><span class="line">        return super.setFrame(l, t, r, b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
       <tags>
         <tag>Android</tag>
       </tags>
@@ -1328,6 +1323,9 @@
 </tr>
 </tbody></table>
 ]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
       <tags>
         <tag>Android</tag>
       </tags>
