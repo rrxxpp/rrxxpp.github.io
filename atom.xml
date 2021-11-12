@@ -6,7 +6,7 @@
   <link href="http://rrxxpp.github.io/atom.xml" rel="self"/>
   
   <link href="http://rrxxpp.github.io/"/>
-  <updated>2021-11-10T05:32:07.935Z</updated>
+  <updated>2021-11-12T07:40:08.563Z</updated>
   <id>http://rrxxpp.github.io/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>屏幕尺寸大全</title>
+    <link href="http://rrxxpp.github.io/2021/11/12/android-screen/"/>
+    <id>http://rrxxpp.github.io/2021/11/12/android-screen/</id>
+    <published>2021-11-12T07:34:22.000Z</published>
+    <updated>2021-11-12T07:40:08.563Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;left&quot;&gt;设备名称&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;操作系统&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;尺寸 in&lt;/th&gt;
+&lt;th align=&quot;left&quot;&gt;PPI&lt;/th&gt;
+&lt;th</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Android" scheme="http://rrxxpp.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android ImageView scaleType 扩展，类似centerCrop，但从顶部开始显示。</title>
+    <link href="http://rrxxpp.github.io/2021/11/12/android-image-topcrop/"/>
+    <id>http://rrxxpp.github.io/2021/11/12/android-image-topcrop/</id>
+    <published>2021-11-12T06:25:52.000Z</published>
+    <updated>2021-11-12T07:47:50.935Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。&lt;/s</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Android" scheme="http://rrxxpp.github.io/tags/Android/"/>
+    
+  </entry>
   
   <entry>
     <title>随感</title>

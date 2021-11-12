@@ -11,7 +11,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>随感 |  阿祥</title>
+      <title>Android ImageView scaleType 扩展，类似centerCrop，但从顶部开始显示。 |  阿祥</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/img/ayer-side.jpeg" />
@@ -55,7 +55,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-hello-world"
+  id="post-android-image-topcrop"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -66,7 +66,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  随感
+  Android ImageView scaleType 扩展，类似centerCrop，但从顶部开始显示。
 </h1>
  
 
@@ -74,15 +74,15 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/11/08/hello-world/" class="article-date">
-  <time datetime="2021-11-08T06:23:03.272Z" itemprop="datePublished">2021-11-08</time>
+      <a href="/2021/11/12/android-image-topcrop/" class="article-date">
+  <time datetime="2021-11-12T06:25:52.000Z" itemprop="datePublished">2021-11-12</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">31</span>
+            <span class="post-count">1.2k</span>
         </span>
     </span>
 
@@ -91,7 +91,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">4 分钟</span>
         </span>
     </span>
 </div>
@@ -104,9 +104,30 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>螃蟹在剥我的壳，笔记本在写我.</p>
-<p>漫天的我落在枫叶上的雪花上.</p>
-<p>而你在想我。</p>
+  <p>项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：</p>
+<p><strong>1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。</strong></p>
+<blockquote>
+<p>测试CENTER_CROP属性</p>
+<p>将图片放在ImageView的中心点，然后对图片进行等比例缩放</p>
+<p>官方文档描述：<br>Scale the image uniformly (maintain the image’s aspect ratio) so that<br>both dimensions (width and height) of the image will be equal to or larger<br>than the corresponding dimension of the view (minus padding).<br>这段文字值得好好体会一下。<br>简而言之：<br>等比例缩放图片使得图片的宽和高均不小于控件对应的宽高</p>
+<p>1.1 若图片宽和高均小于ImageView控件的宽高，则等比例放大图片，直至铺满ImageView.<br>      当然这种情况下的等比例放大，就可能导致图片X或Y方向的图片显示不全<br>1.2 若图片宽或高小于ImageView控件的宽或高,则将图片等比例放大直到铺满ImageView<br>      比如ImageView为750<em>750,图片为600</em>800,所以会等比例放大图片，直至图片宽度变为<br>      750.但是这样会造成图片的高度大于了ImageView的高，所以图片的垂直方向显示不全，会被剪裁<br>1.3 如图片宽和高均大于ImageView控件的宽和高<br>      此时等比例缩小图片，当图片的宽高中任意一值等于控件对应的宽高时停止缩小图片。<br>      在这种情况下就很可能造成：图片显示不完整</p>
+<p>所以CENTER_CROP属性的显著特点:<br>图片会铺满整个ImageView，但图片可能显示不完整<br>————————————————<br>版权声明：本文为CSDN博主「谷哥的小弟」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/lfdfhl/article/details/52144250">https://blog.csdn.net/lfdfhl/article/details/52144250</a></p>
+</blockquote>
+<p><strong>2、fitStart 属性完整显示图片，导致如果高度与宽度不一致，可能高度填充，宽度有白边。</strong></p>
+<blockquote>
+<p>测试FIT_CENTER属性</p>
+<p>将图片放在ImageView的中心点，然后对图片进行等比例缩放</p>
+<p>官方文档：<br>Scale the image using CENTER.<br>CENTER:<br>Compute a scale that will maintain the original src aspect ratio,<br>but will also ensure that src fits entirely inside dst.<br>At least one axis (X or Y) will fit exactly. The result is centered inside dst.</p>
+<p>在理解了CENTER_CROP和CENTER_INSIDE之后再看FIT_CENTER就会好理解一些</p>
+<p>将图片放在ImageView的中心点，对图片进行等比例缩放从而完整地显示图片</p>
+<p>1.1 若图片宽和高均小于ImageView控件的宽高，则等比例放大图片<br>      直到图片的宽高中任意一值等于控件的宽或者高<br>      此情况下，图片的上下或者左右可见ImageView的背景色</p>
+<p>1.2 若图片宽和高均大于ImageView控件的宽和高，则等比例缩小图片<br>      直到图片的宽高中任意一值等于控件的宽或者高<br>      所以，这也很容易导致图片的上下或者左右可见ImageView的背景色</p>
+<p>1.3 若图片宽或高大于ImageView控件的宽或高<br>      这时候是该执行放大呢？还是缩小呢？<br>      其实，此时是有一个原则的：完整地显示图片。<br>      就像文档中所说：ensure that src fits entirely inside dst<br>      所以，此时会对图片进行缩放，直到图片的宽高均不大于控件的宽高</p>
+<p>所以，在使用FIT_CENTER时可以完整地显示图片，而且它有一个显著的特点：<br>它使得图片的宽高中至少有一个值恰好等于控件的宽或者高。<br>这一点也是它和CENTER_INSIDE属性的主要区别</p>
+<p>————————————————<br>版权声明：本文为CSDN博主「谷哥的小弟」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/lfdfhl/article/details/52144250">https://blog.csdn.net/lfdfhl/article/details/52144250</a></p>
+</blockquote>
+<p><strong>综合考虑，决定使用宽度填充，高度等比例缩放，多余部分填充，UI图片下方保留安全区域，与centerCrop类似，只是图片从顶部保留，自定义View如下：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public class TopCropImageView extends androidx.appcompat.widget.AppCompatImageView &#123;</span><br><span class="line"></span><br><span class="line">    public TopCropImageView(Context context) &#123;</span><br><span class="line">        super(context);</span><br><span class="line">        setScaleType(ScaleType.MATRIX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TopCropImageView(Context context, @Nullable AttributeSet attrs) &#123;</span><br><span class="line">        super(context, attrs);</span><br><span class="line">        setScaleType(ScaleType.MATRIX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TopCropImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) &#123;</span><br><span class="line">        super(context, attrs, defStyleAttr);</span><br><span class="line">        setScaleType(ScaleType.MATRIX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected boolean setFrame(int l, int t, int r, int b) &#123;</span><br><span class="line">        if (getDrawable() == null)&#123;</span><br><span class="line">            return super.setFrame(l,t,r,b);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //获取图片矩阵</span><br><span class="line">        Matrix matrix = getImageMatrix();</span><br><span class="line">        // 控件与图片比例</span><br><span class="line">        float scaleFactor = getWidth() / (float)getDrawable().getIntrinsicWidth();</span><br><span class="line">        // 缩放</span><br><span class="line">        matrix.setScale(scaleFactor, scaleFactor, 0, 0);</span><br><span class="line">        setImageMatrix(matrix);</span><br><span class="line">        return super.setFrame(l, t, r, b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
  
       <!-- reward -->
       
@@ -171,26 +192,33 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://rrxxpp.github.io/2021/11/08/hello-world/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://rrxxpp.github.io/2021/11/12/android-image-topcrop/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li></ul>
+
     </footer>
   </div>
 
    
   <nav class="article-nav">
     
-      <a href="/2021/11/12/android-image-topcrop/" class="article-nav-link">
+      <a href="/2021/11/12/android-screen/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            Android ImageView scaleType 扩展，类似centerCrop，但从顶部开始显示。
+            屏幕尺寸大全
           
         </div>
       </a>
     
+    
+      <a href="/2021/11/08/hello-world/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">随感</div>
+      </a>
     
   </nav>
 
