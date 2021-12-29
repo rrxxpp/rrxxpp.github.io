@@ -151,6 +151,131 @@
     
     
     <article
+  id="post-kotlin-study-day1"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/12/29/kotlin-study-day1/"
+    >Kotlin学习笔记 — day1</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/12/29/kotlin-study-day1/" class="article-date">
+  <time datetime="2021-12-29T15:26:21.000Z" itemprop="datePublished">2021-12-29</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/kotlin/">kotlin</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Kotlin学习笔记-—-day1"><a href="#Kotlin学习笔记-—-day1" class="headerlink" title="Kotlin学习笔记 — day1"></a>Kotlin学习笔记 — day1</h1><p>个人学习记录</p>
+<h2 id="1-变量与数据类型"><a href="#1-变量与数据类型" class="headerlink" title="1 变量与数据类型"></a>1 变量与数据类型</h2><blockquote>
+<ul>
+<li>整数类型：Byte、Short、Int、Long，Int 是默认类型</li>
+<li>浮点类型：Float、Double，Double是默认类型</li>
+<li>字符类型：Char</li>
+<li>布尔类型：Boolean</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>声明只读变量，使用 <code>val</code> 关键字</li>
+<li>声明可修改变量，使用 <code>var</code> 关键字</li>
+</ul>
+</blockquote>
+<p>示例代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> maxinumAge : <span class="built_in">Int</span> = <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>类型推断：对于已声明并赋值的变量，它允许你省略类型定义</p>
+</blockquote>
+<p>示例代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&quot;Hello World&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>编译时常量：</p>
+<p>只能在函数之外定义，因为编译时常量必须在编译时赋值，而函数在运行时才调用，编译时常量只能是常见的数据类型。</p>
+</blockquote>
+<p>示例代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">val</span> MAX = <span class="number">200</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  	println(MAX)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看Kotlin字节码：</p>
+<p>即与java语言对比（个人理解）</p>
+<p>使用方法：shift两次，输入show kotlin.</p>
+</blockquote>
+<blockquote>
+<p>Kotlin只提供引用类型这一种数据类型，出于更高性能需要，Kotlin编译器会在java字节码中改用基本数据类型。（也就是Integer会转换为int）</p>
+</blockquote>
+<h2 id="2-表达式"><a href="#2-表达式" class="headerlink" title="2 表达式"></a>2 表达式</h2><blockquote>
+<p>① <code>if/else</code>表达式与java使用一致，但：if是一个表达式，即它会返回一个值。 因此就不需要三元运算符    （条件 ? 然后 : 否则），因为普通的 if 就能胜任这个角色。</p>
+<p>② ranger表达式</p>
+<p>​    <code>in a..b</code>，in关键字用来检查某个值是否在指定范围内（也可用于set、list）</p>
+<p>③ when表达式</p>
+<p>​    与switch/case一致，当某个条件满足时，执行相应代码。</p>
+</blockquote>
+<p>示例代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  	<span class="keyword">val</span> age = <span class="number">3</span></span><br><span class="line">  	<span class="keyword">if</span> (age <span class="keyword">in</span> <span class="number">0.</span><span class="number">.3</span>) &#123;</span><br><span class="line">      	println(<span class="string">&quot;婴幼儿&quot;</span>)</span><br><span class="line">       &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">      	println(<span class="string">&quot;其它&quot;</span>)</span><br><span class="line">       &#125;</span><br><span class="line">  </span><br><span class="line"> 	   <span class="comment">//其它用法</span></span><br><span class="line">  	<span class="keyword">if</span> (age !<span class="keyword">in</span> <span class="number">0.</span><span class="number">.3</span>)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"> 	 <span class="keyword">val</span> x = <span class="number">1</span></span><br><span class="line">	<span class="keyword">when</span> (x) &#123;</span><br><span class="line">    	<span class="number">1</span> -&gt; print(<span class="string">&quot;x == 1&quot;</span>)</span><br><span class="line">    	<span class="number">2</span> -&gt; print(<span class="string">&quot;x == 2&quot;</span>)</span><br><span class="line">    	<span class="keyword">else</span> -&gt; &#123; <span class="comment">// 注意这个块</span></span><br><span class="line">        	print(<span class="string">&quot;x is neither 1 nor 2&quot;</span>)</span><br><span class="line">    	&#125;</span><br><span class="line">	&#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">//如果很多分支需要用相同的方式处理，则可以把多个分支条件放在一起，用逗号分隔：</span></span><br><span class="line">    <span class="keyword">when</span> (x) &#123;</span><br><span class="line">    	<span class="number">0</span>, <span class="number">1</span> -&gt; print(<span class="string">&quot;x == 0 or x == 1&quot;</span>)</span><br><span class="line">    	<span class="keyword">else</span> -&gt; print(<span class="string">&quot;otherwise&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">  </span><br><span class="line"> 	 <span class="comment">//我们也可以检测一个值在（in）或者不在（!in）一个区间或者集合中：</span></span><br><span class="line"> 	 <span class="keyword">when</span> (x) &#123;</span><br><span class="line">    	<span class="keyword">in</span> <span class="number">1.</span><span class="number">.10</span> -&gt; print(<span class="string">&quot;x is in the range&quot;</span>)</span><br><span class="line">    	<span class="keyword">in</span> validNumbers -&gt; print(<span class="string">&quot;x is valid&quot;</span>)</span><br><span class="line">    	!<span class="keyword">in</span> <span class="number">10.</span><span class="number">.20</span> -&gt; print(<span class="string">&quot;x is outside the range&quot;</span>)</span><br><span class="line">    	<span class="keyword">else</span> -&gt; print(<span class="string">&quot;none of the above&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-string模版"><a href="#3-string模版" class="headerlink" title="3 string模版"></a>3 string模版</h2><blockquote>
+<p>模版支持在字符串的引号内放入变量值</p>
+<p>还支持字符串里计算表达式的值并插入结果，添加在${}中的任何表达式，都会作为字符串的一部分</p>
+</blockquote>
+<p>示例代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  	<span class="keyword">val</span> man = <span class="string">&quot;Jack&quot;</span></span><br><span class="line">  	<span class="keyword">var</span> woman = <span class="string">&quot;Rose&quot;</span></span><br><span class="line">  	println(<span class="string">&quot;<span class="variable">$man</span> Love <span class="variable">$woman</span>&quot;</span>)</span><br><span class="line">  </span><br><span class="line">  	<span class="keyword">var</span> flag = <span class="literal">true</span></span><br><span class="line">  	println(<span class="string">&quot;Answer is <span class="subst">$&#123;if(flag) <span class="string">&quot;我愿意&quot;</span> else <span class="string">&quot;对不起&quot;</span>&#125;</span>&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-函数"><a href="#4-函数" class="headerlink" title="4 函数"></a>4 函数</h2><blockquote>
+<ul>
+<li>private public 可见性修饰符，默认为public</li>
+<li>fun 函数声明关键字</li>
+<li>默认值参：如果不打算传入值参，可预先指定默认值</li>
+<li>具名函数参数：如果使用命名传参，可以不用管传参顺序</li>
+<li>返回类型可在函数后使用 : String 指定，默认为Unit即无返回类型</li>
+<li>TODO函数是抛出异常（与java的throw类似），返回类型为Nothing。</li>
+<li>函数名可以使用特殊符号、空格、中文、关键字等等，但是需要用反引号 `` 扩起来，如：java定义了关键字函数，可使用此方法。</li>
+</ul>
+</blockquote>
+<p>示例代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用时 doSomething(3, true)</span></span><br><span class="line"><span class="comment">//具名使用 doSomething(age=3, flag=false)</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">doSomething</span><span class="params">(age:<span class="type">Int</span>, flag:<span class="type">Boolean</span>)</span></span> : String&#123;</span><br><span class="line">  	<span class="keyword">return</span> <span class="string">&quot;result&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//使用时 fix(3)</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">fix</span><span class="params">(age:<span class="type">Int</span>, name:<span class="type">String</span> = <span class="string">&quot;小明&quot;</span>)</span></span>&#123;</span><br><span class="line">  	println(name + age)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">TODO(<span class="string">&quot;nothing&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> `*** 发对付对付 ***` <span class="params">()</span></span> &#123;</span><br><span class="line">  	println(<span class="string">&quot;特殊函数&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kotlin/" rel="tag">kotlin</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-android-screen"
   class="article article-type-post"
   itemscope
@@ -1519,17 +1644,14 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：</p>
-<p><strong>1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。</strong></p>
-<blockquote>
+  <h1 id="项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现："><a href="#项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：" class="headerlink" title="项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现："></a>项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：</h1><h3 id="1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。"><a href="#1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。" class="headerlink" title="1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。"></a><strong>1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。</strong></h3><blockquote>
 <p>测试CENTER_CROP属性</p>
 <p>将图片放在ImageView的中心点，然后对图片进行等比例缩放</p>
 <p>官方文档描述：<br>Scale the image uniformly (maintain the image’s aspect ratio) so that<br>both dimensions (width and height) of the image will be equal to or larger<br>than the corresponding dimension of the view (minus padding).<br>这段文字值得好好体会一下。<br>简而言之：<br>等比例缩放图片使得图片的宽和高均不小于控件对应的宽高</p>
 <p>1.1 若图片宽和高均小于ImageView控件的宽高，则等比例放大图片，直至铺满ImageView.<br>      当然这种情况下的等比例放大，就可能导致图片X或Y方向的图片显示不全<br>1.2 若图片宽或高小于ImageView控件的宽或高,则将图片等比例放大直到铺满ImageView<br>      比如ImageView为750<em>750,图片为600</em>800,所以会等比例放大图片，直至图片宽度变为<br>      750.但是这样会造成图片的高度大于了ImageView的高，所以图片的垂直方向显示不全，会被剪裁<br>1.3 如图片宽和高均大于ImageView控件的宽和高<br>      此时等比例缩小图片，当图片的宽高中任意一值等于控件对应的宽高时停止缩小图片。<br>      在这种情况下就很可能造成：图片显示不完整</p>
 <p>所以CENTER_CROP属性的显著特点:<br>图片会铺满整个ImageView，但图片可能显示不完整<br>————————————————<br>版权声明：本文为CSDN博主「谷哥的小弟」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/lfdfhl/article/details/52144250">https://blog.csdn.net/lfdfhl/article/details/52144250</a></p>
 </blockquote>
-<p><strong>2、fitStart 属性完整显示图片，导致如果高度与宽度不一致，可能高度填充，宽度有白边。</strong></p>
-<blockquote>
+<h3 id="2、fitStart-属性完整显示图片，导致如果高度与宽度不一致，可能高度填充，宽度有白边。"><a href="#2、fitStart-属性完整显示图片，导致如果高度与宽度不一致，可能高度填充，宽度有白边。" class="headerlink" title="2、fitStart 属性完整显示图片，导致如果高度与宽度不一致，可能高度填充，宽度有白边。"></a><strong>2、fitStart 属性完整显示图片，导致如果高度与宽度不一致，可能高度填充，宽度有白边。</strong></h3><blockquote>
 <p>测试FIT_CENTER属性</p>
 <p>将图片放在ImageView的中心点，然后对图片进行等比例缩放</p>
 <p>官方文档：<br>Scale the image using CENTER.<br>CENTER:<br>Compute a scale that will maintain the original src aspect ratio,<br>but will also ensure that src fits entirely inside dst.<br>At least one axis (X or Y) will fit exactly. The result is centered inside dst.</p>
@@ -1542,7 +1664,7 @@
 <p>————————————————<br>版权声明：本文为CSDN博主「谷哥的小弟」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/lfdfhl/article/details/52144250">https://blog.csdn.net/lfdfhl/article/details/52144250</a></p>
 </blockquote>
 <p><strong>综合考虑，决定使用宽度填充，高度等比例缩放，多余部分填充，UI图片下方保留安全区域，与centerCrop类似，只是图片从顶部保留，自定义View如下：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class TopCropImageView extends androidx.appcompat.widget.AppCompatImageView &#123;</span><br><span class="line"></span><br><span class="line">    public TopCropImageView(Context context) &#123;</span><br><span class="line">        super(context);</span><br><span class="line">        setScaleType(ScaleType.MATRIX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TopCropImageView(Context context, @Nullable AttributeSet attrs) &#123;</span><br><span class="line">        super(context, attrs);</span><br><span class="line">        setScaleType(ScaleType.MATRIX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TopCropImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) &#123;</span><br><span class="line">        super(context, attrs, defStyleAttr);</span><br><span class="line">        setScaleType(ScaleType.MATRIX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected boolean setFrame(int l, int t, int r, int b) &#123;</span><br><span class="line">        if (getDrawable() == null) &#123;</span><br><span class="line">            return super.setFrame(frameLeft, frameTop, frameRight, frameBottom);</span><br><span class="line">        &#125;</span><br><span class="line">        //frame 宽度</span><br><span class="line">        float frameWidth = frameRight - frameLeft;</span><br><span class="line">        //图片宽度</span><br><span class="line">        float originalImageWidth = (float)getDrawable().getIntrinsicWidth();</span><br><span class="line">        //缩放比例</span><br><span class="line">        float usedScaleFactor = frameWidth/originalImageWidth;</span><br><span class="line"></span><br><span class="line">        Matrix matrix = getImageMatrix();</span><br><span class="line">        matrix.setScale(usedScaleFactor, usedScaleFactor, 0, 0); </span><br><span class="line">        setImageMatrix(matrix);</span><br><span class="line">        return super.setFrame(frameLeft, frameTop, frameRight, frameBottom);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TopCropImageView</span> <span class="keyword">extends</span> <span class="title">androidx</span>.<span class="title">appcompat</span>.<span class="title">widget</span>.<span class="title">AppCompatImageView</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TopCropImageView</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context);</span><br><span class="line">        setScaleType(ScaleType.MATRIX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TopCropImageView</span><span class="params">(Context context, <span class="meta">@Nullable</span> AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs);</span><br><span class="line">        setScaleType(ScaleType.MATRIX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TopCropImageView</span><span class="params">(Context context, <span class="meta">@Nullable</span> AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</span><br><span class="line">        setScaleType(ScaleType.MATRIX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">setFrame</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> t, <span class="keyword">int</span> r, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (getDrawable() == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">super</span>.setFrame(frameLeft, frameTop, frameRight, frameBottom);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//frame 宽度</span></span><br><span class="line">        <span class="keyword">float</span> frameWidth = frameRight - frameLeft;</span><br><span class="line">        <span class="comment">//图片宽度</span></span><br><span class="line">        <span class="keyword">float</span> originalImageWidth = (<span class="keyword">float</span>)getDrawable().getIntrinsicWidth();</span><br><span class="line">        <span class="comment">//缩放比例</span></span><br><span class="line">        <span class="keyword">float</span> usedScaleFactor = frameWidth/originalImageWidth;</span><br><span class="line"></span><br><span class="line">        Matrix matrix = getImageMatrix();</span><br><span class="line">        matrix.setScale(usedScaleFactor, usedScaleFactor, <span class="number">0</span>, <span class="number">0</span>); </span><br><span class="line">        setImageMatrix(matrix);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.setFrame(frameLeft, frameTop, frameRight, frameBottom);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>之前在setFrame内使用getWidth（），发现部分请款返回数值为0的问题，改为使用right-left。</p>
 <p>其余情况也一致，bottomCenter，left 等等，都可通过Matrix矩阵（Scale：缩放、 Skew：错切、 Rotate：旋转、Translate：平移）实现。</p>

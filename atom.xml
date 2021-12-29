@@ -6,7 +6,7 @@
   <link href="http://rrxxpp.github.io/atom.xml" rel="self"/>
   
   <link href="http://rrxxpp.github.io/"/>
-  <updated>2021-11-12T07:58:32.476Z</updated>
+  <updated>2021-12-29T16:19:09.325Z</updated>
   <id>http://rrxxpp.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kotlin学习笔记 — day1</title>
+    <link href="http://rrxxpp.github.io/2021/12/29/kotlin-study-day1/"/>
+    <id>http://rrxxpp.github.io/2021/12/29/kotlin-study-day1/</id>
+    <published>2021-12-29T15:26:21.000Z</published>
+    <updated>2021-12-29T16:19:09.325Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Kotlin学习笔记-—-day1&quot;&gt;&lt;a href=&quot;#Kotlin学习笔记-—-day1&quot; class=&quot;headerlink&quot; title=&quot;Kotlin学习笔记 — day1&quot;&gt;&lt;/a&gt;Kotlin学习笔记 —</summary>
+        
+      
+    
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/categories/kotlin/"/>
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/tags/kotlin/"/>
+    
+  </entry>
   
   <entry>
     <title>屏幕尺寸大全</title>
@@ -53,15 +78,14 @@
     <link href="http://rrxxpp.github.io/2021/11/12/android-image-topcrop/"/>
     <id>http://rrxxpp.github.io/2021/11/12/android-image-topcrop/</id>
     <published>2021-11-12T06:25:52.000Z</published>
-    <updated>2021-11-16T01:30:06.577Z</updated>
+    <updated>2021-12-29T16:18:45.072Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。&lt;/s</summary>
+    <summary type="html">&lt;h1 id=&quot;项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：&quot;&gt;&lt;a</summary>
         
       
     
