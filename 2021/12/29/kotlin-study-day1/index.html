@@ -6,15 +6,17 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Kotlin学习笔记 — day1 - 阿祥</title>
+  <title>Kotlin变量、函数、表达式 - 阿祥</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  <meta name="description" content="个人学习记录
+  <meta name="description" content="Kotlin基础知识
+
+
 1 变量与数据类型
 
-整数类型：Byte...">
+整数类...">
   <meta name="author" content="Axiang">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -156,7 +158,7 @@
       
       
     </div>
-    <div class="center">Kotlin学习笔记 — day1</div>
+    <div class="center">Kotlin变量、函数、表达式</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -198,21 +200,29 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1534665482403-a909d0d97c67.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1484417894907-623942c8ee29.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">Kotlin学习笔记 — day1</h1>
+    <h1 class="head-title">Kotlin变量、函数、表达式</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>十二月 29, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2637</span>
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/12/29/kotlin-study-day1/" class="leancloud-counter" data-flag-title="Kotlin变量、函数、表达式"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2021/12/29/kotlin-study-day1/" class="leancloud-like" data-flag-title="Kotlin变量、函数、表达式"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2608</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         
-        <p>个人学习记录</p>
-<h2 id="1-变量与数据类型"><a href="#1-变量与数据类型" class="headerlink" title="1 变量与数据类型"></a>1 变量与数据类型</h2><blockquote>
+          <p><p>Kotlin基础知识</p></p>
+        
+        <h2 id="1-变量与数据类型"><a href="#1-变量与数据类型" class="headerlink" title="1 变量与数据类型"></a>1 变量与数据类型</h2><blockquote>
 <ul>
 <li>整数类型：<code>Byte</code>、<code>Short</code>、<code>Int</code>、<code>Long</code>，<code>Int</code> 是默认类型</li>
 <li>浮点类型：<code>Float</code>、<code>Double</code>，<code>Double</code>是默认类型</li>
@@ -240,7 +250,7 @@
 <p>只能在函数之外定义，因为编译时常量必须在编译时赋值，而函数在运行时才调用，编译时常量只能是常见的数据类型。</p>
 </blockquote>
 <p>示例代码：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">const</span> <span class="hljs-keyword">val</span> MAX = <span class="hljs-number">200</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>  	println(MAX)<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">const</span> <span class="hljs-keyword">val</span> MAX = <span class="hljs-number">200</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	println(MAX)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>查看Kotlin字节码：</p>
@@ -258,9 +268,9 @@
 <p>​    与<code>switch/case</code>一致，当某个条件满足时，执行相应代码。</p>
 </blockquote>
 <p>示例代码：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>  	<span class="hljs-keyword">val</span> age = <span class="hljs-number">3</span><br>  	<span class="hljs-keyword">if</span> (age <span class="hljs-keyword">in</span> <span class="hljs-number">0.</span><span class="hljs-number">.3</span>) &#123;<br>      	println(<span class="hljs-string">&quot;婴幼儿&quot;</span>)<br>       &#125;<span class="hljs-keyword">else</span> &#123;<br>      	println(<span class="hljs-string">&quot;其它&quot;</span>)<br>       &#125;<br>  <br> 	   <span class="hljs-comment">//其它用法</span><br>  	<span class="hljs-keyword">if</span> (age !<span class="hljs-keyword">in</span> <span class="hljs-number">0.</span><span class="hljs-number">.3</span>)&#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-keyword">val</span> age = <span class="hljs-number">3</span><br>	<span class="hljs-keyword">if</span> (age <span class="hljs-keyword">in</span> <span class="hljs-number">0.</span><span class="hljs-number">.3</span>) &#123;<br>		println(<span class="hljs-string">&quot;婴幼儿&quot;</span>)<br>	&#125;<span class="hljs-keyword">else</span> &#123;<br>		println(<span class="hljs-string">&quot;其它&quot;</span>)<br>	&#125;<br><br> 	  <span class="hljs-comment">//其它用法</span><br>	<span class="hljs-keyword">if</span> (age !<span class="hljs-keyword">in</span> <span class="hljs-number">0.</span><span class="hljs-number">.3</span>)&#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br> 	 <span class="hljs-keyword">val</span> x = <span class="hljs-number">1</span><br>	<span class="hljs-keyword">when</span> (x) &#123;<br>    	<span class="hljs-number">1</span> -&gt; print(<span class="hljs-string">&quot;x == 1&quot;</span>)<br>    	<span class="hljs-number">2</span> -&gt; print(<span class="hljs-string">&quot;x == 2&quot;</span>)<br>    	<span class="hljs-keyword">else</span> -&gt; &#123; <span class="hljs-comment">// 注意这个块</span><br>        	print(<span class="hljs-string">&quot;x is neither 1 nor 2&quot;</span>)<br>    	&#125;<br>	&#125;<br>  <br>    <span class="hljs-comment">//如果很多分支需要用相同的方式处理，则可以把多个分支条件放在一起，用逗号分隔：</span><br>    <span class="hljs-keyword">when</span> (x) &#123;<br>    	<span class="hljs-number">0</span>, <span class="hljs-number">1</span> -&gt; print(<span class="hljs-string">&quot;x == 0 or x == 1&quot;</span>)<br>    	<span class="hljs-keyword">else</span> -&gt; print(<span class="hljs-string">&quot;otherwise&quot;</span>)<br>	&#125;<br>  <br> 	 <span class="hljs-comment">//我们也可以检测一个值在（in）或者不在（!in）一个区间或者集合中：</span><br> 	 <span class="hljs-keyword">when</span> (x) &#123;<br>    	<span class="hljs-keyword">in</span> <span class="hljs-number">1.</span><span class="hljs-number">.10</span> -&gt; print(<span class="hljs-string">&quot;x is in the range&quot;</span>)<br>    	<span class="hljs-keyword">in</span> validNumbers -&gt; print(<span class="hljs-string">&quot;x is valid&quot;</span>)<br>    	!<span class="hljs-keyword">in</span> <span class="hljs-number">10.</span><span class="hljs-number">.20</span> -&gt; print(<span class="hljs-string">&quot;x is outside the range&quot;</span>)<br>    	<span class="hljs-keyword">else</span> -&gt; print(<span class="hljs-string">&quot;none of the above&quot;</span>)<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-keyword">val</span> x = <span class="hljs-number">1</span><br>	<span class="hljs-keyword">when</span> (x) &#123;<br>    	<span class="hljs-number">1</span> -&gt; print(<span class="hljs-string">&quot;x == 1&quot;</span>)<br>    	<span class="hljs-number">2</span> -&gt; print(<span class="hljs-string">&quot;x == 2&quot;</span>)<br>    	<span class="hljs-keyword">else</span> -&gt; &#123; <span class="hljs-comment">// 注意这个块</span><br>        	print(<span class="hljs-string">&quot;x is neither 1 nor 2&quot;</span>)<br>    	&#125;<br>	&#125;<br>  <br>    <span class="hljs-comment">//如果很多分支需要用相同的方式处理，则可以把多个分支条件放在一起，用逗号分隔：</span><br>    <span class="hljs-keyword">when</span> (x) &#123;<br>    	<span class="hljs-number">0</span>, <span class="hljs-number">1</span> -&gt; print(<span class="hljs-string">&quot;x == 0 or x == 1&quot;</span>)<br>    	<span class="hljs-keyword">else</span> -&gt; print(<span class="hljs-string">&quot;otherwise&quot;</span>)<br>	&#125;<br>  <br> 	 <span class="hljs-comment">//我们也可以检测一个值在（in）或者不在（!in）一个区间或者集合中：</span><br> 	 <span class="hljs-keyword">when</span> (x) &#123;<br>    	<span class="hljs-keyword">in</span> <span class="hljs-number">1.</span><span class="hljs-number">.10</span> -&gt; print(<span class="hljs-string">&quot;x is in the range&quot;</span>)<br>    	<span class="hljs-keyword">in</span> validNumbers -&gt; print(<span class="hljs-string">&quot;x is valid&quot;</span>)<br>    	!<span class="hljs-keyword">in</span> <span class="hljs-number">10.</span><span class="hljs-number">.20</span> -&gt; print(<span class="hljs-string">&quot;x is outside the range&quot;</span>)<br>    	<span class="hljs-keyword">else</span> -&gt; print(<span class="hljs-string">&quot;none of the above&quot;</span>)<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="3-string模版"><a href="#3-string模版" class="headerlink" title="3 string模版"></a>3 string模版</h2><blockquote>
 <p>模版支持在字符串的引号内放入变量值</p>
@@ -282,8 +292,6 @@
 </blockquote>
 <p>示例代码：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">//使用时 doSomething(3, true)</span><br><span class="hljs-comment">//具名使用 doSomething(age=3, flag=false)</span><br><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">doSomething</span><span class="hljs-params">(age:<span class="hljs-type">Int</span>, flag:<span class="hljs-type">Boolean</span>)</span></span> : String&#123;<br>  	<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;result&quot;</span><br>&#125;<br><span class="hljs-comment">//使用时 fix(3)</span><br><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">fix</span><span class="hljs-params">(age:<span class="hljs-type">Int</span>, name:<span class="hljs-type">String</span> = <span class="hljs-string">&quot;小明&quot;</span>)</span></span>&#123;<br>  	println(name + age)<br>&#125;<br><br>TODO(<span class="hljs-string">&quot;nothing&quot;</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> `*** 发对付对付 ***` <span class="hljs-params">()</span></span> &#123;<br>  	println(<span class="hljs-string">&quot;特殊函数&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
       </section>
       <section class="extra">
         
@@ -301,7 +309,7 @@
 
         
   <nav class="nav">
-    <a href="/2022/01/03/kotlin-study-day2/"><i class="iconfont iconleft"></i>Kotlin学习笔记 — day2</a>
+    <a href="/2022/01/03/kotlin-study-day2/"><i class="iconfont iconleft"></i>Kotlin匿名函数</a>
     <a href="/2021/11/12/android-screen/">屏幕尺寸大全<i class="iconfont iconright"></i></a>
   </nav>
 
@@ -371,6 +379,10 @@
     <i class="iconfont iconplus"></i>
   </div>
   
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
+  
   
   
   <div class="fab fab-up">
@@ -416,6 +428,82 @@
 <script src="/js/script.js"></script>
 
 
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'IHSXqwgCzdyyFDMsJXdjkT8L-gzGzoHsz',
+      appKey: 'hawiDpU4FTIQ2WgLPDihOT4o',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
 
 
 

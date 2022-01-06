@@ -6,7 +6,7 @@
   <link href="http://rrxxpp.github.io/atom.xml" rel="self"/>
   
   <link href="http://rrxxpp.github.io/"/>
-  <updated>2022-01-06T05:21:39.091Z</updated>
+  <updated>2022-01-06T13:06:59.513Z</updated>
   <id>http://rrxxpp.github.io/</id>
   
   <author>
@@ -17,20 +17,81 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Kotlin字符串相关</title>
+    <link href="http://rrxxpp.github.io/2022/01/06/kotlin-study-day4/"/>
+    <id>http://rrxxpp.github.io/2022/01/06/kotlin-study-day4/</id>
+    <published>2022-01-06T12:58:53.000Z</published>
+    <updated>2022-01-06T13:06:59.513Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;字符串&lt;/p&gt;
+&lt;h2 id=&quot;1-字符串&quot;&gt;&lt;a href=&quot;#1-字符串&quot; class=&quot;headerlink&quot; title=&quot;1 字符串&quot;&gt;&lt;/a&gt;1 字符串&lt;/h2&gt;&lt;h3 id=&quot;字符串截取&quot;&gt;&lt;a href=&quot;#字符串截取&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Kotlin可空性判断</title>
+    <link href="http://rrxxpp.github.io/2022/01/06/kotlin-study-day3/"/>
+    <id>http://rrxxpp.github.io/2022/01/06/kotlin-study-day3/</id>
+    <published>2022-01-06T11:53:48.000Z</published>
+    <updated>2022-01-06T12:49:30.793Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;可空性判断与异常处理&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/categories/kotlin/"/>
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/tags/kotlin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MVVM 组件化实践</title>
+    <link href="http://rrxxpp.github.io/2022/01/06/android-component-based/"/>
+    <id>http://rrxxpp.github.io/2022/01/06/android-component-based/</id>
+    <published>2022-01-06T11:32:53.000Z</published>
+    <updated>2022-01-06T12:53:51.288Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;因为项目需要，本来计划用原来的模块化项目改造一下，改造一半发现之前写的架构用的东西太老了，而且有一些无用代码太老了，再加上刚好看到了一个Jetpack实践的项目，趁着java的余温，重新搭建一套吧，结合Jetpack，后续可能会改成kotlin。&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="前端" scheme="http://rrxxpp.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="java" scheme="http://rrxxpp.github.io/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>androidX下懒加载实现</title>
     <link href="http://rrxxpp.github.io/2022/01/05/androidx-lazyload/"/>
     <id>http://rrxxpp.github.io/2022/01/05/androidx-lazyload/</id>
     <published>2022-01-05T03:19:01.000Z</published>
-    <updated>2022-01-06T05:21:39.091Z</updated>
+    <updated>2022-01-06T06:09:36.432Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;以前处理 Fragment 的懒加载，我们通常会在 Fragment 中处理 &lt;code&gt;setUserVisibleHint + onHiddenChanged&lt;/code&gt; 这两个函数，而在 Androidx 模式下，我们可以使用</summary>
-        
-      
+    <summary type="html">&lt;p&gt;setMaxLifycycle代替onVisiable实现懒加载。&lt;/p&gt;</summary>
     
     
     
@@ -46,21 +107,14 @@
   </entry>
   
   <entry>
-    <title>Kotlin学习笔记 — day2</title>
+    <title>Kotlin匿名函数</title>
     <link href="http://rrxxpp.github.io/2022/01/03/kotlin-study-day2/"/>
     <id>http://rrxxpp.github.io/2022/01/03/kotlin-study-day2/</id>
     <published>2022-01-03T13:36:01.000Z</published>
-    <updated>2022-01-06T05:21:35.973Z</updated>
+    <updated>2022-01-06T12:49:06.232Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;个人学习记录&lt;/p&gt;
-&lt;h2 id=&quot;1-匿名函数&quot;&gt;&lt;a href=&quot;#1-匿名函数&quot; class=&quot;headerlink&quot; title=&quot;1 匿名函数&quot;&gt;&lt;/a&gt;1</summary>
-        
-      
+    <summary type="html">&lt;p&gt;匿名函数与lambda&lt;/p&gt;</summary>
     
     
     
@@ -72,21 +126,14 @@
   </entry>
   
   <entry>
-    <title>Kotlin学习笔记 — day1</title>
+    <title>Kotlin变量、函数、表达式</title>
     <link href="http://rrxxpp.github.io/2021/12/29/kotlin-study-day1/"/>
     <id>http://rrxxpp.github.io/2021/12/29/kotlin-study-day1/</id>
     <published>2021-12-29T15:26:21.000Z</published>
-    <updated>2022-01-06T05:21:37.603Z</updated>
+    <updated>2022-01-06T12:51:55.416Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;个人学习记录&lt;/p&gt;
-&lt;h2 id=&quot;1-变量与数据类型&quot;&gt;&lt;a href=&quot;#1-变量与数据类型&quot; class=&quot;headerlink&quot; title=&quot;1 变量与数据类型&quot;&gt;&lt;/a&gt;1</summary>
-        
-      
+    <summary type="html">&lt;p&gt;Kotlin基础知识&lt;/p&gt;</summary>
     
     
     
@@ -102,23 +149,10 @@
     <link href="http://rrxxpp.github.io/2021/11/12/android-screen/"/>
     <id>http://rrxxpp.github.io/2021/11/12/android-screen/</id>
     <published>2021-11-12T07:34:22.000Z</published>
-    <updated>2022-01-06T05:21:40.550Z</updated>
+    <updated>2022-01-06T06:07:53.424Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th align=&quot;left&quot;&gt;设备名称&lt;/th&gt;
-&lt;th align=&quot;left&quot;&gt;操作系统&lt;/th&gt;
-&lt;th align=&quot;left&quot;&gt;尺寸 in&lt;/th&gt;
-&lt;th align=&quot;left&quot;&gt;PPI&lt;/th&gt;
-&lt;th</summary>
-        
-      
+    <summary type="html">&lt;p&gt;常用移动设备尺寸.&lt;/p&gt;</summary>
     
     
     
@@ -130,20 +164,14 @@
   </entry>
   
   <entry>
-    <title>Android ImageView scaleType 扩展，类似centerCrop，但从顶部开始显示。</title>
+    <title>scaleType 扩展 topCrop，类似centerCrop。</title>
     <link href="http://rrxxpp.github.io/2021/11/12/android-image-topcrop/"/>
     <id>http://rrxxpp.github.io/2021/11/12/android-image-topcrop/</id>
     <published>2021-11-12T06:25:52.000Z</published>
-    <updated>2022-01-06T05:21:45.715Z</updated>
+    <updated>2022-01-06T06:07:03.198Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：&quot;&gt;&lt;a</summary>
-        
-      
+    <summary type="html">&lt;p&gt;为ImageView ScalType添加顶部扩展。&lt;/p&gt;</summary>
     
     
     

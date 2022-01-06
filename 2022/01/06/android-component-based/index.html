@@ -6,12 +6,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>记事 - 阿祥</title>
+  <title>MVVM 组件化实践 - 阿祥</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  <meta name="description" content="一只Android开发者。">
+  <meta name="description" content="因为项目需要，本来计划用原来的模块化项目改造一下，改造...">
   <meta name="author" content="Axiang">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -153,7 +153,7 @@
       
       
     </div>
-    <div class="center">记事</div>
+    <div class="center">MVVM 组件化实践</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -188,87 +188,89 @@
     
   </div>
 </nav>
-  
-
-
-<main id="main">
-  <section class="gallery container">
-    <header class="header">
-  <h1 class="header-title">记事</h1>
-  <p class="header-subtitle">翻开随身携带的记事本，写着许多事都是关于你。</p>
-</header>
-    <div id="wrap" class=waterfallWrap default-type="waterfall" default-col="3">
-      <a data-fancybox="images" style=width:33.333333333333336% target="_blank" rel="noopener" href="https://gitee.com/rxp123/hexo-image/raw/master/photo-1484417894907-623942c8ee29.jpeg" class="item"><img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1484417894907-623942c8ee29.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="https://gitee.com/rxp123/hexo-image/raw/master/photo-1484417894907-623942c8ee29.jpeg" /></a><a data-fancybox="images" style=width:33.333333333333336% target="_blank" rel="noopener" href="https://gitee.com/rxp123/hexo-image/raw/master/photo-1532289402244-3cbf8bdeb722.jpeg" class="item"><img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1532289402244-3cbf8bdeb722.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="https://gitee.com/rxp123/hexo-image/raw/master/photo-1532289402244-3cbf8bdeb722.jpeg" /></a><a data-fancybox="images" style=width:33.333333333333336% target="_blank" rel="noopener" href="https://gitee.com/rxp123/hexo-image/raw/master/photo-1532289608746-8aaaa40620f8.jpeg" class="item"><img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1532289608746-8aaaa40620f8.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="https://gitee.com/rxp123/hexo-image/raw/master/photo-1532289608746-8aaaa40620f8.jpeg" /></a><a data-fancybox="images" style=width:33.333333333333336% target="_blank" rel="noopener" href="https://gitee.com/rxp123/hexo-image/raw/master/photo-1603380353725-f8a4d39cc41e.jpeg" class="item"><img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1603380353725-f8a4d39cc41e.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="https://gitee.com/rxp123/hexo-image/raw/master/photo-1603380353725-f8a4d39cc41e.jpeg" /></a><a data-fancybox="images" style=width:33.333333333333336% target="_blank" rel="noopener" href="https://gitee.com/rxp123/hexo-image/raw/master/photo-1615043588028-1f145c38c7cf.jpeg" class="item"><img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1615043588028-1f145c38c7cf.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="https://gitee.com/rxp123/hexo-image/raw/master/photo-1615043588028-1f145c38c7cf.jpeg" /></a>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1615043588028-1f145c38c7cf.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">MVVM 组件化实践</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 06, 2022</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2022/01/06/android-component-based/" class="leancloud-counter" data-flag-title="MVVM 组件化实践"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2022/01/06/android-component-based/" class="leancloud-like" data-flag-title="MVVM 组件化实践"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>557</span>
     </div>
-  </section>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>因为项目需要，本来计划用原来的模块化项目改造一下，改造一半发现之前写的架构用的东西太老了，而且有一些无用代码太老了，再加上刚好看到了一个Jetpack实践的项目，趁着java的余温，重新搭建一套吧，结合Jetpack，后续可能会改成kotlin。</p>
+<h2 id="1-为什么使用组件化"><a href="#1-为什么使用组件化" class="headerlink" title="1 为什么使用组件化"></a>1 为什么使用组件化</h2><p>除了上述原因，但工程撸项目随着体积增大，越来越多的问题也开始体现（虽然确实快）</p>
+<ul>
+<li><strong>查找问题慢</strong>：定位问题，需要在多个代码混合的模块中寻找和跳转。</li>
+<li><strong>开发维护成本增加</strong>：避免代码的改动影响其它业务的功能，导致开发和维护成本不断增加。</li>
+<li><strong>编译时间长</strong>：项目工程越大，编译完整代码所花费的时间越长。</li>
+<li><strong>开发效率低</strong>：多人协作开发时，开发风格不一，又很难将业务完全分割，大家互相影响，导致开发效率低下。</li>
+<li><strong>代码复用性差</strong>：写过的代码很难抽离出来再次利用。</li>
+</ul>
+<h2 id="2-组件化优势"><a href="#2-组件化优势" class="headerlink" title="2 组件化优势"></a>2 组件化优势</h2><ul>
+<li><strong>加快编译速度</strong>：每个业务功能都是一个单独的工程，可独立编译运行，拆分后代码量较少，编译自然变快。</li>
+<li><strong>解耦</strong>：通过关注点分离的形式，将App分离成多个模块，每个模块都是一个组件。</li>
+<li><strong>提高开发效率</strong>：多人开发中，每个组件模块由单人负责，降低了开发之间沟通的成本，减少因代码风格不一而产生的相互影响。</li>
+<li><strong>代码复用</strong>：类似我们引用的第三方库，可以将基础组件或功能组件剥离。在新项目微调或直接使用。</li>
+</ul>
+<h2 id="3-组件分层"><a href="#3-组件分层" class="headerlink" title="3 组件分层"></a>3 组件分层</h2><p><img    class="lazyload" data-original="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/49fe308e95ba4953a7495f283908d259~tplv-k3u1fbpfcp-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">img</span></p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Axiang</li>
+    <li><strong>本文链接：</strong><a href="http://rrxxpp.github.io/2022/01/06/android-component-based/index.html" title="http:&#x2F;&#x2F;rrxxpp.github.io&#x2F;2022&#x2F;01&#x2F;06&#x2F;android-component-based&#x2F;index.html">http:&#x2F;&#x2F;rrxxpp.github.io&#x2F;2022&#x2F;01&#x2F;06&#x2F;android-component-based&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2022/01/06/kotlin-study-day3/"><i class="iconfont iconleft"></i>Kotlin可空性判断</a>
+    <a href="/2022/01/05/androidx-lazyload/">androidX下懒加载实现<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E7%BB%84%E4%BB%B6%E5%8C%96"><span class="toc-text">1 为什么使用组件化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BB%84%E4%BB%B6%E5%8C%96%E4%BC%98%E5%8A%BF"><span class="toc-text">2 组件化优势</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%BB%84%E4%BB%B6%E5%88%86%E5%B1%82"><span class="toc-text">3 组件分层</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
 </main>
-
-<script>
-  var gap = 10;
-  var items = document.getElementsByClassName('item');
-  var wrap = document.getElementById("wrap");
-
-  window.onload = function () {
-    waterFall();
-  }
-
-  window.onresize = function () {
-    setTimeout(() => {
-      waterFall();
-    }, 1000)
-  }
-
-  function waterFall() {
-    if (!(wrap.getAttribute('default-type') === 'waterfall')) return;
-    var wrapWidth = getClientWidth();
-    var columns;
-    if(wrapWidth < 768 && wrapWidth >= 576) {
-      columns = 2;
-    } else if (wrapWidth < 576) {
-      columns = 1;
-    } else {
-      columns = parseInt(wrap.getAttribute('default-col'));
-    }
-    rerenderImage(columns, wrapWidth);
-  }
-
-  function rerenderImage(col, pageWidth) {
-    var arr = [];
-    var maxHeight = 0;
-    const itemWidth = (100 / col) + '%';
-    for (var i = 0;i < items.length; i++){
-      if (i < col) {
-        items[i].style.top = 0;
-        items[i].style.left = (pageWidth / col  + gap) * i + 'px';
-        items[i].style.width = itemWidth;
-        arr.push(items[i].offsetHeight);
-      } else {
-        var minHeight = arr[0];
-        var index = 0;
-        for (var j = 0; j < arr.length; j++) {
-          if (minHeight > arr[j]) {
-            minHeight = arr[j];
-            index = j;
-          } 
-        }
-        items[i].style.top = arr[index] + gap + 'px';
-        items[i].style.left = items[index].offsetLeft + 'px';
-        items[i].style.width = itemWidth;
-        arr[index] = arr[index] + items[i].offsetHeight + gap;
-      }
-    }
-    for (var m = 0; m < arr.length; m++) {
-      if (maxHeight < arr[m]) {
-        maxHeight = arr[m];
-      } 
-    }
-    wrap.style.height = maxHeight + 'px';
-  }
-
-  function getClientWidth() {
-    return wrap.getBoundingClientRect().width;
-  }
-</script>
   
 
 <footer class="footer">
@@ -316,6 +318,10 @@
       <div class="fab fab-plus">
     <i class="iconfont iconplus"></i>
   </div>
+  
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
   
   
   

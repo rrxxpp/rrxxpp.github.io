@@ -6,12 +6,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>记事 - 阿祥</title>
+  <title>Kotlin字符串相关 - 阿祥</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  <meta name="description" content="一只Android开发者。">
+  <meta name="description" content="字符串
+1 字符串字符串截取substring函数支持...">
   <meta name="author" content="Axiang">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -153,7 +154,7 @@
       
       
     </div>
-    <div class="center">记事</div>
+    <div class="center">Kotlin字符串相关</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -188,87 +189,75 @@
     
   </div>
 </nav>
-  
-
-
-<main id="main">
-  <section class="gallery container">
-    <header class="header">
-  <h1 class="header-title">记事</h1>
-  <p class="header-subtitle">翻开随身携带的记事本，写着许多事都是关于你。</p>
-</header>
-    <div id="wrap" class=waterfallWrap default-type="waterfall" default-col="3">
-      <a data-fancybox="images" style=width:33.333333333333336% target="_blank" rel="noopener" href="https://gitee.com/rxp123/hexo-image/raw/master/photo-1484417894907-623942c8ee29.jpeg" class="item"><img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1484417894907-623942c8ee29.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="https://gitee.com/rxp123/hexo-image/raw/master/photo-1484417894907-623942c8ee29.jpeg" /></a><a data-fancybox="images" style=width:33.333333333333336% target="_blank" rel="noopener" href="https://gitee.com/rxp123/hexo-image/raw/master/photo-1532289402244-3cbf8bdeb722.jpeg" class="item"><img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1532289402244-3cbf8bdeb722.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="https://gitee.com/rxp123/hexo-image/raw/master/photo-1532289402244-3cbf8bdeb722.jpeg" /></a><a data-fancybox="images" style=width:33.333333333333336% target="_blank" rel="noopener" href="https://gitee.com/rxp123/hexo-image/raw/master/photo-1532289608746-8aaaa40620f8.jpeg" class="item"><img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1532289608746-8aaaa40620f8.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="https://gitee.com/rxp123/hexo-image/raw/master/photo-1532289608746-8aaaa40620f8.jpeg" /></a><a data-fancybox="images" style=width:33.333333333333336% target="_blank" rel="noopener" href="https://gitee.com/rxp123/hexo-image/raw/master/photo-1603380353725-f8a4d39cc41e.jpeg" class="item"><img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1603380353725-f8a4d39cc41e.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="https://gitee.com/rxp123/hexo-image/raw/master/photo-1603380353725-f8a4d39cc41e.jpeg" /></a><a data-fancybox="images" style=width:33.333333333333336% target="_blank" rel="noopener" href="https://gitee.com/rxp123/hexo-image/raw/master/photo-1615043588028-1f145c38c7cf.jpeg" class="item"><img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1615043588028-1f145c38c7cf.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="https://gitee.com/rxp123/hexo-image/raw/master/photo-1615043588028-1f145c38c7cf.jpeg" /></a>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1570215171323-4ec328f3f5fa.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Kotlin字符串相关</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 06, 2022</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2022/01/06/kotlin-study-day4/" class="leancloud-counter" data-flag-title="Kotlin字符串相关"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2022/01/06/kotlin-study-day4/" class="leancloud-like" data-flag-title="Kotlin字符串相关"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>264</span>
     </div>
-  </section>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>字符串</p>
+<h2 id="1-字符串"><a href="#1-字符串" class="headerlink" title="1 字符串"></a>1 字符串</h2><h3 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h3><p>substring函数支持IntRange类型（表示一个整数范围的类型）的参数，until创建的范围不包括最后的值。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">const</span> <span class="hljs-keyword">val</span> Name = <span class="hljs-string">&quot;Jimmy&#x27;s friend&quot;</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">val</span> index = Name.indexOf(<span class="hljs-string">&quot;\&#x27;&quot;</span>)<br>    <span class="hljs-keyword">var</span> str = Name.substring(<span class="hljs-number">0</span> until index)<br>    println(str)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="拆分字符串"><a href="#拆分字符串" class="headerlink" title="拆分字符串"></a>拆分字符串</h3>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Axiang</li>
+    <li><strong>本文链接：</strong><a href="http://rrxxpp.github.io/2022/01/06/kotlin-study-day4/index.html" title="http:&#x2F;&#x2F;rrxxpp.github.io&#x2F;2022&#x2F;01&#x2F;06&#x2F;kotlin-study-day4&#x2F;index.html">http:&#x2F;&#x2F;rrxxpp.github.io&#x2F;2022&#x2F;01&#x2F;06&#x2F;kotlin-study-day4&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2022/01/06/kotlin-study-day3/">Kotlin可空性判断<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">1 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%88%AA%E5%8F%96"><span class="toc-text">字符串截取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%86%E5%88%86%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">拆分字符串</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
 </main>
-
-<script>
-  var gap = 10;
-  var items = document.getElementsByClassName('item');
-  var wrap = document.getElementById("wrap");
-
-  window.onload = function () {
-    waterFall();
-  }
-
-  window.onresize = function () {
-    setTimeout(() => {
-      waterFall();
-    }, 1000)
-  }
-
-  function waterFall() {
-    if (!(wrap.getAttribute('default-type') === 'waterfall')) return;
-    var wrapWidth = getClientWidth();
-    var columns;
-    if(wrapWidth < 768 && wrapWidth >= 576) {
-      columns = 2;
-    } else if (wrapWidth < 576) {
-      columns = 1;
-    } else {
-      columns = parseInt(wrap.getAttribute('default-col'));
-    }
-    rerenderImage(columns, wrapWidth);
-  }
-
-  function rerenderImage(col, pageWidth) {
-    var arr = [];
-    var maxHeight = 0;
-    const itemWidth = (100 / col) + '%';
-    for (var i = 0;i < items.length; i++){
-      if (i < col) {
-        items[i].style.top = 0;
-        items[i].style.left = (pageWidth / col  + gap) * i + 'px';
-        items[i].style.width = itemWidth;
-        arr.push(items[i].offsetHeight);
-      } else {
-        var minHeight = arr[0];
-        var index = 0;
-        for (var j = 0; j < arr.length; j++) {
-          if (minHeight > arr[j]) {
-            minHeight = arr[j];
-            index = j;
-          } 
-        }
-        items[i].style.top = arr[index] + gap + 'px';
-        items[i].style.left = items[index].offsetLeft + 'px';
-        items[i].style.width = itemWidth;
-        arr[index] = arr[index] + items[i].offsetHeight + gap;
-      }
-    }
-    for (var m = 0; m < arr.length; m++) {
-      if (maxHeight < arr[m]) {
-        maxHeight = arr[m];
-      } 
-    }
-    wrap.style.height = maxHeight + 'px';
-  }
-
-  function getClientWidth() {
-    return wrap.getBoundingClientRect().width;
-  }
-</script>
   
 
 <footer class="footer">
@@ -316,6 +305,10 @@
       <div class="fab fab-plus">
     <i class="iconfont iconplus"></i>
   </div>
+  
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
   
   
   

@@ -6,14 +6,16 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Kotlin学习笔记 — day2 - 阿祥</title>
+  <title>Kotlin匿名函数 - 阿祥</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  <meta name="description" content="个人学习记录
+  <meta name="description" content="匿名函数与lambda
+
+
 1 匿名函数
-定义时不取名字的函数，我们...">
+定义时不取名...">
   <meta name="author" content="Axiang">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -155,7 +157,7 @@
       
       
     </div>
-    <div class="center">Kotlin学习笔记 — day2</div>
+    <div class="center">Kotlin匿名函数</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -197,21 +199,29 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1498050108023-c5249f4df085.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1593642632559-0c6d3fc62b89.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">Kotlin学习笔记 — day2</h1>
+    <h1 class="head-title">Kotlin匿名函数</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 03, 2022</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4361</span>
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2022/01/03/kotlin-study-day2/" class="leancloud-counter" data-flag-title="Kotlin匿名函数"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2022/01/03/kotlin-study-day2/" class="leancloud-like" data-flag-title="Kotlin匿名函数"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4368</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         
-        <p>个人学习记录</p>
-<h2 id="1-匿名函数"><a href="#1-匿名函数" class="headerlink" title="1 匿名函数"></a>1 匿名函数</h2><blockquote>
+          <p><p>匿名函数与lambda</p></p>
+        
+        <h2 id="1-匿名函数"><a href="#1-匿名函数" class="headerlink" title="1 匿名函数"></a>1 匿名函数</h2><blockquote>
 <p>定义时不取名字的函数，我们称之为匿名函数，匿名函数通常整体传递给其他函数，或者从其它函数返回。</p>
 <p>我们将匿名函数称为lambda，将它的定义称谓lambda表达式。</p>
 <p>匿名函数本质上就是一个函数的参数传递类型为<strong>函数</strong>，当这个函数作为参数传递时，它的名字也就没有意义了，所以该函数不需要再有名字，也就是 <code>a(fun(param: Int): String &#123;return param.toString()&#125;)</code>， 使用lumbda表达式简写以后就是现在匿名函数的形式了，此处可参考<a target="_blank" rel="noopener" href="https://rengwuxian.com/kotlin-lambda/">扔物线Lumbda视频</a>。</p>
@@ -268,7 +278,6 @@
 <blockquote>
 <p>函数类型能让开发者少写模式化代码，（举个例子就是通过Interface传递函数，内部定义方法，对比kotlin多了个interface，比如OnClickListener）写出更灵活的代码。java8支持面向对象编程和lambda表达式，单不支持将函数作为参数传给另一个函数或变量，不过java实现方案是匿名内部类(也就是接口 + 匿名内部类实现 + 传递interface)。</p>
 </blockquote>
-
       </section>
       <section class="extra">
         
@@ -287,7 +296,7 @@
         
   <nav class="nav">
     <a href="/2022/01/05/androidx-lazyload/"><i class="iconfont iconleft"></i>androidX下懒加载实现</a>
-    <a href="/2021/12/29/kotlin-study-day1/">Kotlin学习笔记 — day1<i class="iconfont iconright"></i></a>
+    <a href="/2021/12/29/kotlin-study-day1/">Kotlin变量、函数、表达式<i class="iconfont iconright"></i></a>
   </nav>
 
       </section>
@@ -356,6 +365,10 @@
     <i class="iconfont iconplus"></i>
   </div>
   
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
+  
   
   
   <div class="fab fab-up">
@@ -401,6 +414,82 @@
 <script src="/js/script.js"></script>
 
 
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'IHSXqwgCzdyyFDMsJXdjkT8L-gzGzoHsz',
+      appKey: 'hawiDpU4FTIQ2WgLPDihOT4o',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
 
 
 

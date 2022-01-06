@@ -11,7 +11,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  <meta name="description" content="以前处理 Fragment 的懒加载，我们通常会在 F...">
+  <meta name="description" content="setMaxLifycycle代替onVisiable...">
   <meta name="author" content="Axiang">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -195,18 +195,27 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1603380353725-f8a4d39cc41e.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1484417894907-623942c8ee29.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">androidX下懒加载实现</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 05, 2022</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>19247</span>
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2022/01/05/androidx-lazyload/" class="leancloud-counter" data-flag-title="androidX下懒加载实现"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2022/01/05/androidx-lazyload/" class="leancloud-like" data-flag-title="androidX下懒加载实现"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>19283</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
+        
+          <p><p>setMaxLifycycle代替onVisiable实现懒加载。</p></p>
         
         <p>以前处理 Fragment 的懒加载，我们通常会在 Fragment 中处理 <code>setUserVisibleHint + onHiddenChanged</code> 这两个函数，而在 Androidx 模式下，我们可以使用 <code>FragmentTransaction.setMaxLifecycle()</code> 的方式来处理 Fragment 的懒加载。</p>
 <p>在本文章中，我会详细介绍不同使用场景下两种方案的差异。大家快拿好小板凳。一起来学习新知识吧！</p>
@@ -382,7 +391,6 @@
 <p>以上为转载文章，以前onResume() 与 onVisiable() 某些情况用起来挺矛盾的，而且多层fragment的情况下onResume也会多次调用，还是比较推荐androidX下的方案的，当前项目内使用方法如下。</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResume</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>.onResume();<br><br>    <span class="hljs-comment">// 使用懒加载</span><br>    <span class="hljs-keyword">if</span> (enableLazyData())<br>        onVisible();<br>&#125;<br><br><span class="hljs-comment">//默认不启用懒加载</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">enableLazyData</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>&#125;<br><br><span class="hljs-comment">//懒加载实现</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onVisible</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (getLifecycle().getCurrentState() == Lifecycle.State.STARTED &amp;&amp; isFirst) &#123;<br>        <span class="hljs-comment">// 延迟加载 防止 切换动画还没执行完毕时数据就已经加载好了，这时页面会有渲染卡顿</span><br>        handler.postDelayed(<span class="hljs-keyword">new</span> Runnable() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>                initData();<br>                isFirst = <span class="hljs-keyword">false</span>;<br>            &#125;<br>        &#125;, <span class="hljs-number">300</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
       </section>
       <section class="extra">
         
@@ -400,8 +408,8 @@
 
         
   <nav class="nav">
-    <a></a>
-    <a href="/2022/01/03/kotlin-study-day2/">Kotlin学习笔记 — day2<i class="iconfont iconright"></i></a>
+    <a href="/2022/01/06/android-component-based/"><i class="iconfont iconleft"></i>MVVM 组件化实践</a>
+    <a href="/2022/01/03/kotlin-study-day2/">Kotlin匿名函数<i class="iconfont iconright"></i></a>
   </nav>
 
       </section>
@@ -470,6 +478,10 @@
     <i class="iconfont iconplus"></i>
   </div>
   
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
+  
   
   
   <div class="fab fab-up">
@@ -515,6 +527,82 @@
 <script src="/js/script.js"></script>
 
 
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'IHSXqwgCzdyyFDMsJXdjkT8L-gzGzoHsz',
+      appKey: 'hawiDpU4FTIQ2WgLPDihOT4o',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
 
 
 

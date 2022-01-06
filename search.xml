@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Android ImageView scaleType 扩展，类似centerCrop，但从顶部开始显示。</title>
+    <title>scaleType 扩展 topCrop，类似centerCrop。</title>
     <url>/2021/11/12/android-image-topcrop/</url>
-    <content><![CDATA[<h1 id="项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现："><a href="#项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：" class="headerlink" title="项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现："></a>项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：</h1><h3 id="1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。"><a href="#1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。" class="headerlink" title="1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。"></a><strong>1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。</strong></h3><blockquote>
+    <content><![CDATA[<p>为ImageView ScalType添加顶部扩展。</p>
+<span id="more"></span>
+
+<p>项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：</p>
+<h3 id="1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。"><a href="#1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。" class="headerlink" title="1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。"></a><strong>1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。</strong></h3><blockquote>
 <p>测试CENTER_CROP属性</p>
 <p>将图片放在ImageView的中心点，然后对图片进行等比例缩放</p>
 <p>官方文档描述：<br>Scale the image uniformly (maintain the image’s aspect ratio) so that<br>both dimensions (width and height) of the image will be equal to or larger<br>than the corresponding dimension of the view (minus padding).<br>这段文字值得好好体会一下。<br>简而言之：<br>等比例缩放图片使得图片的宽和高均不小于控件对应的宽高</p>
@@ -38,7 +42,10 @@
   <entry>
     <title>屏幕尺寸大全</title>
     <url>/2021/11/12/android-screen/</url>
-    <content><![CDATA[<table>
+    <content><![CDATA[<p>常用移动设备尺寸.</p>
+<span id="more"></span>
+
+<table>
 <thead>
 <tr>
 <th align="left">设备名称</th>
@@ -1331,9 +1338,11 @@
       </tags>
   </entry>
   <entry>
-    <title>Kotlin学习笔记 — day1</title>
+    <title>Kotlin变量、函数、表达式</title>
     <url>/2021/12/29/kotlin-study-day1/</url>
-    <content><![CDATA[<p>个人学习记录</p>
+    <content><![CDATA[<p>Kotlin基础知识</p>
+<span id="more"></span>
+
 <h2 id="1-变量与数据类型"><a href="#1-变量与数据类型" class="headerlink" title="1 变量与数据类型"></a>1 变量与数据类型</h2><blockquote>
 <ul>
 <li>整数类型：<code>Byte</code>、<code>Short</code>、<code>Int</code>、<code>Long</code>，<code>Int</code> 是默认类型</li>
@@ -1362,7 +1371,7 @@
 <p>只能在函数之外定义，因为编译时常量必须在编译时赋值，而函数在运行时才调用，编译时常量只能是常见的数据类型。</p>
 </blockquote>
 <p>示例代码：</p>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">const</span> <span class="hljs-keyword">val</span> MAX = <span class="hljs-number">200</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>  	println(MAX)<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">const</span> <span class="hljs-keyword">val</span> MAX = <span class="hljs-number">200</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	println(MAX)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>查看Kotlin字节码：</p>
@@ -1380,9 +1389,9 @@
 <p>​    与<code>switch/case</code>一致，当某个条件满足时，执行相应代码。</p>
 </blockquote>
 <p>示例代码：</p>
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>  	<span class="hljs-keyword">val</span> age = <span class="hljs-number">3</span><br>  	<span class="hljs-keyword">if</span> (age <span class="hljs-keyword">in</span> <span class="hljs-number">0.</span><span class="hljs-number">.3</span>) &#123;<br>      	println(<span class="hljs-string">&quot;婴幼儿&quot;</span>)<br>       &#125;<span class="hljs-keyword">else</span> &#123;<br>      	println(<span class="hljs-string">&quot;其它&quot;</span>)<br>       &#125;<br>  <br> 	   <span class="hljs-comment">//其它用法</span><br>  	<span class="hljs-keyword">if</span> (age !<span class="hljs-keyword">in</span> <span class="hljs-number">0.</span><span class="hljs-number">.3</span>)&#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-keyword">val</span> age = <span class="hljs-number">3</span><br>	<span class="hljs-keyword">if</span> (age <span class="hljs-keyword">in</span> <span class="hljs-number">0.</span><span class="hljs-number">.3</span>) &#123;<br>		println(<span class="hljs-string">&quot;婴幼儿&quot;</span>)<br>	&#125;<span class="hljs-keyword">else</span> &#123;<br>		println(<span class="hljs-string">&quot;其它&quot;</span>)<br>	&#125;<br><br> 	  <span class="hljs-comment">//其它用法</span><br>	<span class="hljs-keyword">if</span> (age !<span class="hljs-keyword">in</span> <span class="hljs-number">0.</span><span class="hljs-number">.3</span>)&#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br> 	 <span class="hljs-keyword">val</span> x = <span class="hljs-number">1</span><br>	<span class="hljs-keyword">when</span> (x) &#123;<br>    	<span class="hljs-number">1</span> -&gt; print(<span class="hljs-string">&quot;x == 1&quot;</span>)<br>    	<span class="hljs-number">2</span> -&gt; print(<span class="hljs-string">&quot;x == 2&quot;</span>)<br>    	<span class="hljs-keyword">else</span> -&gt; &#123; <span class="hljs-comment">// 注意这个块</span><br>        	print(<span class="hljs-string">&quot;x is neither 1 nor 2&quot;</span>)<br>    	&#125;<br>	&#125;<br>  <br>    <span class="hljs-comment">//如果很多分支需要用相同的方式处理，则可以把多个分支条件放在一起，用逗号分隔：</span><br>    <span class="hljs-keyword">when</span> (x) &#123;<br>    	<span class="hljs-number">0</span>, <span class="hljs-number">1</span> -&gt; print(<span class="hljs-string">&quot;x == 0 or x == 1&quot;</span>)<br>    	<span class="hljs-keyword">else</span> -&gt; print(<span class="hljs-string">&quot;otherwise&quot;</span>)<br>	&#125;<br>  <br> 	 <span class="hljs-comment">//我们也可以检测一个值在（in）或者不在（!in）一个区间或者集合中：</span><br> 	 <span class="hljs-keyword">when</span> (x) &#123;<br>    	<span class="hljs-keyword">in</span> <span class="hljs-number">1.</span><span class="hljs-number">.10</span> -&gt; print(<span class="hljs-string">&quot;x is in the range&quot;</span>)<br>    	<span class="hljs-keyword">in</span> validNumbers -&gt; print(<span class="hljs-string">&quot;x is valid&quot;</span>)<br>    	!<span class="hljs-keyword">in</span> <span class="hljs-number">10.</span><span class="hljs-number">.20</span> -&gt; print(<span class="hljs-string">&quot;x is outside the range&quot;</span>)<br>    	<span class="hljs-keyword">else</span> -&gt; print(<span class="hljs-string">&quot;none of the above&quot;</span>)<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>	<span class="hljs-keyword">val</span> x = <span class="hljs-number">1</span><br>	<span class="hljs-keyword">when</span> (x) &#123;<br>    	<span class="hljs-number">1</span> -&gt; print(<span class="hljs-string">&quot;x == 1&quot;</span>)<br>    	<span class="hljs-number">2</span> -&gt; print(<span class="hljs-string">&quot;x == 2&quot;</span>)<br>    	<span class="hljs-keyword">else</span> -&gt; &#123; <span class="hljs-comment">// 注意这个块</span><br>        	print(<span class="hljs-string">&quot;x is neither 1 nor 2&quot;</span>)<br>    	&#125;<br>	&#125;<br>  <br>    <span class="hljs-comment">//如果很多分支需要用相同的方式处理，则可以把多个分支条件放在一起，用逗号分隔：</span><br>    <span class="hljs-keyword">when</span> (x) &#123;<br>    	<span class="hljs-number">0</span>, <span class="hljs-number">1</span> -&gt; print(<span class="hljs-string">&quot;x == 0 or x == 1&quot;</span>)<br>    	<span class="hljs-keyword">else</span> -&gt; print(<span class="hljs-string">&quot;otherwise&quot;</span>)<br>	&#125;<br>  <br> 	 <span class="hljs-comment">//我们也可以检测一个值在（in）或者不在（!in）一个区间或者集合中：</span><br> 	 <span class="hljs-keyword">when</span> (x) &#123;<br>    	<span class="hljs-keyword">in</span> <span class="hljs-number">1.</span><span class="hljs-number">.10</span> -&gt; print(<span class="hljs-string">&quot;x is in the range&quot;</span>)<br>    	<span class="hljs-keyword">in</span> validNumbers -&gt; print(<span class="hljs-string">&quot;x is valid&quot;</span>)<br>    	!<span class="hljs-keyword">in</span> <span class="hljs-number">10.</span><span class="hljs-number">.20</span> -&gt; print(<span class="hljs-string">&quot;x is outside the range&quot;</span>)<br>    	<span class="hljs-keyword">else</span> -&gt; print(<span class="hljs-string">&quot;none of the above&quot;</span>)<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="3-string模版"><a href="#3-string模版" class="headerlink" title="3 string模版"></a>3 string模版</h2><blockquote>
 <p>模版支持在字符串的引号内放入变量值</p>
@@ -1414,9 +1423,11 @@
       </tags>
   </entry>
   <entry>
-    <title>Kotlin学习笔记 — day2</title>
+    <title>Kotlin匿名函数</title>
     <url>/2022/01/03/kotlin-study-day2/</url>
-    <content><![CDATA[<p>个人学习记录</p>
+    <content><![CDATA[<p>匿名函数与lambda</p>
+<span id="more"></span>
+
 <h2 id="1-匿名函数"><a href="#1-匿名函数" class="headerlink" title="1 匿名函数"></a>1 匿名函数</h2><blockquote>
 <p>定义时不取名字的函数，我们称之为匿名函数，匿名函数通常整体传递给其他函数，或者从其它函数返回。</p>
 <p>我们将匿名函数称为lambda，将它的定义称谓lambda表达式。</p>
@@ -1485,7 +1496,10 @@
   <entry>
     <title>androidX下懒加载实现</title>
     <url>/2022/01/05/androidx-lazyload/</url>
-    <content><![CDATA[<p>以前处理 Fragment 的懒加载，我们通常会在 Fragment 中处理 <code>setUserVisibleHint + onHiddenChanged</code> 这两个函数，而在 Androidx 模式下，我们可以使用 <code>FragmentTransaction.setMaxLifecycle()</code> 的方式来处理 Fragment 的懒加载。</p>
+    <content><![CDATA[<p>setMaxLifycycle代替onVisiable实现懒加载。</p>
+<span id="more"></span>
+
+<p>以前处理 Fragment 的懒加载，我们通常会在 Fragment 中处理 <code>setUserVisibleHint + onHiddenChanged</code> 这两个函数，而在 Androidx 模式下，我们可以使用 <code>FragmentTransaction.setMaxLifecycle()</code> 的方式来处理 Fragment 的懒加载。</p>
 <p>在本文章中，我会详细介绍不同使用场景下两种方案的差异。大家快拿好小板凳。一起来学习新知识吧！</p>
 <blockquote>
 <p>本篇文章涉及到的 Demo，已上传至Github—-&gt;<a href="https://github.com/AndyJennifer/AndroidxLazyLoad">传送门</a></p>
@@ -1668,5 +1682,89 @@
         <tag>懒加载</tag>
         <tag>androidx</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>MVVM 组件化实践</title>
+    <url>/2022/01/06/android-component-based/</url>
+    <content><![CDATA[<p>因为项目需要，本来计划用原来的模块化项目改造一下，改造一半发现之前写的架构用的东西太老了，而且有一些无用代码太老了，再加上刚好看到了一个Jetpack实践的项目，趁着java的余温，重新搭建一套吧，结合Jetpack，后续可能会改成kotlin。</p>
+<h2 id="1-为什么使用组件化"><a href="#1-为什么使用组件化" class="headerlink" title="1 为什么使用组件化"></a>1 为什么使用组件化</h2><p>除了上述原因，但工程撸项目随着体积增大，越来越多的问题也开始体现（虽然确实快）</p>
+<ul>
+<li><strong>查找问题慢</strong>：定位问题，需要在多个代码混合的模块中寻找和跳转。</li>
+<li><strong>开发维护成本增加</strong>：避免代码的改动影响其它业务的功能，导致开发和维护成本不断增加。</li>
+<li><strong>编译时间长</strong>：项目工程越大，编译完整代码所花费的时间越长。</li>
+<li><strong>开发效率低</strong>：多人协作开发时，开发风格不一，又很难将业务完全分割，大家互相影响，导致开发效率低下。</li>
+<li><strong>代码复用性差</strong>：写过的代码很难抽离出来再次利用。</li>
+</ul>
+<h2 id="2-组件化优势"><a href="#2-组件化优势" class="headerlink" title="2 组件化优势"></a>2 组件化优势</h2><ul>
+<li><strong>加快编译速度</strong>：每个业务功能都是一个单独的工程，可独立编译运行，拆分后代码量较少，编译自然变快。</li>
+<li><strong>解耦</strong>：通过关注点分离的形式，将App分离成多个模块，每个模块都是一个组件。</li>
+<li><strong>提高开发效率</strong>：多人开发中，每个组件模块由单人负责，降低了开发之间沟通的成本，减少因代码风格不一而产生的相互影响。</li>
+<li><strong>代码复用</strong>：类似我们引用的第三方库，可以将基础组件或功能组件剥离。在新项目微调或直接使用。</li>
+</ul>
+<h2 id="3-组件分层"><a href="#3-组件分层" class="headerlink" title="3 组件分层"></a>3 组件分层</h2><p><img  src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/49fe308e95ba4953a7495f283908d259~tplv-k3u1fbpfcp-watermark.awebp"  ><span class="image-caption">img</span></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Kotlin可空性判断</title>
+    <url>/2022/01/06/kotlin-study-day3/</url>
+    <content><![CDATA[<p>可空性判断与异常处理</p>
+<span id="more"></span>
+
+<h2 id="1-Kotlin可空性"><a href="#1-Kotlin可空性" class="headerlink" title="1 Kotlin可空性"></a>1 Kotlin可空性</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>在Java中我们司空见惯的空指针异常NullPointerException，带给我们很多麻烦。Kotlin作为更强大的语言，势必会基于以往的语言设计对其进行改良。Kotlin更多的把运行时可能出现的null问题，以编译时错误的方式，<strong>提前在编译器强迫我们重视起来</strong>，而不是等运行时报错。</p>
+<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><p>对于null值问题，Kotlin反其道行之，除非另有规定，变量不可为null值。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">//此代码报错</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">var</span> str:String = <span class="hljs-string">&quot;aXiang&quot;</span><br>    str = <span class="hljs-literal">null</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对于可空类型，可使用<code>?</code>声明</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">//此处不报错</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">var</span> str:String? = <span class="hljs-string">&quot;aXiang&quot;</span><br>    str = <span class="hljs-literal">null</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>声明时如果不直接赋值，可使用lateinit var声明，后续赋值.</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">lateinit</span> <span class="hljs-keyword">var</span> view : View<br></code></pre></td></tr></table></figure>
+
+<p>Kotlin区分可空类型和非可空类型，所以，要使一个可空类型变量运行，而它又可能不存在，对于这种潜在风险，编译器时刻警惕着。为了应对这种风险，Kotlin不允许在可空类型值上调用函数，除非<strong>手动接手安全管理</strong>。</p>
+<h3 id="1、安全调用操作符"><a href="#1、安全调用操作符" class="headerlink" title="1、安全调用操作符"></a>1、安全调用操作符</h3><p>编译器看到有安全调用操作符，会知道如何检查null值，如果遇到null，它会跳过函数调用，而不是返回null。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">var</span> str:String? = <span class="hljs-string">&quot;aXiang&quot;</span><br>    str = <span class="hljs-literal">null</span><br>    println(str?.length)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2、使用带let的安全调用"><a href="#2、使用带let的安全调用" class="headerlink" title="2、使用带let的安全调用"></a>2、使用带let的安全调用</h3><p>安全调用允许在可空类型上调用函数，但是如果还想做点额外的事，比如创建新值，或判断不为null调用其他函数，可以使用带let函数的安全调用操作符。let的主要作用是让你在指定的作用域内定义一个活多个变量，与匿名函数一样，返回最后一行结果。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">var</span> str:String? = <span class="hljs-string">&quot;aXiang&quot;</span><br>    str = <span class="hljs-literal">null</span><br>    str?.let &#123; <br>        <span class="hljs-comment">// 非空字符串</span><br>        <span class="hljs-keyword">if</span> (it.isNotBlank())&#123;<br>            it.capitalize()<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-string">&quot;aXiang&quot;</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3、非空断言操作符"><a href="#3、非空断言操作符" class="headerlink" title="3、非空断言操作符"></a>3、非空断言操作符</h3><p>!!又称感叹号操作符，当变量是null时，报出空指针异常。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">var</span> str:String? = <span class="hljs-string">&quot;aXiang&quot;</span><br>    str = <span class="hljs-literal">null</span><br>    println(str!!.capitalize())<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4、使用if判断"><a href="#4、使用if判断" class="headerlink" title="4、使用if判断"></a>4、使用if判断</h3><p>与let相比，let更灵活，因为支持链式调用。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">var</span> str:String? = <span class="hljs-string">&quot;aXiang&quot;</span><br>    str = <span class="hljs-literal">null</span><br>    <span class="hljs-keyword">if</span> (str != <span class="hljs-literal">null</span>)&#123;<br>        str = str.capitalize()<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        println(<span class="hljs-string">&quot;null&quot;</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="5、使用空合并操作符"><a href="#5、使用空合并操作符" class="headerlink" title="5、使用空合并操作符"></a>5、使用空合并操作符</h3><p>如果 <code>?:</code> 的值是null，使用左边的值，不为null，使用右边的值。</p>
+<p>也可以搭配<code>let</code>使用代替<code>if/else</code></p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">var</span> str:String? = <span class="hljs-string">&quot;aXiang&quot;</span><br>    str = <span class="hljs-literal">null</span><br>    println(str ?: <span class="hljs-string">&quot;peng&quot;</span>)<br>    println(str?.let &#123; it.capitalize() ?: <span class="hljs-string">&quot;peng&quot;</span> &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-异常处理"><a href="#2-异常处理" class="headerlink" title="2 异常处理"></a>2 异常处理</h2><h3 id="自定义处理"><a href="#自定义处理" class="headerlink" title="自定义处理"></a>自定义处理</h3><p>定义异常、抛出异常、处理异常</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">val</span> number: <span class="hljs-built_in">Int</span>? = <span class="hljs-literal">null</span><br>    checkOperation(number)<br>&#125;<br><span class="hljs-comment">//抛出异常</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">checkOperation</span><span class="hljs-params">(number: <span class="hljs-type">Int</span>?)</span></span>&#123;<br>    number ?: <span class="hljs-keyword">throw</span> UnskilledException()<br>&#125;<br><span class="hljs-comment">//定义异常</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UnskilledException</span></span>() : IllegalArgumentException(<span class="hljs-string">&quot;操作不当&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>先决条件函数</p>
+<p>Kotlin标注库提供了一些便利函数，使用这些内置函数，你可以抛出带自定义信息的异常。这些便利函数叫先决条件函数，你可以用它定义先决条件，条件必须满足，目标代码才能执行.</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin">checkNotNull()<br>require()<br>requireNotNull()<br>assert()<br></code></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>kotlin</category>
+      </categories>
+      <tags>
+        <tag>kotlin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Kotlin字符串相关</title>
+    <url>/2022/01/06/kotlin-study-day4/</url>
+    <content><![CDATA[<p>字符串</p>
+<h2 id="1-字符串"><a href="#1-字符串" class="headerlink" title="1 字符串"></a>1 字符串</h2><h3 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h3><p>substring函数支持IntRange类型（表示一个整数范围的类型）的参数，until创建的范围不包括最后的值。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">const</span> <span class="hljs-keyword">val</span> Name = <span class="hljs-string">&quot;Jimmy&#x27;s friend&quot;</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">val</span> index = Name.indexOf(<span class="hljs-string">&quot;\&#x27;&quot;</span>)<br>    <span class="hljs-keyword">var</span> str = Name.substring(<span class="hljs-number">0</span> until index)<br>    println(str)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="拆分字符串"><a href="#拆分字符串" class="headerlink" title="拆分字符串"></a>拆分字符串</h3>]]></content>
   </entry>
 </search>

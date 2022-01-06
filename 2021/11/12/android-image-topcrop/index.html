@@ -6,12 +6,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Android ImageView scaleType 扩展，类似centerCrop，但从顶部开始显示。 - 阿祥</title>
+  <title>scaleType 扩展 topCrop，类似centerCrop。 - 阿祥</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   
-  <meta name="description" content="项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完...">
+  <meta name="description" content="为ImageView ScalType添加顶部扩展。
+...">
   <meta name="author" content="Axiang">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -153,7 +154,7 @@
       
       
     </div>
-    <div class="center">Android ImageView scaleType 扩展，类似centerCrop，但从顶部开始显示。</div>
+    <div class="center">scaleType 扩展 topCrop，类似centerCrop。</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -195,20 +196,30 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1590959651373-a3db0f38a961.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1529465230221-a0d10e46fcbb.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">Android ImageView scaleType 扩展，类似centerCrop，但从顶部开始显示。</h1>
+    <h1 class="head-title">scaleType 扩展 topCrop，类似centerCrop。</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>十一月 12, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3511</span>
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2021/11/12/android-image-topcrop/" class="leancloud-counter" data-flag-title="scaleType 扩展 topCrop，类似centerCrop。"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2021/11/12/android-image-topcrop/" class="leancloud-like" data-flag-title="scaleType 扩展 topCrop，类似centerCrop。"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3541</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         
-        <h1 id="项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现："><a href="#项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：" class="headerlink" title="项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现："></a>项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：</h1><h3 id="1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。"><a href="#1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。" class="headerlink" title="1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。"></a><strong>1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。</strong></h3><blockquote>
+          <p><p>为ImageView ScalType添加顶部扩展。</p></p>
+        
+        <p>项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：</p>
+<h3 id="1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。"><a href="#1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。" class="headerlink" title="1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。"></a><strong>1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。</strong></h3><blockquote>
 <p>测试CENTER_CROP属性</p>
 <p>将图片放在ImageView的中心点，然后对图片进行等比例缩放</p>
 <p>官方文档描述：<br>Scale the image uniformly (maintain the image’s aspect ratio) so that<br>both dimensions (width and height) of the image will be equal to or larger<br>than the corresponding dimension of the view (minus padding).<br>这段文字值得好好体会一下。<br>简而言之：<br>等比例缩放图片使得图片的宽和高均不小于控件对应的宽高</p>
@@ -232,7 +243,6 @@
 
 <p>之前在setFrame内使用getWidth（），发现部分请款返回数值为0的问题，改为使用right-left。</p>
 <p>其余情况也一致，bottomCenter，left 等等，都可通过Matrix矩阵（Scale：缩放、 Skew：错切、 Rotate：旋转、Translate：平移）实现。</p>
-
       </section>
       <section class="extra">
         
@@ -264,7 +274,7 @@
           
   <aside class="toc-wrap">
     <h3 class="toc-title">文章目录：</h3>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%86%85%E9%81%87%E5%88%B0%E5%9B%BE%E7%89%87%E9%80%82%E9%85%8D%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%8C%E5%85%A8%E5%B1%8F%E5%B1%95%E7%A4%BA%E5%9B%BE%E7%89%87%EF%BC%8C%E5%B0%BD%E5%8F%AF%E8%83%BD%E7%9A%84%E6%98%BE%E7%A4%BA%E5%AE%8C%E6%95%B4%E5%86%85%E5%AE%B9%EF%BC%8C%E5%BC%80%E5%A7%8B%E8%80%83%E8%99%91%E4%BD%BF%E7%94%A8centerCrop%E4%B8%8EfitStart%EF%BC%8C%E6%9F%A5%E8%AF%A2%E4%B9%8B%E5%90%8E%E5%8F%91%E7%8E%B0%EF%BC%9A"><span class="toc-text">项目内遇到图片适配的功能，全屏展示图片，尽可能的显示完整内容，开始考虑使用centerCrop与fitStart，查询之后发现：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81centerCrop%E4%BB%8E%E4%B8%AD%E9%97%B4%E5%BC%80%E5%A7%8B%E5%B1%95%E7%A4%BA%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%A6%82%E6%9E%9C%E9%95%BF%E5%AE%BD%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%B0%BA%E5%AF%B8%E4%B8%8D%E4%B8%80%E8%87%B4%EF%BC%8C%E5%9B%BE%E7%89%87%E7%9A%84%E9%95%BF%E5%AE%BD%E9%83%BD%E5%8F%AF%E8%83%BD%E8%A2%AB%E8%A3%81%E5%88%87%EF%BC%8C%E4%B8%8D%E6%BB%A1%E8%B6%B3%E4%BD%BF%E7%94%A8%E3%80%82"><span class="toc-text">1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81fitStart-%E5%B1%9E%E6%80%A7%E5%AE%8C%E6%95%B4%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%A6%82%E6%9E%9C%E9%AB%98%E5%BA%A6%E4%B8%8E%E5%AE%BD%E5%BA%A6%E4%B8%8D%E4%B8%80%E8%87%B4%EF%BC%8C%E5%8F%AF%E8%83%BD%E9%AB%98%E5%BA%A6%E5%A1%AB%E5%85%85%EF%BC%8C%E5%AE%BD%E5%BA%A6%E6%9C%89%E7%99%BD%E8%BE%B9%E3%80%82"><span class="toc-text">2、fitStart 属性完整显示图片，导致如果高度与宽度不一致，可能高度填充，宽度有白边。</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81centerCrop%E4%BB%8E%E4%B8%AD%E9%97%B4%E5%BC%80%E5%A7%8B%E5%B1%95%E7%A4%BA%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%A6%82%E6%9E%9C%E9%95%BF%E5%AE%BD%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%B0%BA%E5%AF%B8%E4%B8%8D%E4%B8%80%E8%87%B4%EF%BC%8C%E5%9B%BE%E7%89%87%E7%9A%84%E9%95%BF%E5%AE%BD%E9%83%BD%E5%8F%AF%E8%83%BD%E8%A2%AB%E8%A3%81%E5%88%87%EF%BC%8C%E4%B8%8D%E6%BB%A1%E8%B6%B3%E4%BD%BF%E7%94%A8%E3%80%82"><span class="toc-text">1、centerCrop从中间开始展示，也就是如果长宽与空间尺寸不一致，图片的长宽都可能被裁切，不满足使用。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81fitStart-%E5%B1%9E%E6%80%A7%E5%AE%8C%E6%95%B4%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%A6%82%E6%9E%9C%E9%AB%98%E5%BA%A6%E4%B8%8E%E5%AE%BD%E5%BA%A6%E4%B8%8D%E4%B8%80%E8%87%B4%EF%BC%8C%E5%8F%AF%E8%83%BD%E9%AB%98%E5%BA%A6%E5%A1%AB%E5%85%85%EF%BC%8C%E5%AE%BD%E5%BA%A6%E6%9C%89%E7%99%BD%E8%BE%B9%E3%80%82"><span class="toc-text">2、fitStart 属性完整显示图片，导致如果高度与宽度不一致，可能高度填充，宽度有白边。</span></a></li></ol>
   </aside>
 
         
@@ -320,6 +330,10 @@
     <i class="iconfont iconplus"></i>
   </div>
   
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
+  
   
   
   <div class="fab fab-up">
@@ -365,6 +379,82 @@
 <script src="/js/script.js"></script>
 
 
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'IHSXqwgCzdyyFDMsJXdjkT8L-gzGzoHsz',
+      appKey: 'hawiDpU4FTIQ2WgLPDihOT4o',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
 
 
 
