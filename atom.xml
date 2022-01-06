@@ -6,7 +6,7 @@
   <link href="http://rrxxpp.github.io/atom.xml" rel="self"/>
   
   <link href="http://rrxxpp.github.io/"/>
-  <updated>2022-01-03T14:30:20.870Z</updated>
+  <updated>2022-01-06T05:21:39.091Z</updated>
   <id>http://rrxxpp.github.io/</id>
   
   <author>
@@ -17,18 +17,48 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>kotlin-study-day2</title>
+    <title>androidX下懒加载实现</title>
+    <link href="http://rrxxpp.github.io/2022/01/05/androidx-lazyload/"/>
+    <id>http://rrxxpp.github.io/2022/01/05/androidx-lazyload/</id>
+    <published>2022-01-05T03:19:01.000Z</published>
+    <updated>2022-01-06T05:21:39.091Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;以前处理 Fragment 的懒加载，我们通常会在 Fragment 中处理 &lt;code&gt;setUserVisibleHint + onHiddenChanged&lt;/code&gt; 这两个函数，而在 Androidx 模式下，我们可以使用</summary>
+        
+      
+    
+    
+    
+    <category term="转载" scheme="http://rrxxpp.github.io/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+    <category term="java" scheme="http://rrxxpp.github.io/tags/java/"/>
+    
+    <category term="懒加载" scheme="http://rrxxpp.github.io/tags/%E6%87%92%E5%8A%A0%E8%BD%BD/"/>
+    
+    <category term="androidx" scheme="http://rrxxpp.github.io/tags/androidx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kotlin学习笔记 — day2</title>
     <link href="http://rrxxpp.github.io/2022/01/03/kotlin-study-day2/"/>
     <id>http://rrxxpp.github.io/2022/01/03/kotlin-study-day2/</id>
     <published>2022-01-03T13:36:01.000Z</published>
-    <updated>2022-01-03T14:30:20.870Z</updated>
+    <updated>2022-01-06T05:21:35.973Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;Kotlin学习笔记-—-day2&quot;&gt;&lt;a href=&quot;#Kotlin学习笔记-—-day2&quot; class=&quot;headerlink&quot; title=&quot;Kotlin学习笔记 — day2&quot;&gt;&lt;/a&gt;Kotlin学习笔记 —</summary>
+    <summary type="html">&lt;p&gt;个人学习记录&lt;/p&gt;
+&lt;h2 id=&quot;1-匿名函数&quot;&gt;&lt;a href=&quot;#1-匿名函数&quot; class=&quot;headerlink&quot; title=&quot;1 匿名函数&quot;&gt;&lt;/a&gt;1</summary>
         
       
     
@@ -46,14 +76,15 @@
     <link href="http://rrxxpp.github.io/2021/12/29/kotlin-study-day1/"/>
     <id>http://rrxxpp.github.io/2021/12/29/kotlin-study-day1/</id>
     <published>2021-12-29T15:26:21.000Z</published>
-    <updated>2022-01-03T14:29:23.846Z</updated>
+    <updated>2022-01-06T05:21:37.603Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;Kotlin学习笔记-—-day1&quot;&gt;&lt;a href=&quot;#Kotlin学习笔记-—-day1&quot; class=&quot;headerlink&quot; title=&quot;Kotlin学习笔记 — day1&quot;&gt;&lt;/a&gt;Kotlin学习笔记 —</summary>
+    <summary type="html">&lt;p&gt;个人学习记录&lt;/p&gt;
+&lt;h2 id=&quot;1-变量与数据类型&quot;&gt;&lt;a href=&quot;#1-变量与数据类型&quot; class=&quot;headerlink&quot; title=&quot;1 变量与数据类型&quot;&gt;&lt;/a&gt;1</summary>
         
       
     
@@ -71,7 +102,7 @@
     <link href="http://rrxxpp.github.io/2021/11/12/android-screen/"/>
     <id>http://rrxxpp.github.io/2021/11/12/android-screen/</id>
     <published>2021-11-12T07:34:22.000Z</published>
-    <updated>2021-11-12T07:58:32.476Z</updated>
+    <updated>2022-01-06T05:21:40.550Z</updated>
     
     
       
@@ -103,7 +134,7 @@
     <link href="http://rrxxpp.github.io/2021/11/12/android-image-topcrop/"/>
     <id>http://rrxxpp.github.io/2021/11/12/android-image-topcrop/</id>
     <published>2021-11-12T06:25:52.000Z</published>
-    <updated>2021-12-29T16:18:45.072Z</updated>
+    <updated>2022-01-06T05:21:45.715Z</updated>
     
     
       

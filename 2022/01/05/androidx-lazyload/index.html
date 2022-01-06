@@ -1,0 +1,549 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>androidX下懒加载实现 - 阿祥</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="以前处理 Fragment 的懒加载，我们通常会在 F...">
+  <meta name="author" content="Axiang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '江畔何人初见月，江月何年初照人？',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="阿祥" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">androidX下懒加载实现</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1603380353725-f8a4d39cc41e.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">androidX下懒加载实现</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 05, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>19247</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>以前处理 Fragment 的懒加载，我们通常会在 Fragment 中处理 <code>setUserVisibleHint + onHiddenChanged</code> 这两个函数，而在 Androidx 模式下，我们可以使用 <code>FragmentTransaction.setMaxLifecycle()</code> 的方式来处理 Fragment 的懒加载。</p>
+<p>在本文章中，我会详细介绍不同使用场景下两种方案的差异。大家快拿好小板凳。一起来学习新知识吧！</p>
+<blockquote>
+<p>本篇文章涉及到的 Demo，已上传至Github—-&gt;<a target="_blank" rel="noopener" href="https://github.com/AndyJennifer/AndroidxLazyLoad">传送门</a></p>
+</blockquote>
+<h2 id="1-老的懒加载处理方案"><a href="#1-老的懒加载处理方案" class="headerlink" title="1 老的懒加载处理方案"></a>1 老的懒加载处理方案</h2><blockquote>
+<p>如果你熟悉老一套的 Fragment 懒加载机制，你可以直接查看 Androix 懒加载相关章节</p>
+</blockquote>
+<h4 id="add-show-hide-模式下的老方案"><a href="#add-show-hide-模式下的老方案" class="headerlink" title="add+show+hide 模式下的老方案"></a>add+show+hide 模式下的老方案</h4><p>在没有添加懒加载之前，只要使用 <code>add+show+hide</code> 的方式控制并显示 Fragment, 那么不管 Fragment 是否嵌套，在初始化后，如果<code>只调用了add+show</code>，同级下的 Fragment 的相关生命周期函数都会被调用。且调用的生命周期函数如下所示：</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xl"><span class="hljs-function"><span class="hljs-title">onAttach</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">onCreate</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">onCreatedView</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">onActivityCreated</span> -&gt;</span> <span class="hljs-function"><span class="hljs-title">onStart</span> -&gt;</span> onResume<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Fragment 完整生命周期：onAttach -&gt; onCreate -&gt; onCreatedView -&gt; onActivityCreated -&gt; onStart -&gt; onResume -&gt; onPause -&gt; onStop -&gt; onDestroyView -&gt; onDestroy -&gt; onDetach</p>
+</blockquote>
+<p>什么是同级 Frament 呢？看下图</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb96781bfcafeb~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">同级Fragment.jpg</span></p>
+<blockquote>
+<p>上图中，都是使用 <code>add+show+hide</code> 的方式控制 Fragment,</p>
+</blockquote>
+<p>在上图两种模式中:</p>
+<ul>
+<li>Fragment_1、Fragment_2、Fragment_3 属于同级 Fragment</li>
+<li>Fragment_a、Fragment_b、Fragment_c 属于同级 Fragment</li>
+<li>Fragment_d、Fragment_e、Fragment_f 属于同级 Fragment</li>
+</ul>
+<p>那这种方式会带来什么问题呢？结合下图我们来分别分析。</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb967909b892db~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">show1.png</span></p>
+<p>观察上图我们可以发现，同级的Fragment_1、Fragment_2、Fragment_3 都调用了 <code>onAttach...onResume</code> 系列方法，也就是说，如果我们没有对 Fragment 进行懒加载处理，那么我们就会无缘无故的加载一些并<code>不可见</code>的 Fragment , 也就会造成用户流量的无故消耗（我们会在 Fragment 相关生命周期函数中，请求网络或其他数据操作）。</p>
+<blockquote>
+<p>这里<code>&quot;不可见的Fragment&quot;</code>是指，实际不可见但是相关可见生命周期函数(如 <code>onResume</code> 方法）被调用的 Fragment</p>
+</blockquote>
+<p>如果使用嵌套 Fragment ，这种浪费流量的行为就更明显了。以本节的图一为例，当 Fragment_1 加载时，如果你在 Fragment_1 生命周期函数中使用 <code>show+add+hide</code> 的方式添加 <code>Fragment_a、Fragment_b、Fragment_c</code> , 那么 Fragment_b 又会在其生命周期函数中继续加载 <code>Fragment_d、Fragment_e、Fragment_f</code> 。</p>
+<p>那如何解决这种问题呢？我们继续接着上面的例子走，当我们 <code>show Fragment_2</code>，并 hide其他 Fragment 时，对应 Fragment 的生命周期调用如下：</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb96782a90b81e~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">show2.png</span></p>
+<p>从上图中，我们可以看出 Fragment_2 与 Fragment_3 都调用了 <code>onHiddenChanged</code> 函数，该函数的官方 API 声明如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Called when the hidden state (as returned by &#123;<span class="hljs-doctag">@link</span> #isHidden()&#125; of</span><br><span class="hljs-comment"> * the fragment has changed.  Fragments start out not hidden; this will</span><br><span class="hljs-comment"> * be called whenever the fragment changes state from that.</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> hidden True if the fragment is now hidden, false otherwise.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onHiddenChanged</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> hidden)</span> </span>&#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>根据官方 API 的注释，我们大概能知道，当 Fragment 隐藏的状态发生改变时，该函数将会被调用，如果当前 Fragment 隐藏， <code>hidden</code> 的值为 true, 反之为 false。最为重要的是<code>hidden</code> 的值，可以通过调用 <code>isHidden()</code> 函数获取。</p>
+<p>那么结合上述知识点，我们能推导出：</p>
+<ul>
+<li>因为 Fragment_1 的 <code>隐藏状态</code> 从<code>可见转为了不可见</code>，所以其 <code>onHiddenChanged</code> 函数被调用，同时 <code>hidden</code> 的值为 true。</li>
+<li>同理对于 Fragment_2 ，因为其 <code>隐藏状态</code> 从 <code>不可见转为了可见</code> ，所以其 hidden 值为 false。</li>
+<li>对于 Fragment_3 ,因为其隐藏状态从始至终都没有发生变化，所以其 onHiddenChanged 函数并不会调用。</li>
+</ul>
+<p>嗯，好像有点眉目了。不急，我们继续看下面的例子。</p>
+<p>show Fragment_3 并 hide 其他 Fragment ，对应生命周期函数调用如下所示：</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb967928f23799~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">show3.png</span></p>
+<p>从图中，我们可以看出，确实只有<code>隐藏状态</code>发生了改变的 Fragment 其 <code>onHiddenChanged</code> 函数才会调用，那么结合以上知识点，我们能得出如下重要结论：</p>
+<p><strong>只要通过 <code>show+hide</code> 方式控制 Fragment 的显隐，那么在第一次初始化后，Fragment 任何的生命周期方法都不会调用，只有 <code>onHiddenChanged</code> 方法会被调用。</strong></p>
+<p>那么，假如我们要在 <code>add+show+hide</code> 模式下控制 Fragment 的懒加载，我们只需要做这两步：</p>
+<ul>
+<li>我们需要在 <code>onResume()</code> 函数中调用 <code>isHidden()</code> 函数，来处理默认显示的 Fragment</li>
+<li>在 <code>onHiddenChanged</code> 函数中控制其他不可见的Fragment，</li>
+</ul>
+<p>也就是这样处理：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LazyFragment</span>:<span class="hljs-type">Fragment</span></span>()&#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> isLoaded = <span class="hljs-literal">false</span> <span class="hljs-comment">//控制是否执行懒加载</span><br><br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onResume</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onResume()<br>        judgeLazyInit()<br><br>    &#125;<br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onHiddenChanged</span><span class="hljs-params">(hidden: <span class="hljs-type">Boolean</span>)</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onHiddenChanged(hidden)<br>        isVisibleToUser = !hidden<br>        judgeLazyInit()<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">judgeLazyInit</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">if</span> (!isLoaded &amp;&amp; !isHidden) &#123;<br>            lazyInit()<br>            isLoaded = <span class="hljs-literal">true</span><br>        &#125;<br>    &#125;<br><br>     <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onDestroyView</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onDestroyView()<br>        isLoaded = <span class="hljs-literal">false</span><br>    &#125;<br><br>    <span class="hljs-comment">//懒加载方法</span><br>    <span class="hljs-keyword">abstract</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">lazyInit</span><span class="hljs-params">()</span></span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>该懒加载的实现，是在 <code>onResume</code> 方法中操作，当然你可以在其他生命周期函数中控制。但是建议在该方法中执行懒加载。</p>
+</blockquote>
+<h4 id="ViewPager-Fragment-模式下的老方案"><a href="#ViewPager-Fragment-模式下的老方案" class="headerlink" title="ViewPager+Fragment 模式下的老方案"></a>ViewPager+Fragment 模式下的老方案</h4><p>使用传统方式处理 ViewPager 中 Fragment 的懒加载，我们需要控制 <code>setUserVisibleHint(boolean isVisibleToUser)</code> 函数，该函数的声明如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUserVisibleHint</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> isVisibleToUser)</span> </span>&#123;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>该函数与之前我们介绍的 <code>onHiddenChanged()</code> 作用非常相似，都是通过传入的参数值来判断当前 Fragment 是否对用户可见，只是 <code>onHiddenChanged()</code> 是在 <code>add+show+hide</code> 模式下使用，而 <code>setUserVisibleHint</code> 是在 ViewPager+Fragment 模式下使用。</p>
+<p>在本节中，我们用 <code>FragmentPagerAdapter + ViewPager</code> 为例，向大家讲解如何实现 Fragment 的懒加载。</p>
+<blockquote>
+<p>注意：在本例中没有调用 <code>setOffscreenPageLimit</code> 方法去设置 ViewPager 预缓存的 Fragment 个数。默认情况下 ViewPager 预缓存 Fragment 的个数为 <code>1</code> 。</p>
+</blockquote>
+<p>初始化 ViewPager 查看内部 Fragment 生命周期函数调用情况：</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb967817311da1~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">viewpager1.png</span></p>
+<p>观察上图，我们能发现 ViePager 初始化时，默认会调用其内部 Fragment 的 setUserVisibleHint 方法，因为其预缓存 Fragment 个数为 <code>1</code> 的原因，所以只有 Fragment_1 与 Fragment_2 的生命周期函数被调用。</p>
+<p>我们继续切换到 Fragment_2，查看各个Fragment的生命周期函数的调用变化。如下图所示：</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb967825d4acb4~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">viewpage2.png</span></p>
+<p>观察上图，我们同样发现 Fragment 的 setUserVisibleHint 方法被调用了，并且 Fragment_3 的一系列生命周期函数被调用了。继续切换到 Fragment_3:</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb9679081837f2~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">viewpager_3.png</span></p>
+<p>观察上图可以发现，Fragment_3 调用了 setUserVisibleHint 方法，继续又切换到 Fragment_1，查看调用函数的变化：</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb96782048236e~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">viewpager4.png</span></p>
+<blockquote>
+<p>因为之前在切换到 Fragment_3 时，Frafgment_1 已经走了 onDestoryView(图二，蓝色标记处) 方法，所以 Fragment_1 需要重新走一次生命周期。</p>
+</blockquote>
+<p>那么结合本节的三幅图，我们能得出以下结论：</p>
+<ul>
+<li>使用 ViewPager，切换回上一个 Fragment 页面时（已经初始化完毕），不会回调任何生命周期方法以及onHiddenChanged()，只有 setUserVisibleHint(boolean isVisibleToUser) 会被回调。</li>
+<li>setUserVisibleHint(boolean isVisibleToUser) 方法总是会优先于 Fragment 生命周期函数的调用。</li>
+</ul>
+<p>所以如果我们想对 ViewPager 中的 Fragment 懒加载，我们需要这样处理：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LazyFragment</span> : <span class="hljs-type">Fragment</span></span>() &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 是否执行懒加载</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> isLoaded = <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 当前Fragment是否对用户可见</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> isVisibleToUser = <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 当使用ViewPager+Fragment形式会调用该方法时，setUserVisibleHint会优先Fragment生命周期函数调用，</span><br><span class="hljs-comment">     * 所以这个时候就,会导致在setUserVisibleHint方法执行时就执行了懒加载，</span><br><span class="hljs-comment">     * 而不是在onResume方法实际调用的时候执行懒加载。所以需要这个变量</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> isCallResume = <span class="hljs-literal">false</span><br><br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onResume</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onResume()<br>        isCallResume = <span class="hljs-literal">true</span><br>        judgeLazyInit()<br>    &#125;<br><br><br>    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">judgeLazyInit</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">if</span> (!isLoaded &amp;&amp; isVisibleToUser &amp;&amp; isCallResume) &#123;<br>            lazyInit()<br>            Log.d(TAG, <span class="hljs-string">&quot;lazyInit:!!!!!!!&quot;</span>)<br>            isLoaded = <span class="hljs-literal">true</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onHiddenChanged</span><span class="hljs-params">(hidden: <span class="hljs-type">Boolean</span>)</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onHiddenChanged(hidden)<br>        isVisibleToUser = !hidden<br>        judgeLazyInit()<br>    &#125;<br><br>    <span class="hljs-comment">//在Fragment销毁View的时候，重置状态</span><br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onDestroyView</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onDestroyView()<br>        isLoaded = <span class="hljs-literal">false</span><br>        isVisibleToUser = <span class="hljs-literal">false</span><br>        isCallResume = <span class="hljs-literal">false</span><br>    &#125;<br><br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">setUserVisibleHint</span><span class="hljs-params">(isVisibleToUser: <span class="hljs-type">Boolean</span>)</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.setUserVisibleHint(isVisibleToUser)<br>        <span class="hljs-keyword">this</span>.isVisibleToUser = isVisibleToUser<br>        judgeLazyInit()<br>    &#125;<br><br>    <span class="hljs-keyword">abstract</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">lazyInit</span><span class="hljs-params">()</span></span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="复杂-Fragment-嵌套的情况"><a href="#复杂-Fragment-嵌套的情况" class="headerlink" title="复杂 Fragment 嵌套的情况"></a>复杂 Fragment 嵌套的情况</h4><p>当然，在实际项目中，我们可能会遇到更为复杂的 Fragment 嵌套组合。比如 Fragment+Fragment、Fragment+ViewPager、ViewPager+ViewPager….等等。 如下图所示：</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb96784fdd764d~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">复杂嵌套Fragment.jpg</span></p>
+<p>对于以上场景，我们就需要重写我们的懒加载，以支持不同嵌套组合模式下 Fragment 正确懒加载。我们需要将 LazyFragment 修改成如下这样：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LazyFragment</span> : <span class="hljs-type">Fragment</span></span>() &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 是否执行懒加载</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> isLoaded = <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 当前Fragment是否对用户可见</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> isVisibleToUser = <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 当使用ViewPager+Fragment形式会调用该方法时，setUserVisibleHint会优先Fragment生命周期函数调用，</span><br><span class="hljs-comment">     * 所以这个时候就,会导致在setUserVisibleHint方法执行时就执行了懒加载，</span><br><span class="hljs-comment">     * 而不是在onResume方法实际调用的时候执行懒加载。所以需要这个变量</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> isCallResume = <span class="hljs-literal">false</span><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 是否调用了setUserVisibleHint方法。处理show+add+hide模式下，默认可见 Fragment 不调用</span><br><span class="hljs-comment">     * onHiddenChanged 方法，进而不执行懒加载方法的问题。</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> isCallUserVisibleHint = <span class="hljs-literal">false</span><br><br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onResume</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onResume()<br>        isCallResume = <span class="hljs-literal">true</span><br>        <span class="hljs-keyword">if</span> (!isCallUserVisibleHint) isVisibleToUser = !isHidden<br>        judgeLazyInit()<br>    &#125;<br><br><br>    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">judgeLazyInit</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">if</span> (!isLoaded &amp;&amp; isVisibleToUser &amp;&amp; isCallResume) &#123;<br>            lazyInit()<br>            Log.d(TAG, <span class="hljs-string">&quot;lazyInit:!!!!!!!&quot;</span>)<br>            isLoaded = <span class="hljs-literal">true</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onHiddenChanged</span><span class="hljs-params">(hidden: <span class="hljs-type">Boolean</span>)</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onHiddenChanged(hidden)<br>        isVisibleToUser = !hidden<br>        judgeLazyInit()<br>    &#125;<br><br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onDestroyView</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onDestroyView()<br>        isLoaded = <span class="hljs-literal">false</span><br>        isVisibleToUser = <span class="hljs-literal">false</span><br>        isCallUserVisibleHint = <span class="hljs-literal">false</span><br>        isCallResume = <span class="hljs-literal">false</span><br>    &#125;<br><br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">setUserVisibleHint</span><span class="hljs-params">(isVisibleToUser: <span class="hljs-type">Boolean</span>)</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.setUserVisibleHint(isVisibleToUser)<br>        <span class="hljs-keyword">this</span>.isVisibleToUser = isVisibleToUser<br>        isCallUserVisibleHint = <span class="hljs-literal">true</span><br>        judgeLazyInit()<br>    &#125;<br><br>    <span class="hljs-keyword">abstract</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">lazyInit</span><span class="hljs-params">()</span></span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Androidx-下的懒加载"><a href="#Androidx-下的懒加载" class="headerlink" title="Androidx 下的懒加载"></a>Androidx 下的懒加载</h3><p>虽然之前的方案就能解决轻松的解决 Fragment 的懒加载，但这套方案有一个最大的弊端，<code>就是不可见的 Fragment 执行了 onResume() 方法</code>。onResume 方法设计的初衷，难道不是当前 Fragment 可以和用户进行交互吗？你他妈既不可见，又不能和用户进行交互，你执行 onResume 方法干嘛？</p>
+<p>基于此问题，Google 在 Androidx 在 <code>FragmentTransaction</code> 中增加了 <code>setMaxLifecycle</code> 方法来控制 Fragment 所能调用的最大的生命周期函数。如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">  * Set a ceiling for the state of an active fragment in this FragmentManager. If fragment is</span><br><span class="hljs-comment">  * already above the received state, it will be forced down to the correct state.</span><br><span class="hljs-comment">  *</span><br><span class="hljs-comment">  * &lt;p&gt;The fragment provided must currently be added to the FragmentManager to have it&#x27;s</span><br><span class="hljs-comment">  * Lifecycle state capped, or previously added as part of this transaction. The</span><br><span class="hljs-comment">  * &#123;<span class="hljs-doctag">@link</span> Lifecycle.State&#125; passed in must at least be &#123;<span class="hljs-doctag">@link</span> Lifecycle.State#CREATED&#125;, otherwise</span><br><span class="hljs-comment">  * an &#123;<span class="hljs-doctag">@link</span> IllegalArgumentException&#125; will be thrown.&lt;/p&gt;</span><br><span class="hljs-comment">  *</span><br><span class="hljs-comment">  * <span class="hljs-doctag">@param</span> fragment the fragment to have it&#x27;s state capped.</span><br><span class="hljs-comment">  * <span class="hljs-doctag">@param</span> state the ceiling state for the fragment.</span><br><span class="hljs-comment">  * <span class="hljs-doctag">@return</span> the same FragmentTransaction instance</span><br><span class="hljs-comment">  */</span><br> <span class="hljs-meta">@NonNull</span><br> <span class="hljs-function"><span class="hljs-keyword">public</span> FragmentTransaction <span class="hljs-title">setMaxLifecycle</span><span class="hljs-params">(<span class="hljs-meta">@NonNull</span> Fragment fragment,</span></span><br><span class="hljs-params"><span class="hljs-function">         <span class="hljs-meta">@NonNull</span> Lifecycle.State state)</span> </span>&#123;<br>     addOp(<span class="hljs-keyword">new</span> Op(OP_SET_MAX_LIFECYCLE, fragment, state));<br>     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;<br> &#125;<br></code></pre></td></tr></table></figure>
+
+<p>根据官方的注释，我们能知道，该方法可以设置活跃状态下 Fragment 最大的状态，如果该 Fragment 超过了设置的最大状态，那么会强制将 Fragment 降级到正确的状态。</p>
+<p>那如何使用该方法呢？我们先看该方法在 Androidx 模式下 ViewPager+Fragment 模式下的使用例子。</p>
+<h4 id="ViewPager-Fragment-模式下的方案"><a href="#ViewPager-Fragment-模式下的方案" class="headerlink" title="ViewPager+Fragment 模式下的方案"></a>ViewPager+Fragment 模式下的方案</h4><p>在 FragmentPagerAdapter 与 FragmentStatePagerAdapter 新增了含有  <code>behavior</code> 字段的构造函数，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FragmentPagerAdapter</span><span class="hljs-params">(<span class="hljs-meta">@NonNull</span> FragmentManager fm,</span></span><br><span class="hljs-params"><span class="hljs-function">          <span class="hljs-meta">@Behavior</span> <span class="hljs-keyword">int</span> behavior)</span> </span>&#123;<br>      mFragmentManager = fm;<br>      mBehavior = behavior;<br>  &#125;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FragmentStatePagerAdapter</span><span class="hljs-params">(<span class="hljs-meta">@NonNull</span> FragmentManager fm,</span></span><br><span class="hljs-params"><span class="hljs-function">          <span class="hljs-meta">@Behavior</span> <span class="hljs-keyword">int</span> behavior)</span> </span>&#123;<br>      mFragmentManager = fm;<br>      mBehavior = behavior;<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<p>其中 Behavior 的声明如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Retention(RetentionPolicy.SOURCE)</span><br> <span class="hljs-meta">@IntDef(&#123;BEHAVIOR_SET_USER_VISIBLE_HINT, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT&#125;)</span><br> <span class="hljs-keyword">private</span> <span class="hljs-meta">@interface</span> Behavior &#123; &#125;<br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">  * Indicates that &#123;<span class="hljs-doctag">@link</span> Fragment#setUserVisibleHint(boolean)&#125; will be called when the current</span><br><span class="hljs-comment">  * fragment changes.</span><br><span class="hljs-comment">  *</span><br><span class="hljs-comment">  * <span class="hljs-doctag">@deprecated</span> This behavior relies on the deprecated</span><br><span class="hljs-comment">  * &#123;<span class="hljs-doctag">@link</span> Fragment#setUserVisibleHint(boolean)&#125; API. Use</span><br><span class="hljs-comment">  * &#123;<span class="hljs-doctag">@link</span> #BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT&#125; to switch to its replacement,</span><br><span class="hljs-comment">  * &#123;<span class="hljs-doctag">@link</span> FragmentTransaction#setMaxLifecycle&#125;.</span><br><span class="hljs-comment">  * <span class="hljs-doctag">@see</span> #FragmentPagerAdapter(FragmentManager, int)</span><br><span class="hljs-comment">  */</span><br> <span class="hljs-meta">@Deprecated</span><br> <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> BEHAVIOR_SET_USER_VISIBLE_HINT = <span class="hljs-number">0</span>;<br><br> <span class="hljs-comment">/**</span><br><span class="hljs-comment">  * Indicates that only the current fragment will be in the &#123;<span class="hljs-doctag">@link</span> Lifecycle.State#RESUMED&#125;</span><br><span class="hljs-comment">  * state. All other Fragments are capped at &#123;<span class="hljs-doctag">@link</span> Lifecycle.State#STARTED&#125;.</span><br><span class="hljs-comment">  *</span><br><span class="hljs-comment">  * <span class="hljs-doctag">@see</span> #FragmentPagerAdapter(FragmentManager, int)</span><br><span class="hljs-comment">  */</span><br> <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT = <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<p>从官方的注释声明中，我们能得到如下两条结论：</p>
+<ul>
+<li>如果 behavior 的值为 <code>BEHAVIOR_SET_USER_VISIBLE_HINT</code>，那么当 Fragment 对用户的可见状态发生改变时，<code>setUserVisibleHint</code> 方法会被调用。</li>
+<li>如果 behavior 的值为 <code>BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT</code> ，那么当前选中的 Fragment 在 <code>Lifecycle.State#RESUMED</code> 状态 ，其他不可见的 Fragment 会被限制在 <code>Lifecycle.State#STARTED</code> 状态。</li>
+</ul>
+<p>那 BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT 这个值到底有什么作用呢？我们看下面的例子：</p>
+<blockquote>
+<p>在该例子中设置了 ViewPager 的适配器为 FragmentPagerAdapter 且 behavior 值为 <code>BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT</code>。</p>
+</blockquote>
+<p>默认初始化ViewPager，Fragment 生命周期如下所示：</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb967895238ac1~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">androix1.png</span></p>
+<p>切换到 Fragment_2 时，日志情况如下所示：</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb96782b025a2f~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">androix2.png</span></p>
+<p>切换到 Fragment_3 时，日志情况如下所示:</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb96788af81c73~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">androidx3.png</span></p>
+<blockquote>
+<p>因为篇幅的原因，本文没有在讲解 FragmentStatePagerAdapter 设置 behavior 下的使用情况，但是原理以及生命周期函数调用情况一样，感兴趣的小伙伴，可以根据  <a href="https://link.juejin.cn/?target=https://github.com/AndyJennifer/AndroidxLazyLoad">AndroidxLazyLoad</a> 项目自行测试。</p>
+</blockquote>
+<p>观察上述例子，我们可以发现，使用了 <code>BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT</code> 后，确实只有当前可见的 Fragment 调用了 onResume 方法。而导致产生这种改变的原因，是因为 FragmentPagerAdapter 在其 <code>setPrimaryItem</code> 方法中调用了 <code>setMaxLifecycle</code> 方法，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPrimaryItem</span><span class="hljs-params">(<span class="hljs-meta">@NonNull</span> ViewGroup container, <span class="hljs-keyword">int</span> position, <span class="hljs-meta">@NonNull</span> Object object)</span> </span>&#123;<br>    Fragment fragment = (Fragment)object;<br>    <span class="hljs-comment">//如果当前的fragment不是当前选中并可见的Fragment,那么就会调用</span><br>    <span class="hljs-comment">// setMaxLifecycle 设置其最大生命周期为 Lifecycle.State.STARTED</span><br>    <span class="hljs-keyword">if</span> (fragment != mCurrentPrimaryItem) &#123;<br>        <span class="hljs-keyword">if</span> (mCurrentPrimaryItem != <span class="hljs-keyword">null</span>) &#123;<br>            mCurrentPrimaryItem.setMenuVisibility(<span class="hljs-keyword">false</span>);<br>            <span class="hljs-keyword">if</span> (mBehavior == BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) &#123;<br>                <span class="hljs-keyword">if</span> (mCurTransaction == <span class="hljs-keyword">null</span>) &#123;<br>                    mCurTransaction = mFragmentManager.beginTransaction();<br>                &#125;<br>                mCurTransaction.setMaxLifecycle(mCurrentPrimaryItem, Lifecycle.State.STARTED);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                mCurrentPrimaryItem.setUserVisibleHint(<span class="hljs-keyword">false</span>);<br>            &#125;<br>        &#125;<br>    <span class="hljs-comment">//对于其他非可见的Fragment,则设置其最大生命周期为</span><br>    <span class="hljs-comment">//Lifecycle.State.RESUMED</span><br>        fragment.setMenuVisibility(<span class="hljs-keyword">true</span>);<br>        <span class="hljs-keyword">if</span> (mBehavior == BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) &#123;<br>            <span class="hljs-keyword">if</span> (mCurTransaction == <span class="hljs-keyword">null</span>) &#123;<br>                mCurTransaction = mFragmentManager.beginTransaction();<br>            &#125;<br>            mCurTransaction.setMaxLifecycle(fragment, Lifecycle.State.RESUMED);<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            fragment.setUserVisibleHint(<span class="hljs-keyword">true</span>);<br>        &#125;<br><br>        mCurrentPrimaryItem = fragment;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>既然在上述条件下，只有实际可见的 Fragment 会调用 onResume 方法， 那是不是为我们提供了 ViewPager 下实现懒加载的新思路呢？也就是我们可以这样实现 Fragment 的懒加载：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LazyFragment</span> : <span class="hljs-type">Fragment</span></span>() &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> isLoaded = <span class="hljs-literal">false</span><br><br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onResume</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onResume()<br>        <span class="hljs-keyword">if</span> (!isLoaded) &#123;<br>            lazyInit()<br>            Log.d(TAG, <span class="hljs-string">&quot;lazyInit:!!!!!!!&quot;</span>)<br>            isLoaded = <span class="hljs-literal">true</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onDestroyView</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onDestroyView()<br>        isLoaded = <span class="hljs-literal">false</span><br>    &#125;<br><br>    <span class="hljs-keyword">abstract</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">lazyInit</span><span class="hljs-params">()</span></span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="add-show-hide-模式下的新方案"><a href="#add-show-hide-模式下的新方案" class="headerlink" title="add+show+hide 模式下的新方案"></a>add+show+hide 模式下的新方案</h4><p>虽然我们实现了Androidx 包下 ViewPager下的懒加载，但是我们仍然要考虑 add+show+hide 模式下的 Fragment 懒加载的情况，基于 ViewPager 在 <code>setPrimaryItem</code> 方法中的思路，我们可以在调用 add+show+hide 时，这样处理：</p>
+<blockquote>
+<p>完整的代码请点击—&gt;<a href="https://link.juejin.cn/?target=https://github.com/AndyJennifer/AndroidxLazyLoad/blob/master/app/src/main/java/com/jennifer/andy/androidxlazyload/ext/ShowHideExt.kt">ShowHideExt</a></p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 使用add+show+hide模式加载fragment</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> * 默认显示位置[showPosition]的Fragment，最大Lifecycle为Lifecycle.State.RESUMED</span><br><span class="hljs-comment"> * 其他隐藏的Fragment，最大Lifecycle为Lifecycle.State.STARTED</span><br><span class="hljs-comment"> *</span><br><span class="hljs-comment"> *<span class="hljs-doctag">@param</span> containerViewId 容器id</span><br><span class="hljs-comment"> *<span class="hljs-doctag">@param</span> showPosition  fragments</span><br><span class="hljs-comment"> *<span class="hljs-doctag">@param</span> fragmentManager FragmentManager</span><br><span class="hljs-comment"> *<span class="hljs-doctag">@param</span> fragments  控制显示的Fragments</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">loadFragmentsTransaction</span><span class="hljs-params">(</span></span><br><span class="hljs-params"><span class="hljs-function">    <span class="hljs-meta">@IdRes</span> containerViewId: <span class="hljs-type">Int</span>,</span></span><br><span class="hljs-params"><span class="hljs-function">    showPosition: <span class="hljs-type">Int</span>,</span></span><br><span class="hljs-params"><span class="hljs-function">    fragmentManager: <span class="hljs-type">FragmentManager</span>,</span></span><br><span class="hljs-params"><span class="hljs-function">    <span class="hljs-keyword">vararg</span> fragments: <span class="hljs-type">Fragment</span></span></span><br><span class="hljs-params"><span class="hljs-function">)</span></span> &#123;<br>    <span class="hljs-keyword">if</span> (fragments.isNotEmpty()) &#123;<br>        fragmentManager.beginTransaction().apply &#123;<br>            <span class="hljs-keyword">for</span> (index <span class="hljs-keyword">in</span> fragments.indices) &#123;<br>                <span class="hljs-keyword">val</span> fragment = fragments[index]<br>                add(containerViewId, fragment, fragment.javaClass.name)<br>                <span class="hljs-keyword">if</span> (showPosition == index) &#123;<br>                    setMaxLifecycle(fragment, Lifecycle.State.RESUMED)<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    hide(fragment)<br>                    setMaxLifecycle(fragment, Lifecycle.State.STARTED)<br>                &#125;<br>            &#125;<br><br>        &#125;.commit()<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">throw</span> IllegalStateException(<br>            <span class="hljs-string">&quot;fragments must not empty&quot;</span><br>        )<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">/** 显示需要显示的Fragment[showFragment]，并设置其最大Lifecycle为Lifecycle.State.RESUMED。</span><br><span class="hljs-comment"> *  同时隐藏其他Fragment,并设置最大Lifecycle为Lifecycle.State.STARTED</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> fragmentManager</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> showFragment</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">showHideFragmentTransaction</span><span class="hljs-params">(fragmentManager: <span class="hljs-type">FragmentManager</span>, showFragment: <span class="hljs-type">Fragment</span>)</span></span> &#123;<br>    fragmentManager.beginTransaction().apply &#123;<br>        show(showFragment)<br>        setMaxLifecycle(showFragment, Lifecycle.State.RESUMED)<br><br>        <span class="hljs-comment">//获取其中所有的fragment,其他的fragment进行隐藏</span><br>        <span class="hljs-keyword">val</span> fragments = fragmentManager.fragments<br>        <span class="hljs-keyword">for</span> (fragment <span class="hljs-keyword">in</span> fragments) &#123;<br>            <span class="hljs-keyword">if</span> (fragment != showFragment) &#123;<br>                hide(fragment)<br>                setMaxLifecycle(fragment, Lifecycle.State.STARTED)<br>            &#125;<br>        &#125;<br>    &#125;.commit()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上述代码的实现也非常简单：</p>
+<ul>
+<li>将需要显示的 Fragment ，在调用 add 或 show 方法后，<code>setMaxLifecycle(showFragment, Lifecycle.State.RESUMED)</code></li>
+<li>将需要隐藏的 Fragment ，在调用 hide 方法后，<code>setMaxLifecycle(fragment, Lifecycle.State.STARTED)</code></li>
+</ul>
+<p>结合上述操作模式，查看使用 setMaxLifecycle 后，Fragment 生命周期函数调用的情况。</p>
+<p>add Fragment_1、Fragment_2、Fragment_3，并 hide Fragment_2,Fragment_3 :</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb96794349c091~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">show_new1.png</span></p>
+<p>show Fragment_2，hide 其他 Fragment:</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb9679260bc3e6~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">show_new2.png</span></p>
+<p>show Fragment_3 hide 其他 Fragment:</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb967971fb39a5~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">show_new3.png</span></p>
+<p>参考上图，好像真的也能处理懒加载！！！！！美滋滋</p>
+<h5 id="并不完美的-setMaxLifecycle"><a href="#并不完美的-setMaxLifecycle" class="headerlink" title="并不完美的 setMaxLifecycle"></a>并不完美的 setMaxLifecycle</h5><p>当我第一次使用 setMaxLifycycle 方法时，我也和大家一样觉得万事大吉。但这套方案仍然有点点瑕疵，当 Fragment 的嵌套时，即使使用了 setMaxLifycycle 方法，第一次初始化时，同级不可见的Fragment，仍然 TMD 要调用可见生命周期方法。看下面的例子：</p>
+<p><img    class="lazyload" data-original="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/1/19/16fb96794530f394~tplv-t2oaga2asx-watermark.awebp" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">瑕疵.png</span></p>
+<p>不知道是否是谷歌大大没有考虑到 Fragment 嵌套的情况，所以这里我们要对之前的方案就行修改，也就是如下所示：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LazyFragment</span> : <span class="hljs-type">Fragment</span></span>() &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> isLoaded = <span class="hljs-literal">false</span><br><br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onResume</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onResume()<br>        <span class="hljs-comment">//增加了Fragment是否可见的判断</span><br>        <span class="hljs-keyword">if</span> (!isLoaded &amp;&amp; !isHidden) &#123;<br>            lazyInit()<br>            Log.d(TAG, <span class="hljs-string">&quot;lazyInit:!!!!!!!&quot;</span>)<br>            isLoaded = <span class="hljs-literal">true</span><br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">onDestroyView</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">super</span>.onDestroyView()<br>        isLoaded = <span class="hljs-literal">false</span><br>    &#125;<br><br>    <span class="hljs-keyword">abstract</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">lazyInit</span><span class="hljs-params">()</span></span><br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在上述代码中，因为同级的 Fragment 在嵌套模式下，仍然要调用 onResume 方法，所以我们增加了 Fragment 可见性的判断，这样就能保证嵌套模式下，新方案也能完美的支持 Fragment 的懒加载。</p>
+<h5 id="ViewPager2-的处理方案"><a href="#ViewPager2-的处理方案" class="headerlink" title="ViewPager2 的处理方案"></a>ViewPager2 的处理方案</h5><p>ViewPager2 本身就支持对实际可见的 Fragment 才调用 onResume 方法。关于 ViewPager2 的内部机制。感兴趣的小伙伴可以自行查看源码。</p>
+<p>关于 ViewPager2 的懒加载测试，已上传至 <a href="https://link.juejin.cn/?target=https://github.com/AndyJennifer/AndroidxLazyLoad">AndroidxLazyLoad</a>，大家可以结合项目查看Log日志。</p>
+<h3 id="两种方式的对比与总结"><a href="#两种方式的对比与总结" class="headerlink" title="两种方式的对比与总结"></a>两种方式的对比与总结</h3><h4 id="老一套的懒加载"><a href="#老一套的懒加载" class="headerlink" title="老一套的懒加载"></a>老一套的懒加载</h4><ul>
+<li>优点：不用去控制 FragmentManager的 add+show+hide 方法，所有的懒加载都是在Fragment 内部控制，也就是控制 <code>setUserVisibleHint + onHiddenChanged</code> 这两个函数。</li>
+<li>缺点：实际不可见的 Fragment，其 <code>onResume</code> 方法任然会被调用，这种反常规的逻辑，无法容忍。</li>
+</ul>
+<h4 id="新一套的懒加载（Androidx下setMaxLifecycle）"><a href="#新一套的懒加载（Androidx下setMaxLifecycle）" class="headerlink" title="新一套的懒加载（Androidx下setMaxLifecycle）"></a>新一套的懒加载（Androidx下setMaxLifecycle）</h4><ul>
+<li>优点：<code>在非特殊的情况下(缺点1)</code>，只有实际的可见 Fragment，其 <code>onResume</code> 方法才会被调用，这样才符合方法设计的初衷。</li>
+<li>缺点：<ol>
+<li>对于 Fragment 的嵌套，及时使用了 <code>setMaxLifecycle</code> 方法。同级不可见的Fragment， 仍然要调用 <code>onResume</code> 方法。</li>
+<li>需要在原有的 add+show+hide 方法中，继续调用 setMaxLifecycle 方法来控制Fragment 的最大生命状态。</li>
+</ol>
+</li>
+</ul>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>这两种方案的优缺点已经非常明显了，到底该选择何种懒加载模式，还是要基于大家的意愿，作者我更倾向于使用新的方案。关于 Fragment 的懒加载实现，非常愿意听到大家不同的声音，如果你有更好的方案，可以在评论区留下您的 idea，期待您的回复。如果您觉得本篇文章对你有所帮助，请不要吝啬你的关注与点赞。ღ( ´･ᴗ･` )比心</p>
+<p>作者：AndyJennifer<br>链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904050698223624">https://juejin.cn/post/6844904050698223624</a><br>来源：稀土掘金<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<blockquote>
+<p>以上为转载文章，以前onResume() 与 onVisiable() 某些情况用起来挺矛盾的，而且多层fragment的情况下onResume也会多次调用，还是比较推荐androidX下的方案的，当前项目内使用方法如下。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResume</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">super</span>.onResume();<br><br>    <span class="hljs-comment">// 使用懒加载</span><br>    <span class="hljs-keyword">if</span> (enableLazyData())<br>        onVisible();<br>&#125;<br><br><span class="hljs-comment">//默认不启用懒加载</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">enableLazyData</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>&#125;<br><br><span class="hljs-comment">//懒加载实现</span><br><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onVisible</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (getLifecycle().getCurrentState() == Lifecycle.State.STARTED &amp;&amp; isFirst) &#123;<br>        <span class="hljs-comment">// 延迟加载 防止 切换动画还没执行完毕时数据就已经加载好了，这时页面会有渲染卡顿</span><br>        handler.postDelayed(<span class="hljs-keyword">new</span> Runnable() &#123;<br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>                initData();<br>                isFirst = <span class="hljs-keyword">false</span>;<br>            &#125;<br>        &#125;, <span class="hljs-number">300</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Axiang</li>
+    <li><strong>本文链接：</strong><a href="http://rrxxpp.github.io/2022/01/05/androidx-lazyload/index.html" title="http:&#x2F;&#x2F;rrxxpp.github.io&#x2F;2022&#x2F;01&#x2F;05&#x2F;androidx-lazyload&#x2F;index.html">http:&#x2F;&#x2F;rrxxpp.github.io&#x2F;2022&#x2F;01&#x2F;05&#x2F;androidx-lazyload&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/androidx/" rel="tag">androidx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%87%92%E5%8A%A0%E8%BD%BD/" rel="tag">懒加载</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2022/01/03/kotlin-study-day2/">Kotlin学习笔记 — day2<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%80%81%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88"><span class="toc-text">1 老的懒加载处理方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Androidx-%E4%B8%8B%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD"><span class="toc-text">Androidx 下的懒加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E6%AF%94%E4%B8%8E%E6%80%BB%E7%BB%93"><span class="toc-text">两种方式的对比与总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%90%8E"><span class="toc-text">最后</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=812316845 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="123 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/rrxxpp "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:812316845@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
