@@ -1739,7 +1739,7 @@
 <h3 id="4、使用if判断"><a href="#4、使用if判断" class="headerlink" title="4、使用if判断"></a>4、使用if判断</h3><p>与let相比，let更灵活，因为支持链式调用。</p>
 <figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">var</span> str:String? = <span class="hljs-string">&quot;aXiang&quot;</span><br>    str = <span class="hljs-literal">null</span><br>    <span class="hljs-keyword">if</span> (str != <span class="hljs-literal">null</span>)&#123;<br>        str = str.capitalize()<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        println(<span class="hljs-string">&quot;null&quot;</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="5、使用空合并操作符"><a href="#5、使用空合并操作符" class="headerlink" title="5、使用空合并操作符"></a>5、使用空合并操作符</h3><p>如果 <code>?:</code> 的值是null，使用左边的值，不为null，使用右边的值。</p>
+<h3 id="5、使用空合并操作符"><a href="#5、使用空合并操作符" class="headerlink" title="5、使用空合并操作符"></a>5、使用空合并操作符</h3><p>如果 <code>?:</code> 前面的值非null，使用左边的值，是null，使用右边的值。</p>
 <p>也可以搭配<code>let</code>使用代替<code>if/else</code></p>
 <figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">var</span> str:String? = <span class="hljs-string">&quot;aXiang&quot;</span><br>    str = <span class="hljs-literal">null</span><br>    println(str ?: <span class="hljs-string">&quot;peng&quot;</span>)<br>    println(str?.let &#123; it.capitalize() ?: <span class="hljs-string">&quot;peng&quot;</span> &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -1761,10 +1761,167 @@
   <entry>
     <title>Kotlin字符串相关</title>
     <url>/2022/01/06/kotlin-study-day4/</url>
-    <content><![CDATA[<p>字符串</p>
+    <content><![CDATA[<p>字符串与数字类型</p>
+<span id="more"></span>
+
 <h2 id="1-字符串"><a href="#1-字符串" class="headerlink" title="1 字符串"></a>1 字符串</h2><h3 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h3><p>substring函数支持IntRange类型（表示一个整数范围的类型）的参数，until创建的范围不包括最后的值。</p>
 <figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">const</span> <span class="hljs-keyword">val</span> Name = <span class="hljs-string">&quot;Jimmy&#x27;s friend&quot;</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">val</span> index = Name.indexOf(<span class="hljs-string">&quot;\&#x27;&quot;</span>)<br>    <span class="hljs-keyword">var</span> str = Name.substring(<span class="hljs-number">0</span> until index)<br>    println(str)<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="拆分字符串"><a href="#拆分字符串" class="headerlink" title="拆分字符串"></a>拆分字符串</h3>]]></content>
+<h3 id="拆分字符串"><a href="#拆分字符串" class="headerlink" title="拆分字符串"></a>拆分字符串</h3><p>split函数返回的是List集合数据，List集合又支持结构语法特性。也就是同时给多个变量赋值。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">const</span> <span class="hljs-keyword">val</span> NAMES = <span class="hljs-string">&quot;jackey,uzi,lwx&quot;</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> (origin,dest,proxy) = NAMES.split(<span class="hljs-string">&quot;,&quot;</span>)<br>    println(<span class="hljs-string">&quot;<span class="hljs-variable">$origin</span> <span class="hljs-variable">$dest</span> <span class="hljs-variable">$proxy</span>&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="替换字符串"><a href="#替换字符串" class="headerlink" title="替换字符串"></a>替换字符串</h3><p>可以通过匿名函数替换</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> str = <span class="hljs-string">&quot;The people&#x27;s Republic of china&quot;</span><br>    <span class="hljs-keyword">val</span> str2 = str.replace(Regex(<span class="hljs-string">&quot;[aeiou]&quot;</span>))&#123;<br>        <span class="hljs-keyword">when</span> (it.value)&#123;<br>            <span class="hljs-string">&quot;a&quot;</span> -&gt; <span class="hljs-string">&quot;1&quot;</span><br>            <span class="hljs-string">&quot;e&quot;</span> -&gt; <span class="hljs-string">&quot;2&quot;</span><br>            <span class="hljs-string">&quot;i&quot;</span> -&gt; <span class="hljs-string">&quot;3&quot;</span><br>            <span class="hljs-string">&quot;o&quot;</span> -&gt; <span class="hljs-string">&quot;4&quot;</span><br>            <span class="hljs-string">&quot;u&quot;</span> -&gt; <span class="hljs-string">&quot;5&quot;</span><br>            <span class="hljs-keyword">else</span> -&gt; it.value<br>        &#125;<br>    &#125;<br>    println(str)<br>    println(str2)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h3><p>使用 <code>==</code> 检查两个字符串中字符是否匹配，使用 <code>===</code> 检查两个变量是否指向内存堆上同一对象。</p>
+<h3 id="字符串遍历"><a href="#字符串遍历" class="headerlink" title="字符串遍历"></a>字符串遍历</h3><p>使用<code>String.forEach&#123; it &#125;</code>方法。</p>
+<h2 id="2-数字类型"><a href="#2-数字类型" class="headerlink" title="2 数字类型"></a>2 数字类型</h2><h3 id="安全转换函数"><a href="#安全转换函数" class="headerlink" title="安全转换函数"></a>安全转换函数</h3><p>kotlin提供安全转换，如 String 转换 Int 时，类型错误会抛出异常。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> number: <span class="hljs-built_in">Int</span> = <span class="hljs-string">&quot;5.22&quot;</span>.toInt()<br></code></pre></td></tr></table></figure>
+
+<p>可使用Kotlin提供的 <code>toIntOrNull()</code>方法，类型错误会返回null，不抛出异常。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">var</span> number: <span class="hljs-built_in">Int</span>? = <span class="hljs-string">&quot;5.22&quot;</span>.toIntOrNull()<br></code></pre></td></tr></table></figure>
+
+<h3 id="Double转换"><a href="#Double转换" class="headerlink" title="Double转换"></a>Double转换</h3><p>精度损失与四舍五入</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">//精度损失 -&gt; 3</span><br>println(<span class="hljs-number">3.56666</span>.toInt())<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">//四舍五入 -&gt; 4</span><br>println(<span class="hljs-number">3.56666</span>.roundToInt())<br></code></pre></td></tr></table></figure>
+
+<p>格式化字符串：保留两位小数</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin">println(<span class="hljs-string">&quot;%.2f&quot;</span>.format(<span class="hljs-number">3.566666</span>))<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+]]></content>
+  </entry>
+  <entry>
+    <title>Kotlin集合</title>
+    <url>/2022/01/10/kotlin-study-day6/</url>
+    <content><![CDATA[<p>集合List相关</p>
+<span id="more"></span>
+
+<h2 id="1-集合"><a href="#1-集合" class="headerlink" title="1 集合"></a>1 集合</h2><p>集合可以方便你处理一组数据，也可以作为值参传给函数，和我们学过的其它变量类型一样，List、Set和Map类型的变量也分为两类，<strong>只读和可变</strong>。</p>
+<h3 id="List创建和获取"><a href="#List创建和获取" class="headerlink" title="List创建和获取"></a>List创建和获取</h3><p>通过<code>listOf</code>创建list。</p>
+<p><code>getOrElse</code>是一个<strong>安全索引取值函数</strong>，它需要两个参数，第一个是索引值，第二个是能提供默认值的lambda表达式，如果索引值不存在的话，可用来代替异常。</p>
+<p><code>getOrNull</code>是Kotlin提供的另一个安全索引取值函数，它返回null异常，而不是抛出异常.</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 创建list</span><br>    <span class="hljs-keyword">val</span> list = listOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>)<br>    <span class="hljs-comment">// 普通获取元素</span><br>    <span class="hljs-keyword">val</span> element = list[<span class="hljs-number">3</span>]<br>    <span class="hljs-comment">// 空安全获取元素，越界返回Unknow</span><br>    <span class="hljs-keyword">val</span> element = list.getOrElse(<span class="hljs-number">3</span>)&#123;<span class="hljs-string">&quot;Unknow&quot;</span>&#125;<br>    <span class="hljs-comment">// 空安全获取元素，越界返回Unknow</span><br>    <span class="hljs-keyword">val</span> element = list.getOrNull(<span class="hljs-number">3</span>) ?: <span class="hljs-string">&quot;Unknow&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="可变列表"><a href="#可变列表" class="headerlink" title="可变列表"></a>可变列表</h3><p>在Kotlin中，支持内容修改的列表叫可变列表，要创建可变列表，可以使用<code>mutableListOf</code>函数。List还支持使用<code>toList</code>和<code>toMutableList</code>函数动态实现只读列表和可变列表的转换.</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 创建可变list</span><br>    <span class="hljs-keyword">val</span> mutableList = mutableListOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>)<br>    <span class="hljs-comment">// 添加元素</span><br>    mutableList.add(<span class="hljs-string">&quot;Jimmy&quot;</span>)<br>    <span class="hljs-comment">// 删除元素</span><br>    mutableList.remove(<span class="hljs-string">&quot;Jack&quot;</span>)<br>    <span class="hljs-comment">// 转为不可变</span><br>    mutableList.toList()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="mutator函数"><a href="#mutator函数" class="headerlink" title="mutator函数"></a>mutator函数</h3><p>能修改可变列表的函数有一个统一的名字：mutator函数（<code>add</code>、<code>remove</code>等）</p>
+<p>添加运算符与删除运算符</p>
+<p>基于lambda表达式删除指定条件的元素.</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 创建可变list</span><br>    <span class="hljs-keyword">val</span> mutableList = mutableListOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>)<br>    <span class="hljs-comment">// 添加元素（运算符重载）</span><br>    mutableList += <span class="hljs-string">&quot;Jimmy&quot;</span><br>    <span class="hljs-comment">// 删除元素（运算符重载）</span><br>    mutableList -= <span class="hljs-string">&quot;Jason&quot;</span><br>    <span class="hljs-comment">// 删除指定条件元素</span><br>    mutableList.removeIf &#123; it.contains(<span class="hljs-string">&quot;Jack&quot;</span>) &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="集合遍历"><a href="#集合遍历" class="headerlink" title="集合遍历"></a>集合遍历</h3><p>for..in 遍历</p>
+<p>forEach 遍历</p>
+<p>forEachIndexed 遍历时要获取索引</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 创建list</span><br>    <span class="hljs-keyword">val</span> list = listOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>)<br>    <span class="hljs-comment">// for in 遍历</span><br>    <span class="hljs-keyword">for</span> (s <span class="hljs-keyword">in</span> list)&#123;<br>        println(s)<br>    &#125;<br>    <span class="hljs-comment">// forEach 遍历</span><br>    list.forEach &#123; <br>        println(it)<br>    &#125;<br>    <span class="hljs-comment">// 需要索引位置</span><br>    list.forEachIndexed &#123; index, s -&gt;  <br>        println(<span class="hljs-string">&quot;<span class="hljs-variable">$index</span>， <span class="hljs-variable">$s</span>&quot;</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="解构"><a href="#解构" class="headerlink" title="解构"></a>解构</h3><p>通过<code>_</code>过滤不想要的元素</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 跳过某个值，使用 _ 代替</span><br><span class="hljs-keyword">val</span> (origin, _, proxy) = list<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-Set-集合"><a href="#2-Set-集合" class="headerlink" title="2 Set 集合"></a>2 Set 集合</h2><h3 id="创建与获取"><a href="#创建与获取" class="headerlink" title="创建与获取"></a>创建与获取</h3><p>通过setOf创建set集合，使用elementAt函数读取集合中的元素。</p>
+<p>list允许重复元素，set不允许。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 创建set</span><br>    <span class="hljs-keyword">val</span> <span class="hljs-keyword">set</span> = setOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>)<br>    <span class="hljs-comment">// 获取元素</span><br>    <span class="hljs-keyword">val</span> element = <span class="hljs-keyword">set</span>.elementAt(<span class="hljs-number">2</span>)<br>    <span class="hljs-comment">// 空安全获取元素，越界返回Unknow</span><br>    <span class="hljs-keyword">val</span> element = <span class="hljs-keyword">set</span>.elementAtOrElse(<span class="hljs-number">3</span>)&#123;<span class="hljs-string">&quot;Unknow&quot;</span>&#125;<br>    <span class="hljs-comment">// 空安全获取元素，越界返回Unknow</span><br>    <span class="hljs-keyword">val</span> element = <span class="hljs-keyword">set</span>.elementAtOrNull(<span class="hljs-number">3</span>) ?: <span class="hljs-string">&quot;Unknow&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="可变set集合"><a href="#可变set集合" class="headerlink" title="可变set集合"></a>可变set集合</h3><p>添加修改与List一致。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 创建可变set</span><br>    <span class="hljs-keyword">val</span> mutableSet = mutableSetOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>)<br>    <span class="hljs-comment">// 添加元素</span><br>    mutableSet += <span class="hljs-string">&quot;jimmy&quot;</span><br>    mutableSet.add(<span class="hljs-string">&quot;Jimmy&quot;</span>)<br>    <span class="hljs-comment">//与List一致</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="集合转换"><a href="#集合转换" class="headerlink" title="集合转换"></a>集合转换</h3><p>把List转换为Set，去除重复元素。<code>toSet()</code>与<code>toList()</code></p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 去重步骤</span><br>    <span class="hljs-keyword">val</span> list = listOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>).toSet().toList()<br>    <span class="hljs-comment">// 快捷函数去重</span><br>    <span class="hljs-keyword">val</span> list = listOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>).distinct()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-数组"><a href="#3-数组" class="headerlink" title="3 数组"></a>3 数组</h2><h3 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h3><p><code>xxxOf()</code>方法创建，xxx表示类型。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">//创建IntArray数组</span><br>    <span class="hljs-keyword">val</span> intArray = intArrayOf(<span class="hljs-number">10</span>,<span class="hljs-number">30</span>,<span class="hljs-number">40</span>)<br>    <span class="hljs-comment">//创建file数组</span><br>    <span class="hljs-keyword">val</span> fileArray = arrayOf(File(<span class="hljs-string">&quot;1&quot;</span>), File(<span class="hljs-string">&quot;2&quot;</span>), File(<span class="hljs-string">&quot;3&quot;</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-Map集合"><a href="#4-Map集合" class="headerlink" title="4 Map集合"></a>4 Map集合</h2><h3 id="map的创建"><a href="#map的创建" class="headerlink" title="map的创建"></a>map的创建</h3><p><code>to</code>看上去像关键字，但事实上，它是个省略了点号和参数的特殊函数，to函数将它左右两边的值转化成一对儿<code>Pair</code>.</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> map = mapOf(<span class="hljs-string">&quot;Jack&quot;</span> to <span class="hljs-number">20</span>, <span class="hljs-string">&quot;Jason&quot;</span> to <span class="hljs-number">18</span>, <span class="hljs-string">&quot;Jackey&quot;</span> to <span class="hljs-number">30</span>)<br>    <span class="hljs-comment">//或者</span><br>    <span class="hljs-keyword">val</span> map = mapOf(Pair(<span class="hljs-string">&quot;Jimmy&quot;</span>, <span class="hljs-number">20</span>), Pair(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-number">19</span>))<br>    println(map)<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="读取map的值"><a href="#读取map的值" class="headerlink" title="读取map的值"></a>读取map的值</h3><ul>
+<li>[]读取运算符，读取键对应的值，如果键不存在返回null</li>
+<li>getValue，读取键对应的值，如果键不存在抛出异常</li>
+<li>getOrElse，读取键对应的值，或者使用匿名函数返回默认值</li>
+<li>getOrDefault，读取键对应的值，或者返回默认值.</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> map = mapOf(<span class="hljs-string">&quot;Jack&quot;</span> to <span class="hljs-number">20</span>, <span class="hljs-string">&quot;Jason&quot;</span> to <span class="hljs-number">18</span>, <span class="hljs-string">&quot;Jackey&quot;</span> to <span class="hljs-number">30</span>)<br>    <br>    <span class="hljs-comment">//方式1</span><br>    println(map[<span class="hljs-string">&quot;Jack&quot;</span>])<br>    <span class="hljs-comment">//方式2</span><br>    println(map.getValue(<span class="hljs-string">&quot;Jack&quot;</span>))<br>    <span class="hljs-comment">//方式3</span><br>    println(map.getOrElse(<span class="hljs-string">&quot;Rose&quot;</span>)&#123;<span class="hljs-string">&quot;Unknow&quot;</span>&#125;)<br>    <span class="hljs-comment">//方式4</span><br>    println(map.getOrDefault(<span class="hljs-string">&quot;Rose&quot;</span>, <span class="hljs-number">0</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="map遍历"><a href="#map遍历" class="headerlink" title="map遍历"></a>map遍历</h3><figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">//方式1</span><br>map.forEach &#123; <br>    println(<span class="hljs-string">&quot;<span class="hljs-subst">$&#123;it.key&#125;</span>, <span class="hljs-subst">$&#123;it.value&#125;</span>&quot;</span>)<br>&#125;<br><span class="hljs-comment">//方式2</span><br>map.forEach &#123; (key, value) -&gt;  <br>    println(<span class="hljs-string">&quot;<span class="hljs-variable">$key</span>, <span class="hljs-variable">$value</span>&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>kotlin</category>
+      </categories>
+      <tags>
+        <tag>kotlin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>标准库函数</title>
+    <url>/2022/01/10/kotlin-study-day5/</url>
+    <content><![CDATA[<p>标准库使用</p>
+<span id="more"></span>
+
+<h2 id="1-标准库函数使用"><a href="#1-标准库函数使用" class="headerlink" title="1 标准库函数使用"></a>1 标准库函数使用</h2><h3 id="apply函数"><a href="#apply函数" class="headerlink" title="apply函数"></a>apply函数</h3><p>可看作一个<strong>配置函数</strong>，你可以穿入一个接收者，然后调用一系列函数类配置它以便使用，如果提供lambda给apply函数执行，它会返回配置好的接受者。</p>
+<p>如：</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> file = File(<span class="hljs-string">&quot;/Users/axiang/Documents/意见反馈接口文档.md&quot;</span>)<br>    file.setReadable(<span class="hljs-literal">true</span>)<br>    file.setWritable(<span class="hljs-literal">true</span>)<br>    <br>    <span class="hljs-keyword">val</span> file2 = File(<span class="hljs-string">&quot;/Users/axiang/Documents/意见反馈接口文档.md&quot;</span>).apply &#123;<br>        <span class="hljs-comment">//函数内自动传入file，所有操作直接针对file，最后返回file。</span><br>        setReadable(<span class="hljs-literal">true</span>)<br>        setWritable(<span class="hljs-literal">true</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以看到，调用一个个函数类配置接受者时，变量名就省掉了，这是因为，在lambda表达式里，apply能让每个配置函数都作用于接受者，这种行为有时又叫做<strong>相关作用域</strong>，因为labmda表达式里的所有函数调用都是针对接收者的，或者说，它们是针对接受者的<strong>隐式调用</strong>。</p>
+<h3 id="let函数"><a href="#let函数" class="headerlink" title="let函数"></a>let函数</h3><p><code>let</code>函数能使某个变量作用于其表达式里，让<code>it</code>关键字能引用它。</p>
+<p><code>let</code>与<code>apply</code>比较，let会把接收者传给<code>lambda</code>，而<code>apply</code>什么都不传，匿名函数执行完，<code>apply</code>会返回当前接收者，<code>let</code>会返回<code>lambda</code>最后一行。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 使用let求集合内第一个数的平方值</span><br>    <span class="hljs-keyword">val</span> result = listOf(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>).first().let &#123; <br>        it * it<br>    &#125;<br>    println(result)<br>    <span class="hljs-comment">// 不使用let求集合内第一个数平方值</span><br>    <span class="hljs-keyword">val</span> firstElement = listOf(<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>).first()<br>    <span class="hljs-keyword">val</span> result = firstElement * firstElement<br>    println(result)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 有名字返回welcome, xxx, 没名字返回What&#x27;s your name</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">formatGreeting</span><span class="hljs-params">(guestName: <span class="hljs-type">String</span>?)</span></span> : String&#123;<br>    <span class="hljs-keyword">return</span> guestName?.let &#123; <span class="hljs-string">&quot;welcome, <span class="hljs-variable">$it</span>&quot;</span> &#125; ?: <span class="hljs-string">&quot;What&#x27;s your name?&quot;</span><br>&#125;<br><span class="hljs-comment">//等同于</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">formatGreeting</span><span class="hljs-params">(guestName: <span class="hljs-type">String</span>?)</span></span> : String&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">if</span> (guestName != <span class="hljs-literal">null</span>)&#123;<br>        <span class="hljs-string">&quot;welcome, <span class="hljs-variable">$guestName</span>&quot;</span><br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-string">&quot;What&#x27;s your name?&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="run函数"><a href="#run函数" class="headerlink" title="run函数"></a>run函数</h3><p>光看作用域行为，run和apply差不多，但与apply不同，run函数不返回接收者，run返回的是<code>lambda</code>的结果，也就是最后一行。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 判断文本是否包含某字段</span><br>    <span class="hljs-keyword">val</span> file = File(<span class="hljs-string">&quot;/Users/axiang/Documents/意见反馈接口文档.md&quot;</span>)<br>    <span class="hljs-keyword">val</span> result = file.run &#123; <br>        readText().contains(<span class="hljs-string">&quot;great&quot;</span>)<br>    &#125;<br>    println(result)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>run也能用来执行函数引用</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-string">&quot;The People&#x27;s Republic of China.&quot;</span><br>        .run &#123; ::isLong &#125;<br>        .run &#123; ::showMessage &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">isLong</span><span class="hljs-params">(name: <span class="hljs-type">String</span>)</span></span>:<span class="hljs-built_in">Boolean</span> = name.length &gt; <span class="hljs-number">10</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">showMessage</span><span class="hljs-params">(isLong: <span class="hljs-type">Boolean</span>)</span></span>: String&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">if</span> (isLong)&#123;<br>        <span class="hljs-string">&quot;Name is too long.&quot;</span><br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-string">&quot;please rename.&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="with函数"><a href="#with函数" class="headerlink" title="with函数"></a>with函数</h3><p>with函数是run的变体，他们的功能行为是一样的，但是with调用方式不同，调用with需要值参作为其第一个参数传入.</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-string">&quot;The People&#x27;s Republic of China.&quot;</span>.run &#123; <br>    length &gt;= <span class="hljs-number">10</span><br>&#125;<br>with(<span class="hljs-string">&quot;The People&#x27;s Republic of China.&quot;</span>)&#123;<br>    length &gt;= <span class="hljs-number">10</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="also函数"><a href="#also函数" class="headerlink" title="also函数"></a>also函数</h3><p>与let函数相似，和let一样，also也是把接收者作为值参传给lambda，但有一点不同，also返回接收者对象，而let返回lambda结果。因为这个差异，also尤其适合<strong>针对同一原始对象</strong>，利用副作用做事，既然also返回的是接收者对象，你就可以<strong>基于原始接收者对象执行额外的链式调用</strong>。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">var</span> fileContents: List&lt;String&gt;<br>    File(<span class="hljs-string">&quot;/Users/axiang/Documents/意见反馈接口文档.md&quot;</span>)<br>        .also &#123;<br>            println(it.name)<br>        &#125;<br>        .also &#123;<br>            fileContents = it.readLines()<br>        &#125;<br>    println(fileContents)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="takeIf函数"><a href="#takeIf函数" class="headerlink" title="takeIf函数"></a>takeIf函数</h3><p>与其它标准函数不一样，takeIf函数需要判断lambda提供的条件表达式，给出true或false结果，如果判断结果是<code>true</code>，从<code>takeIf</code>函数返回接收者对象，如果是<code>false</code>，返回<code>null</code>。如果<strong>需要判断某个条件是否满足，再决定是否可以赋值变量或执行某个任务</strong>，takeIf就非常有用，概念上讲，takeIf函数类似于if语句，但他的优势是可以直接在对象实例上调用，避免了临时变量赋值的麻烦。</p>
+<p><strong>如：只要这个文件存在并且可读，老子就输出它</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> result = File(<span class="hljs-string">&quot;/Users/axiang/Documents/意见反馈接口文档.md&quot;</span>)<br>        .takeIf &#123; it.canRead() &amp;&amp; it.exists() &#125;<br>        ?.readText()<br>    println(result)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="takeUnless"><a href="#takeUnless" class="headerlink" title="takeUnless"></a>takeUnless</h3><p><code>takeIf</code>的辅助函数，只有判断你给定的条件结果是false时，takeUnless才会返回原始接收者对象。<strong>与takeIf相反</strong>。</p>
+<p><strong>如：老子就要读这个md，除非它不可见。</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">//文件非不可见，才输出</span><br>    <span class="hljs-keyword">val</span> result = File(<span class="hljs-string">&quot;/Users/axiang/Documents/意见反馈接口文档.md&quot;</span>)<br>        .takeUnless &#123; it.isHidden &#125;<br>        ?.readText()<br>    println(result)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>kotlin</category>
+      </categories>
+      <tags>
+        <tag>kotlin</tag>
+      </tags>
   </entry>
 </search>

@@ -6,7 +6,7 @@
   <link href="http://rrxxpp.github.io/atom.xml" rel="self"/>
   
   <link href="http://rrxxpp.github.io/"/>
-  <updated>2022-01-06T13:06:59.513Z</updated>
+  <updated>2022-01-10T08:40:48.923Z</updated>
   <id>http://rrxxpp.github.io/</id>
   
   <author>
@@ -17,21 +17,52 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Kotlin集合</title>
+    <link href="http://rrxxpp.github.io/2022/01/10/kotlin-study-day6/"/>
+    <id>http://rrxxpp.github.io/2022/01/10/kotlin-study-day6/</id>
+    <published>2022-01-10T06:46:31.000Z</published>
+    <updated>2022-01-10T08:40:48.923Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;集合List相关&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/categories/kotlin/"/>
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/tags/kotlin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>标准库函数</title>
+    <link href="http://rrxxpp.github.io/2022/01/10/kotlin-study-day5/"/>
+    <id>http://rrxxpp.github.io/2022/01/10/kotlin-study-day5/</id>
+    <published>2022-01-10T03:00:22.000Z</published>
+    <updated>2022-01-10T06:46:43.241Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;标准库使用&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/categories/kotlin/"/>
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/tags/kotlin/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Kotlin字符串相关</title>
     <link href="http://rrxxpp.github.io/2022/01/06/kotlin-study-day4/"/>
     <id>http://rrxxpp.github.io/2022/01/06/kotlin-study-day4/</id>
     <published>2022-01-06T12:58:53.000Z</published>
-    <updated>2022-01-06T13:06:59.513Z</updated>
+    <updated>2022-01-10T06:43:48.015Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;字符串&lt;/p&gt;
-&lt;h2 id=&quot;1-字符串&quot;&gt;&lt;a href=&quot;#1-字符串&quot; class=&quot;headerlink&quot; title=&quot;1 字符串&quot;&gt;&lt;/a&gt;1 字符串&lt;/h2&gt;&lt;h3 id=&quot;字符串截取&quot;&gt;&lt;a href=&quot;#字符串截取&quot;</summary>
-        
-      
+    <summary type="html">&lt;p&gt;字符串与数字类型&lt;/p&gt;</summary>
     
     
     
@@ -43,7 +74,7 @@
     <link href="http://rrxxpp.github.io/2022/01/06/kotlin-study-day3/"/>
     <id>http://rrxxpp.github.io/2022/01/06/kotlin-study-day3/</id>
     <published>2022-01-06T11:53:48.000Z</published>
-    <updated>2022-01-06T12:49:30.793Z</updated>
+    <updated>2022-01-10T06:46:07.169Z</updated>
     
     
     <summary type="html">&lt;p&gt;可空性判断与异常处理&lt;/p&gt;</summary>

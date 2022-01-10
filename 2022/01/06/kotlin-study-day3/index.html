@@ -198,7 +198,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1529465230221-a0d10e46fcbb.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1507238691740-187a5b1d37b8.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Kotlin可空性判断</h1>
     <div class="head-info">
@@ -211,7 +211,7 @@
           <i class="iconfont iconheart"></i><span id="/2022/01/06/kotlin-study-day3/" class="leancloud-like" data-flag-title="Kotlin可空性判断"></span>
         </span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2220</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2221</span>
     </div>
   </div>
 </section>
@@ -243,7 +243,7 @@
 <h3 id="4、使用if判断"><a href="#4、使用if判断" class="headerlink" title="4、使用if判断"></a>4、使用if判断</h3><p>与let相比，let更灵活，因为支持链式调用。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">var</span> str:String? = <span class="hljs-string">&quot;aXiang&quot;</span><br>    str = <span class="hljs-literal">null</span><br>    <span class="hljs-keyword">if</span> (str != <span class="hljs-literal">null</span>)&#123;<br>        str = str.capitalize()<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        println(<span class="hljs-string">&quot;null&quot;</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="5、使用空合并操作符"><a href="#5、使用空合并操作符" class="headerlink" title="5、使用空合并操作符"></a>5、使用空合并操作符</h3><p>如果 <code>?:</code> 的值是null，使用左边的值，不为null，使用右边的值。</p>
+<h3 id="5、使用空合并操作符"><a href="#5、使用空合并操作符" class="headerlink" title="5、使用空合并操作符"></a>5、使用空合并操作符</h3><p>如果 <code>?:</code> 前面的值非null，使用左边的值，是null，使用右边的值。</p>
 <p>也可以搭配<code>let</code>使用代替<code>if/else</code></p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">var</span> str:String? = <span class="hljs-string">&quot;aXiang&quot;</span><br>    str = <span class="hljs-literal">null</span><br>    println(str ?: <span class="hljs-string">&quot;peng&quot;</span>)<br>    println(str?.let &#123; it.capitalize() ?: <span class="hljs-string">&quot;peng&quot;</span> &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 

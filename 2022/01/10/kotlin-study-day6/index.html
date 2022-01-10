@@ -1,0 +1,513 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Kotlin集合 - 阿祥</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="集合List相关
+
+
+1 集合集合可以方便你处理一组数...">
+  <meta name="author" content="Axiang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '江畔何人初见月，江月何年初照人？',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="阿祥" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">Kotlin集合</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1529465230221-a0d10e46fcbb.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Kotlin集合</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 10, 2022</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2022/01/10/kotlin-study-day6/" class="leancloud-counter" data-flag-title="Kotlin集合"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2022/01/10/kotlin-study-day6/" class="leancloud-like" data-flag-title="Kotlin集合"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4082</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+          <p><p>集合List相关</p></p>
+        
+        <h2 id="1-集合"><a href="#1-集合" class="headerlink" title="1 集合"></a>1 集合</h2><p>集合可以方便你处理一组数据，也可以作为值参传给函数，和我们学过的其它变量类型一样，List、Set和Map类型的变量也分为两类，<strong>只读和可变</strong>。</p>
+<h3 id="List创建和获取"><a href="#List创建和获取" class="headerlink" title="List创建和获取"></a>List创建和获取</h3><p>通过<code>listOf</code>创建list。</p>
+<p><code>getOrElse</code>是一个<strong>安全索引取值函数</strong>，它需要两个参数，第一个是索引值，第二个是能提供默认值的lambda表达式，如果索引值不存在的话，可用来代替异常。</p>
+<p><code>getOrNull</code>是Kotlin提供的另一个安全索引取值函数，它返回null异常，而不是抛出异常.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 创建list</span><br>    <span class="hljs-keyword">val</span> list = listOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>)<br>    <span class="hljs-comment">// 普通获取元素</span><br>    <span class="hljs-keyword">val</span> element = list[<span class="hljs-number">3</span>]<br>    <span class="hljs-comment">// 空安全获取元素，越界返回Unknow</span><br>    <span class="hljs-keyword">val</span> element = list.getOrElse(<span class="hljs-number">3</span>)&#123;<span class="hljs-string">&quot;Unknow&quot;</span>&#125;<br>    <span class="hljs-comment">// 空安全获取元素，越界返回Unknow</span><br>    <span class="hljs-keyword">val</span> element = list.getOrNull(<span class="hljs-number">3</span>) ?: <span class="hljs-string">&quot;Unknow&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="可变列表"><a href="#可变列表" class="headerlink" title="可变列表"></a>可变列表</h3><p>在Kotlin中，支持内容修改的列表叫可变列表，要创建可变列表，可以使用<code>mutableListOf</code>函数。List还支持使用<code>toList</code>和<code>toMutableList</code>函数动态实现只读列表和可变列表的转换.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 创建可变list</span><br>    <span class="hljs-keyword">val</span> mutableList = mutableListOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>)<br>    <span class="hljs-comment">// 添加元素</span><br>    mutableList.add(<span class="hljs-string">&quot;Jimmy&quot;</span>)<br>    <span class="hljs-comment">// 删除元素</span><br>    mutableList.remove(<span class="hljs-string">&quot;Jack&quot;</span>)<br>    <span class="hljs-comment">// 转为不可变</span><br>    mutableList.toList()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="mutator函数"><a href="#mutator函数" class="headerlink" title="mutator函数"></a>mutator函数</h3><p>能修改可变列表的函数有一个统一的名字：mutator函数（<code>add</code>、<code>remove</code>等）</p>
+<p>添加运算符与删除运算符</p>
+<p>基于lambda表达式删除指定条件的元素.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 创建可变list</span><br>    <span class="hljs-keyword">val</span> mutableList = mutableListOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>)<br>    <span class="hljs-comment">// 添加元素（运算符重载）</span><br>    mutableList += <span class="hljs-string">&quot;Jimmy&quot;</span><br>    <span class="hljs-comment">// 删除元素（运算符重载）</span><br>    mutableList -= <span class="hljs-string">&quot;Jason&quot;</span><br>    <span class="hljs-comment">// 删除指定条件元素</span><br>    mutableList.removeIf &#123; it.contains(<span class="hljs-string">&quot;Jack&quot;</span>) &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="集合遍历"><a href="#集合遍历" class="headerlink" title="集合遍历"></a>集合遍历</h3><p>for..in 遍历</p>
+<p>forEach 遍历</p>
+<p>forEachIndexed 遍历时要获取索引</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 创建list</span><br>    <span class="hljs-keyword">val</span> list = listOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>)<br>    <span class="hljs-comment">// for in 遍历</span><br>    <span class="hljs-keyword">for</span> (s <span class="hljs-keyword">in</span> list)&#123;<br>        println(s)<br>    &#125;<br>    <span class="hljs-comment">// forEach 遍历</span><br>    list.forEach &#123; <br>        println(it)<br>    &#125;<br>    <span class="hljs-comment">// 需要索引位置</span><br>    list.forEachIndexed &#123; index, s -&gt;  <br>        println(<span class="hljs-string">&quot;<span class="hljs-variable">$index</span>， <span class="hljs-variable">$s</span>&quot;</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="解构"><a href="#解构" class="headerlink" title="解构"></a>解构</h3><p>通过<code>_</code>过滤不想要的元素</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 跳过某个值，使用 _ 代替</span><br><span class="hljs-keyword">val</span> (origin, _, proxy) = list<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-Set-集合"><a href="#2-Set-集合" class="headerlink" title="2 Set 集合"></a>2 Set 集合</h2><h3 id="创建与获取"><a href="#创建与获取" class="headerlink" title="创建与获取"></a>创建与获取</h3><p>通过setOf创建set集合，使用elementAt函数读取集合中的元素。</p>
+<p>list允许重复元素，set不允许。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 创建set</span><br>    <span class="hljs-keyword">val</span> <span class="hljs-keyword">set</span> = setOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>)<br>    <span class="hljs-comment">// 获取元素</span><br>    <span class="hljs-keyword">val</span> element = <span class="hljs-keyword">set</span>.elementAt(<span class="hljs-number">2</span>)<br>    <span class="hljs-comment">// 空安全获取元素，越界返回Unknow</span><br>    <span class="hljs-keyword">val</span> element = <span class="hljs-keyword">set</span>.elementAtOrElse(<span class="hljs-number">3</span>)&#123;<span class="hljs-string">&quot;Unknow&quot;</span>&#125;<br>    <span class="hljs-comment">// 空安全获取元素，越界返回Unknow</span><br>    <span class="hljs-keyword">val</span> element = <span class="hljs-keyword">set</span>.elementAtOrNull(<span class="hljs-number">3</span>) ?: <span class="hljs-string">&quot;Unknow&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="可变set集合"><a href="#可变set集合" class="headerlink" title="可变set集合"></a>可变set集合</h3><p>添加修改与List一致。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 创建可变set</span><br>    <span class="hljs-keyword">val</span> mutableSet = mutableSetOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>)<br>    <span class="hljs-comment">// 添加元素</span><br>    mutableSet += <span class="hljs-string">&quot;jimmy&quot;</span><br>    mutableSet.add(<span class="hljs-string">&quot;Jimmy&quot;</span>)<br>    <span class="hljs-comment">//与List一致</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="集合转换"><a href="#集合转换" class="headerlink" title="集合转换"></a>集合转换</h3><p>把List转换为Set，去除重复元素。<code>toSet()</code>与<code>toList()</code></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 去重步骤</span><br>    <span class="hljs-keyword">val</span> list = listOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>).toSet().toList()<br>    <span class="hljs-comment">// 快捷函数去重</span><br>    <span class="hljs-keyword">val</span> list = listOf(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-string">&quot;Jacky&quot;</span>, <span class="hljs-string">&quot;Jack&quot;</span>).distinct()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-数组"><a href="#3-数组" class="headerlink" title="3 数组"></a>3 数组</h2><h3 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h3><p><code>xxxOf()</code>方法创建，xxx表示类型。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">//创建IntArray数组</span><br>    <span class="hljs-keyword">val</span> intArray = intArrayOf(<span class="hljs-number">10</span>,<span class="hljs-number">30</span>,<span class="hljs-number">40</span>)<br>    <span class="hljs-comment">//创建file数组</span><br>    <span class="hljs-keyword">val</span> fileArray = arrayOf(File(<span class="hljs-string">&quot;1&quot;</span>), File(<span class="hljs-string">&quot;2&quot;</span>), File(<span class="hljs-string">&quot;3&quot;</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-Map集合"><a href="#4-Map集合" class="headerlink" title="4 Map集合"></a>4 Map集合</h2><h3 id="map的创建"><a href="#map的创建" class="headerlink" title="map的创建"></a>map的创建</h3><p><code>to</code>看上去像关键字，但事实上，它是个省略了点号和参数的特殊函数，to函数将它左右两边的值转化成一对儿<code>Pair</code>.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> map = mapOf(<span class="hljs-string">&quot;Jack&quot;</span> to <span class="hljs-number">20</span>, <span class="hljs-string">&quot;Jason&quot;</span> to <span class="hljs-number">18</span>, <span class="hljs-string">&quot;Jackey&quot;</span> to <span class="hljs-number">30</span>)<br>    <span class="hljs-comment">//或者</span><br>    <span class="hljs-keyword">val</span> map = mapOf(Pair(<span class="hljs-string">&quot;Jimmy&quot;</span>, <span class="hljs-number">20</span>), Pair(<span class="hljs-string">&quot;Jason&quot;</span>, <span class="hljs-number">19</span>))<br>    println(map)<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="读取map的值"><a href="#读取map的值" class="headerlink" title="读取map的值"></a>读取map的值</h3><ul>
+<li>[]读取运算符，读取键对应的值，如果键不存在返回null</li>
+<li>getValue，读取键对应的值，如果键不存在抛出异常</li>
+<li>getOrElse，读取键对应的值，或者使用匿名函数返回默认值</li>
+<li>getOrDefault，读取键对应的值，或者返回默认值.</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> map = mapOf(<span class="hljs-string">&quot;Jack&quot;</span> to <span class="hljs-number">20</span>, <span class="hljs-string">&quot;Jason&quot;</span> to <span class="hljs-number">18</span>, <span class="hljs-string">&quot;Jackey&quot;</span> to <span class="hljs-number">30</span>)<br>    <br>    <span class="hljs-comment">//方式1</span><br>    println(map[<span class="hljs-string">&quot;Jack&quot;</span>])<br>    <span class="hljs-comment">//方式2</span><br>    println(map.getValue(<span class="hljs-string">&quot;Jack&quot;</span>))<br>    <span class="hljs-comment">//方式3</span><br>    println(map.getOrElse(<span class="hljs-string">&quot;Rose&quot;</span>)&#123;<span class="hljs-string">&quot;Unknow&quot;</span>&#125;)<br>    <span class="hljs-comment">//方式4</span><br>    println(map.getOrDefault(<span class="hljs-string">&quot;Rose&quot;</span>, <span class="hljs-number">0</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="map遍历"><a href="#map遍历" class="headerlink" title="map遍历"></a>map遍历</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">//方式1</span><br>map.forEach &#123; <br>    println(<span class="hljs-string">&quot;<span class="hljs-subst">$&#123;it.key&#125;</span>, <span class="hljs-subst">$&#123;it.value&#125;</span>&quot;</span>)<br>&#125;<br><span class="hljs-comment">//方式2</span><br>map.forEach &#123; (key, value) -&gt;  <br>    println(<span class="hljs-string">&quot;<span class="hljs-variable">$key</span>, <span class="hljs-variable">$value</span>&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Axiang</li>
+    <li><strong>本文链接：</strong><a href="http://rrxxpp.github.io/2022/01/10/kotlin-study-day6/index.html" title="http:&#x2F;&#x2F;rrxxpp.github.io&#x2F;2022&#x2F;01&#x2F;10&#x2F;kotlin-study-day6&#x2F;index.html">http:&#x2F;&#x2F;rrxxpp.github.io&#x2F;2022&#x2F;01&#x2F;10&#x2F;kotlin-study-day6&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/kotlin/" rel="tag">kotlin</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2022/01/10/kotlin-study-day5/">标准库函数<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%9B%86%E5%90%88"><span class="toc-text">1 集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#List%E5%88%9B%E5%BB%BA%E5%92%8C%E8%8E%B7%E5%8F%96"><span class="toc-text">List创建和获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E5%88%97%E8%A1%A8"><span class="toc-text">可变列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mutator%E5%87%BD%E6%95%B0"><span class="toc-text">mutator函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E9%81%8D%E5%8E%86"><span class="toc-text">集合遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%9E%84"><span class="toc-text">解构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Set-%E9%9B%86%E5%90%88"><span class="toc-text">2 Set 集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%8E%E8%8E%B7%E5%8F%96"><span class="toc-text">创建与获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98set%E9%9B%86%E5%90%88"><span class="toc-text">可变set集合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E8%BD%AC%E6%8D%A2"><span class="toc-text">集合转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%95%B0%E7%BB%84"><span class="toc-text">3 数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="toc-text">创建数组</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Map%E9%9B%86%E5%90%88"><span class="toc-text">4 Map集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#map%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-text">map的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96map%E7%9A%84%E5%80%BC"><span class="toc-text">读取map的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#map%E9%81%8D%E5%8E%86"><span class="toc-text">map遍历</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=812316845 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="123 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/rrxxpp "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:812316845@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'IHSXqwgCzdyyFDMsJXdjkT8L-gzGzoHsz',
+      appKey: 'hawiDpU4FTIQ2WgLPDihOT4o',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
