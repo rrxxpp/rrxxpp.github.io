@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>类与构造函数 - 阿祥</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="构造函数、初始化等
+
+
+1 定义类field
+针对你定...">
+  <meta name="author" content="Axiang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '江畔何人初见月，江月何年初照人？',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="阿祥" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">类与构造函数</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1593642632559-0c6d3fc62b89.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">类与构造函数</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 11, 2022</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2022/01/11/kotlin-study-day7/" class="leancloud-counter" data-flag-title="类与构造函数"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2022/01/11/kotlin-study-day7/" class="leancloud-like" data-flag-title="类与构造函数"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3914</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+          <p><p>构造函数、初始化等</p></p>
+        
+        <h2 id="1-定义类"><a href="#1-定义类" class="headerlink" title="1 定义类"></a>1 定义类</h2><h3 id="field"><a href="#field" class="headerlink" title="field"></a>field</h3><ul>
+<li>针对你定义的每一个属性，Kotlin都会生成一个<code>field</code>（内容是对象本身）、一个<code>getter</code>、以及一个<code>setter</code>，field用来存储属性数据，你不能直接定义field，Kotlin会封装field，保护它里面的数据，只暴露给getter和setter使用。</li>
+<li>属性的getter方法决定你如何读取属性值，每个属性都有getter方法，setter方法决定你如何给属性赋值，所以只有可变属性才会有setter方法，尽管Kotlin会自动提供默认的getter和setter方法，但在需要控制如何读写属性数据时，你也可以自定义它们。</li>
+<li>get 和 set要紧跟属性，谁的方法就在谁下面。</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs Kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">test</span> </span>&#123;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">var</span> p = Player()<br>        <span class="hljs-comment">//此处调用name的set方法</span><br>        p.name = <span class="hljs-string">&quot;ros  e&quot;</span><br>        <span class="hljs-comment">//此处调用name的get方法</span><br>        println(p.name)<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span></span>&#123;<br>    <span class="hljs-comment">// 声明变量自动生成set、get</span><br>    <span class="hljs-keyword">var</span> name = <span class="hljs-string">&quot;jack&quot;</span><br>    <span class="hljs-keyword">get</span>() = field.capitalize()<br>    <span class="hljs-keyword">set</span>(value) &#123;<br>        field = value.trim()<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><p>计算属性是通过一个覆盖的get或set运算符来定义，这是field就不需要了。（也就是不需要通过传入值判断返回什么）</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> rolledValue<br>    <span class="hljs-keyword">get</span>() = (<span class="hljs-number">1.</span><span class="hljs-number">.7</span>).shuffled().first()<br></code></pre></td></tr></table></figure>
+
+<h3 id="防范竞态条件"><a href="#防范竞态条件" class="headerlink" title="防范竞态条件"></a>防范竞态条件</h3><p>如果一个类属性即可空又可变，那么引用它之前你必须保证它非空，一个办法是用also标准函数。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span></span>&#123;<br>    <span class="hljs-keyword">var</span> words: String? = <span class="hljs-string">&quot;hello&quot;</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">doSomething</span><span class="hljs-params">()</span></span>&#123;<br>        words?.also &#123;<br>            println(<span class="hljs-string">&quot;Hello <span class="hljs-subst">$&#123;it.toUpperCase()&#125;</span>&quot;</span>)<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-构造函数"><a href="#2-构造函数" class="headerlink" title="2 构造函数"></a>2 构造函数</h2><h3 id="主构造函数"><a href="#主构造函数" class="headerlink" title="主构造函数"></a>主构造函数</h3><p>我们在Player类的定义头中定义一个主构造函数，使用临时变量为Player的各个属性提供初始值，在Kotlin中，为便于识别，临时变量（包括仅引用一次的参数），通常都会<strong>以下划线开头命名</strong>。</p>
+<p>类名后面直接添加<code>()</code>，为构造函数。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">var</span> player = Player(<span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-number">20</span>, <span class="hljs-literal">true</span>)<br>    println(player)<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span></span>(<br>    _name:String,<br>    _age:<span class="hljs-built_in">Int</span>,<br>    _isNormal:<span class="hljs-built_in">Boolean</span><br>)&#123;<br>    <span class="hljs-keyword">var</span> name = _name<br>        <span class="hljs-keyword">get</span>() = field.capitalize()<br>        <span class="hljs-keyword">set</span>(value) &#123; field = value.trim() &#125;<br>    <span class="hljs-keyword">var</span> age = _age<br>    <span class="hljs-keyword">var</span> isNormal = _isNormal<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="在主构造函数里面定义属性"><a href="#在主构造函数里面定义属性" class="headerlink" title="在主构造函数里面定义属性"></a>在主构造函数里面定义属性</h3><p>kotlin允许你不使用临时变量赋值，而是直接用一个定义同时指定参数和类属性，通常，我们更喜欢用这种方法定义类属性，因为会减少重复代码</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span></span>(<br>    _name:String,<br>    <span class="hljs-keyword">var</span> age:<span class="hljs-built_in">Int</span>,<br>    <span class="hljs-keyword">var</span> sNormal:<span class="hljs-built_in">Boolean</span><br>)&#123;<br>    <span class="hljs-keyword">var</span> name = _name<br>        <span class="hljs-keyword">get</span>() = field.capitalize()<br>        <span class="hljs-keyword">set</span>(value) &#123; field = value.trim() &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="次构造函数"><a href="#次构造函数" class="headerlink" title="次构造函数"></a>次构造函数</h3><p>有主就有次，对应主构造函数的是次构造函数，我们可以多个构造函数来<strong>配置不同的参数组合</strong>。</p>
+<p>使用<code>constructor</code>定义次构造函数。</p>
+<p>使用次构造函数，可以定义<strong>初始化代码逻辑</strong>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">val</span> player = Player(<span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-number">12</span>)<br>    println(player)<br>&#125;<br><span class="hljs-comment">// 定义类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span></span>(<br>    <span class="hljs-keyword">var</span> name:String,<br>    <span class="hljs-keyword">var</span> age:<span class="hljs-built_in">Int</span>,<br>    <span class="hljs-keyword">var</span> sNormal:<span class="hljs-built_in">Boolean</span><br>)&#123;<br>    <span class="hljs-comment">//只提供一个参数的构造函数</span><br>    <span class="hljs-comment">//多余的手动给初始值</span><br>    <span class="hljs-keyword">constructor</span>(name: String, age: <span class="hljs-built_in">Int</span>) : <span class="hljs-keyword">this</span>(name, age, <span class="hljs-literal">false</span>)&#123;<br>        <span class="hljs-keyword">this</span>.name = name.toUpperCase()<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h3><p>定义构造函数时，可以给构造函数指定默认值，如果用户调用不提供值参，使用默认值。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">val</span> player = Player(<span class="hljs-string">&quot;Jack&quot;</span>, isNormal = <span class="hljs-literal">false</span>)<br>    println(player)<br>&#125;<br><br><span class="hljs-comment">// 定义类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span></span>(<br>    _name:String,<br>    <span class="hljs-keyword">var</span> age:<span class="hljs-built_in">Int</span> = <span class="hljs-number">20</span>,<br>    <span class="hljs-keyword">var</span> isNormal:<span class="hljs-built_in">Boolean</span><br>)&#123;<br>    <span class="hljs-keyword">var</span> name = _name<br>    <span class="hljs-comment">//只提供一个参数的构造函数</span><br>    <span class="hljs-comment">//多余的手动给初始值</span><br>    <span class="hljs-keyword">constructor</span>(name: String, age: <span class="hljs-built_in">Int</span>) : <span class="hljs-keyword">this</span>(name, age, <span class="hljs-literal">false</span>)&#123;<br>        <span class="hljs-keyword">this</span>.name = name.uppercase()<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-初始化"><a href="#3-初始化" class="headerlink" title="3 初始化"></a>3 初始化</h2><h3 id="初始化块"><a href="#初始化块" class="headerlink" title="初始化块"></a>初始化块</h3><p>初始化块可以设置变量或值，以及执行有效性检查，如检查传给某构造函数的值是否有效，<strong>初始化块代码会在构造类实例时执行。</strong></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">init</span> &#123;<br>    require(age &gt; <span class="hljs-number">0</span>)&#123;<span class="hljs-string">&quot;age must be positive&quot;</span>&#125;<br>    require(name.isNotBlank())&#123;<span class="hljs-string">&quot;player must have a name.&quot;</span>&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="初始化顺序"><a href="#初始化顺序" class="headerlink" title="初始化顺序"></a>初始化顺序</h3><ol>
+<li>主构造函数里声明的属性。</li>
+<li>类级别的属性赋值。</li>
+<li><code>init</code>初始化块里的属性赋值和函数调用。</li>
+<li>次级构造函数里的属性赋值和函数调用。</li>
+</ol>
+<h3 id="延迟初始化"><a href="#延迟初始化" class="headerlink" title="延迟初始化"></a>延迟初始化</h3><p>使用<code>lateinit</code>关键字相当于做了一个约定：在用它之前负责初始化</p>
+<p>只要无法确认<code>lateinit</code>变量是否完成初始化，可以执行<code>isInitialized</code>检查</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span></span>&#123;<br>    <span class="hljs-keyword">lateinit</span> <span class="hljs-keyword">var</span> equipment:String<br><br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">ready</span><span class="hljs-params">()</span></span>&#123;<br>        equipment = <span class="hljs-string">&quot;sharp knife&quot;</span><br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">battle</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-comment">// 判断是否初始化了</span><br>        <span class="hljs-keyword">if</span> (::equipment.isInitialized)<br>            println(equipment)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="惰性初始化"><a href="#惰性初始化" class="headerlink" title="惰性初始化"></a>惰性初始化</h3><p>延迟初始化并不是推后初始化的唯一方式，你也可以暂时不初始化某个变量，知道首次使用它，这个叫惰性初始化。</p>
+<p><code>by lazy&#123; &#125;</code> 类似懒加载。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">val</span> p = Player(<span class="hljs-string">&quot;Jack&quot;</span>)<br>    Thread.sleep(<span class="hljs-number">3000</span>)<br>    println(p.config)<br>&#125;<br><span class="hljs-comment">// 定义类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Player</span></span>(_name: String)&#123;<br>    <span class="hljs-keyword">val</span> name = _name<br>    <span class="hljs-comment">// 惰性初始化，调用的时候再初始化</span><br>    <span class="hljs-keyword">val</span> config <span class="hljs-keyword">by</span> lazy &#123; loadConfig() &#125;<br>    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">loadConfig</span><span class="hljs-params">()</span></span>:String&#123;<br>        println(<span class="hljs-string">&quot;loading...&quot;</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;xxx&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>kotlin 编译顺序为从上到下，与java不同，不能在第一行使用，第二行以后定义。</p>
+<p>属性定义顺序也为从上到下。</p>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Axiang</li>
+    <li><strong>本文链接：</strong><a href="http://rrxxpp.github.io/2022/01/11/kotlin-study-day7/index.html" title="http:&#x2F;&#x2F;rrxxpp.github.io&#x2F;2022&#x2F;01&#x2F;11&#x2F;kotlin-study-day7&#x2F;index.html">http:&#x2F;&#x2F;rrxxpp.github.io&#x2F;2022&#x2F;01&#x2F;11&#x2F;kotlin-study-day7&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/kotlin/" rel="tag">kotlin</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2022/01/11/kotlin-study-day8/"><i class="iconfont iconleft"></i>类的继承</a>
+    <a href="/2022/01/10/kotlin-study-day6/">Kotlin集合<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AE%9A%E4%B9%89%E7%B1%BB"><span class="toc-text">1 定义类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#field"><span class="toc-text">field</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7"><span class="toc-text">计算属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E8%8C%83%E7%AB%9E%E6%80%81%E6%9D%A1%E4%BB%B6"><span class="toc-text">防范竞态条件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">2 构造函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">主构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E4%B8%BB%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E9%87%8C%E9%9D%A2%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7"><span class="toc-text">在主构造函数里面定义属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A1%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">次构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0"><span class="toc-text">默认参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">3 初始化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%9D%97"><span class="toc-text">初始化块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%BA%E5%BA%8F"><span class="toc-text">初始化顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%B6%E8%BF%9F%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">延迟初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%83%B0%E6%80%A7%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">惰性初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%9A"><span class="toc-text">注意：</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=812316845 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="123 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/rrxxpp "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:812316845@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'IHSXqwgCzdyyFDMsJXdjkT8L-gzGzoHsz',
+      appKey: 'hawiDpU4FTIQ2WgLPDihOT4o',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

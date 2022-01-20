@@ -14,8 +14,7 @@
   <meta name="description" content="匿名函数与lambda
 
 
-1 匿名函数
-定义时不取名...">
+1 匿名函数匿名函数定义定...">
   <meta name="author" content="Axiang">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -199,7 +198,7 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1546146830-2cca9512c68e.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1577375729078-820d5283031c.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">Kotlin匿名函数</h1>
     <div class="head-info">
@@ -212,7 +211,7 @@
           <i class="iconfont iconheart"></i><span id="/2022/01/03/kotlin-study-day2/" class="leancloud-like" data-flag-title="Kotlin匿名函数"></span>
         </span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4368</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4619</span>
     </div>
   </div>
 </section>
@@ -221,53 +220,43 @@
         
           <p><p>匿名函数与lambda</p></p>
         
-        <h2 id="1-匿名函数"><a href="#1-匿名函数" class="headerlink" title="1 匿名函数"></a>1 匿名函数</h2><blockquote>
-<p>定义时不取名字的函数，我们称之为匿名函数，匿名函数通常整体传递给其他函数，或者从其它函数返回。</p>
+        <h2 id="1-匿名函数"><a href="#1-匿名函数" class="headerlink" title="1 匿名函数"></a>1 匿名函数</h2><h3 id="匿名函数定义"><a href="#匿名函数定义" class="headerlink" title="匿名函数定义"></a>匿名函数定义</h3><p>定义时不取名字的函数，我们称之为匿名函数，匿名函数通常整体传递给其他函数，或者从其它函数返回。</p>
 <p>我们将匿名函数称为lambda，将它的定义称谓lambda表达式。</p>
 <p>匿名函数本质上就是一个函数的参数传递类型为<strong>函数</strong>，当这个函数作为参数传递时，它的名字也就没有意义了，所以该函数不需要再有名字，也就是 <code>a(fun(param: Int): String &#123;return param.toString()&#125;)</code>， 使用lumbda表达式简写以后就是现在匿名函数的形式了，此处可参考<a target="_blank" rel="noopener" href="https://rengwuxian.com/kotlin-lambda/">扔物线Lumbda视频</a>。</p>
-</blockquote>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>  	<span class="hljs-comment">//返回字符串内s的个数</span><br>  	<span class="hljs-keyword">val</span> total = <span class="hljs-string">&quot;Mississppi&quot;</span>.count(&#123;<br>      	letter == <span class="hljs-string">&quot;s&quot;</span><br>   	 &#125;)<br>  	println(total)<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<blockquote>
-<p>匿名函数也有返回类型，匿名函数可以当作变量赋值给函数类型变量（<strong>实际上是有区别的，赋值后函数就变成了一个函数类型的变对象，指向原函数地址，本质上不是一个</strong>），函数的类型，由传入和返回类型决定。</p>
+<h3 id="匿名函数返回类型"><a href="#匿名函数返回类型" class="headerlink" title="匿名函数返回类型"></a>匿名函数返回类型</h3><p>匿名函数也有返回类型，匿名函数可以当作变量赋值给函数类型变量（<strong>实际上是有区别的，赋值后函数就变成了一个函数类型的变对象，指向原函数地址，本质上不是一个</strong>），函数的类型，由传入和返回类型决定。</p>
 <p>与具名函数不一样，除极少数情况外，匿名函数不需要<code>return</code>关键字返回数据，匿名函数会把最后一行当作返回值。</p>
-</blockquote>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">val</span> blessingFunction : () -&gt; String = &#123;<br>  	<span class="hljs-keyword">val</span> holday = <span class="hljs-string">&quot;New Year.&quot;</span><br>  	<span class="hljs-string">&quot;Happy <span class="hljs-variable">$hollday</span>&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<blockquote>
-<p>函数参数</p>
-<p>与具名函数一样，匿名函数可以不带参数，也可以带一个或多个参数，需要带参数时，<strong>参数的类型放在匿名函数的类型定义中，参数名放在函数定义中。</strong></p>
+<h3 id="单表达式函数"><a href="#单表达式函数" class="headerlink" title="单表达式函数"></a>单表达式函数</h3><p>当函数返回单个表达式时，可以省略花括号并且在 <code>=</code> 符号之后指定代码体即可</p>
+<p>当返回值类型可由编译器推断时，显式声明返回类型是可选的</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 示例1</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">double</span><span class="hljs-params">(x: <span class="hljs-type">Int</span>)</span></span>: <span class="hljs-built_in">Int</span> = x * <span class="hljs-number">2</span><br><span class="hljs-comment">// 示例2</span><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">special</span><span class="hljs-params">()</span></span> = <span class="hljs-string">&quot;LuxuryProduct special function&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h3><p>与具名函数一样，匿名函数可以不带参数，也可以带一个或多个参数，需要带参数时，<strong>参数的类型放在匿名函数的类型定义中，参数名放在函数定义中。</strong></p>
 <p>定义只有一个参数的匿名函数时，可以使用it关键字来表示参数名。（两个以上时，就不能用了）</p>
-</blockquote>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> main&#123;</span><br>  	<span class="hljs-keyword">var</span> blassingFunction : (String) -&gt; String &#123; name -&gt;<br>      	<span class="hljs-keyword">val</span> holiday = <span class="hljs-string">&quot;New Year.&quot;</span>.<br>      	<span class="hljs-string">&quot;<span class="hljs-variable">$name</span>, Happy <span class="hljs-variable">$holiday</span>&quot;</span><br> 	   &#125;<br>  	println(blassingFunction(<span class="hljs-string">&quot;Jacker&quot;</span>))<br>  <br>  	<span class="hljs-keyword">var</span> blassingFunction : (String) -&gt; String &#123;<br>      	<span class="hljs-keyword">val</span> holiday = <span class="hljs-string">&quot;New Year.&quot;</span>.<br>      	<span class="hljs-string">&quot;<span class="hljs-variable">$it</span>, Happy <span class="hljs-variable">$holiday</span>&quot;</span><br> 	   &#125; <br>  	println(blassingFunction(<span class="hljs-string">&quot;Jacker&quot;</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<blockquote>
-<p>函数的类型推断</p>
-<p>声明一个函数变量时，如果已把匿名函数作为变量赋值给它，就不需要声明类型。</p>
+<h3 id="函数的类型推断"><a href="#函数的类型推断" class="headerlink" title="函数的类型推断"></a>函数的类型推断</h3><p>声明一个函数变量时，如果已把匿名函数作为变量赋值给它，就不需要声明类型。</p>
 <p>类型推断也支持带参数的匿名函数，但是函数的参数名和参数类型必须有。</p>
-</blockquote>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> main&#123;  </span><br>  	<span class="hljs-keyword">var</span> blassingFunction &#123;<br>      	<span class="hljs-keyword">val</span> holiday = <span class="hljs-string">&quot;New Year.&quot;</span>.<br>      	<span class="hljs-string">&quot;Happy <span class="hljs-variable">$holiday</span>&quot;</span><br> 	   &#125; <br>  	println(blassingFunction())<br>  <br>  	<span class="hljs-keyword">var</span> blassingFunction = &#123; name: String,  year: <span class="hljs-built_in">Int</span> -&gt;<br>      	<span class="hljs-keyword">val</span> holiday = <span class="hljs-string">&quot;New Year.&quot;</span>.<br>      	<span class="hljs-string">&quot;<span class="hljs-variable">$name</span>, Happy <span class="hljs-variable">$holiday</span>  <span class="hljs-variable">$year</span>&quot;</span><br>   	 &#125;<br>  	println(blassingFunction(<span class="hljs-string">&quot;Jacker&quot;</span>, <span class="hljs-number">2022</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<blockquote>
-<p>定义参数是函数的函数</p>
-<p>当lambda参数排在最后，或者是唯一的参数，那么<code>lambda</code>值参的一对圆括号可以省略，示例有一个<code>goodsname</code>，没有的话可以如示例2.</p>
-</blockquote>
+<h3 id="定义参数是函数的函数"><a href="#定义参数是函数的函数" class="headerlink" title="定义参数是函数的函数"></a>定义参数是函数的函数</h3><p>当lambda参数排在最后，或者是唯一的参数，那么<code>lambda</code>值参的一对圆括号可以省略，示例有一个<code>goodsname</code>，没有的话可以如示例2.</p>
+<p>或者说成：如果在默认参数之后的最后一个参数是 <code>lambda</code> 表达式，那么它既可以作为命名参数在括号内传入，也可以在括号外传入：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>  	showOnBoard(<span class="hljs-string">&quot;卫生纸&quot;</span>,  &#123; goodsName: String, hour: <span class="hljs-built_in">Int</span> -&gt;<br>     		<span class="hljs-keyword">val</span> currentYear = <span class="hljs-number">2022</span><br>             <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;currentYear&#125;</span>年，双11<span class="hljs-subst">$&#123;goodsName&#125;</span>促销倒计时：<span class="hljs-variable">$hour</span> 小时&quot;</span><br>   	 &#125;)<br>  	<span class="hljs-comment">//简写以后</span><br>  	showOnBoard(<span class="hljs-string">&quot;卫生纸&quot;</span>)  &#123; goodsName: String, hour: <span class="hljs-built_in">Int</span> -&gt;<br>     		<span class="hljs-keyword">val</span> currentYear = <span class="hljs-number">2022</span><br>             <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;currentYear&#125;</span>年，双11<span class="hljs-subst">$&#123;goodsName&#125;</span>促销倒计时：<span class="hljs-variable">$hour</span> 小时&quot;</span><br>   	 &#125;<br>  	<span class="hljs-comment">//简写以后 示例2</span><br>  	showOnBoard &#123; goodsName: String, hour: <span class="hljs-built_in">Int</span> -&gt;<br>     		<span class="hljs-keyword">val</span> currentYear = <span class="hljs-number">2022</span><br>             <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;currentYear&#125;</span>年，双11<span class="hljs-subst">$&#123;goodsName&#125;</span>促销倒计时：<span class="hljs-variable">$hour</span> 小时&quot;</span><br>   	 &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">showOnBoard</span><span class="hljs-params">(goodsName : <span class="hljs-type">String</span>, getDiscountWords : (<span class="hljs-type">String</span>, <span class="hljs-type">Int</span>) -&gt; <span class="hljs-type">String</span>)</span></span>&#123;<br>  	<span class="hljs-comment">// shuffled 乱序</span><br>  	<span class="hljs-keyword">val</span> hour = (<span class="hljs-number">1.</span><span class="hljs-number">.24</span>).shuffled().last()<br>  	println(getDiscountWords(goodsName, hour))<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
-<p>lambda 与 函数类型的对象一样，在 JVM 上以对象实例的形式存在，JVM 会为所有同lambda打交道的变量分配内存，这就产生了内存开销，所以会造成性能问题。 幸运的事kotlin有一种优化机制叫内联，哪里需要lambda，编译器就会将函数复制粘贴到哪里（减少对象的创建）。</p>
+<p>lambda 与 函数类型的对象一样，在 JVM 上以对象实例的形式存在，JVM 会为所有同lambda打交道的变量分配内存，这就产生了内存开销，所以会造成性能问题。 幸运的是kotlin有一种优化机制叫内联，哪里需要lambda，编译器就会将函数复制粘贴到哪里（减少对象的创建）。</p>
 <p>使用lambda的递归函数无法内联，因为会导致复制粘贴无限循环，编译器会发出警告。</p>
 </blockquote>
-<blockquote>
-<p>要把函数作为参数给其它函数使用，除了传lambda表达式，还可以传递<strong>函数引用</strong>，函数引用可以把一个具名函数转换成一个穿参，也就是上文说的转换成函数类型的对象，使用的时候需要用<code>::method</code>引用。使用labmda表达式的地方，都可以使用函数引用。</p>
-</blockquote>
+<h3 id="函数引用"><a href="#函数引用" class="headerlink" title="函数引用"></a>函数引用</h3><p>要把函数作为参数给其它函数使用，除了传lambda表达式，还可以传递<strong>函数引用</strong>，函数引用可以把一个具名函数转换成一个穿参，也就是上文说的转换成函数类型的对象，使用的时候需要用<code>::method</code>引用。使用labmda表达式的地方，都可以使用函数引用。</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>  	showOnBoard(<span class="hljs-string">&quot;卫生纸&quot;</span>, ::getDiscountWords)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">getDiscountWords</span><span class="hljs-params">(goodsName: <span class="hljs-type">String</span>, hour: <span class="hljs-type">Inte</span>)</span></span> : String&#123;<br>     	<span class="hljs-keyword">val</span> currentYear = <span class="hljs-number">2022</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;currentYear&#125;</span>年，双11<span class="hljs-subst">$&#123;goodsName&#125;</span>促销倒计时：<span class="hljs-variable">$hour</span> 小时&quot;</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">showOnBoard</span><span class="hljs-params">(goodsName : <span class="hljs-type">String</span>, getDiscountWords : (<span class="hljs-type">String</span>, <span class="hljs-type">Int</span>) -&gt; <span class="hljs-type">String</span>)</span></span>&#123;<br>  	<span class="hljs-comment">// shuffled 乱序</span><br>  	<span class="hljs-keyword">val</span> hour = (<span class="hljs-number">1.</span><span class="hljs-number">.24</span>).shuffled().last()<br>  	println(getDiscountWords(goodsName, hour))<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<blockquote>
-<p>函数类型也是有效的返回类型，也就是说可以定义一个能返回函数的函数。</p>
+<h3 id="返回函数类型"><a href="#返回函数类型" class="headerlink" title="返回函数类型"></a>返回函数类型</h3><p>函数类型也是有效的返回类型，也就是说可以定义一个能返回函数的函数。</p>
 <p><code>() :</code> 后面是返回值类型，感觉有点乱，怕忘了。</p>
-</blockquote>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>  	<span class="hljs-keyword">var</span> getDiscountWords = configDiscountWords()<br>  	println(getDiscountWords(<span class="hljs-string">&quot;沐浴露&quot;</span>))<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">configDiscountWords</span><span class="hljs-params">()</span></span> : (String) -&gt; String&#123;<br>  	<span class="hljs-keyword">val</span> currentYear = <span class="hljs-number">2022</span><br>  	<span class="hljs-keyword">val</span> hour = (<span class="hljs-number">1.</span><span class="hljs-number">.24</span>).shuffled().last()<br>  	<span class="hljs-keyword">return</span> &#123;goodsName : String -&gt; <br>  		<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;<span class="hljs-subst">$&#123;currentYear&#125;</span>年，双11<span class="hljs-subst">$&#123;goodsName&#125;</span>促销倒计时：<span class="hljs-variable">$hour</span> 小时&quot;</span><br>   	 &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
 
 <h2 id="2-闭包、lambda"><a href="#2-闭包、lambda" class="headerlink" title="2 闭包、lambda"></a>2 闭包、lambda</h2><blockquote>
 <p>闭包 （为了避免变量名、方法名等等冲突，限定一个使用范围，类似java的package、class作用）</p>
@@ -309,7 +298,7 @@
           
   <aside class="toc-wrap">
     <h3 class="toc-title">文章目录：</h3>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0"><span class="toc-text">1 匿名函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%97%AD%E5%8C%85%E3%80%81lambda"><span class="toc-text">2 闭包、lambda</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0"><span class="toc-text">1 匿名函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89"><span class="toc-text">匿名函数定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B"><span class="toc-text">匿名函数返回类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%87%BD%E6%95%B0"><span class="toc-text">单表达式函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0"><span class="toc-text">函数参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%8E%A8%E6%96%AD"><span class="toc-text">函数的类型推断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%8F%82%E6%95%B0%E6%98%AF%E5%87%BD%E6%95%B0%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-text">定义参数是函数的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%BC%95%E7%94%A8"><span class="toc-text">函数引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-text">返回函数类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%97%AD%E5%8C%85%E3%80%81lambda"><span class="toc-text">2 闭包、lambda</span></a></li></ol>
   </aside>
 
         

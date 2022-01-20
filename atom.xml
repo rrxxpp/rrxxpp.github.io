@@ -6,7 +6,7 @@
   <link href="http://rrxxpp.github.io/atom.xml" rel="self"/>
   
   <link href="http://rrxxpp.github.io/"/>
-  <updated>2022-01-10T08:40:48.923Z</updated>
+  <updated>2022-01-18T08:47:41.746Z</updated>
   <id>http://rrxxpp.github.io/</id>
   
   <author>
@@ -17,11 +17,106 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>扩展函数相关</title>
+    <link href="http://rrxxpp.github.io/2022/01/18/kotlin-study-day11/"/>
+    <id>http://rrxxpp.github.io/2022/01/18/kotlin-study-day11/</id>
+    <published>2022-01-18T05:17:35.000Z</published>
+    <updated>2022-01-18T08:47:41.746Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;扩展&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/categories/kotlin/"/>
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/tags/kotlin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>接口、泛型</title>
+    <link href="http://rrxxpp.github.io/2022/01/12/kotlin-study-day10/"/>
+    <id>http://rrxxpp.github.io/2022/01/12/kotlin-study-day10/</id>
+    <published>2022-01-12T08:02:57.000Z</published>
+    <updated>2022-01-18T05:18:26.504Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;接口与泛型&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/categories/kotlin/"/>
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/tags/kotlin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>对象（单例）</title>
+    <link href="http://rrxxpp.github.io/2022/01/12/kotlin-study-day9/"/>
+    <id>http://rrxxpp.github.io/2022/01/12/kotlin-study-day9/</id>
+    <published>2022-01-12T02:46:44.000Z</published>
+    <updated>2022-01-12T08:02:41.241Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;对象与数据类等&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/categories/kotlin/"/>
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/tags/kotlin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>类的继承</title>
+    <link href="http://rrxxpp.github.io/2022/01/11/kotlin-study-day8/"/>
+    <id>http://rrxxpp.github.io/2022/01/11/kotlin-study-day8/</id>
+    <published>2022-01-11T08:47:44.000Z</published>
+    <updated>2022-01-12T02:46:24.707Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;类的继承与转换&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/categories/kotlin/"/>
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/tags/kotlin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>类与构造函数</title>
+    <link href="http://rrxxpp.github.io/2022/01/11/kotlin-study-day7/"/>
+    <id>http://rrxxpp.github.io/2022/01/11/kotlin-study-day7/</id>
+    <published>2022-01-11T02:22:39.000Z</published>
+    <updated>2022-01-11T08:59:48.619Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;构造函数、初始化等&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/categories/kotlin/"/>
+    
+    
+    <category term="kotlin" scheme="http://rrxxpp.github.io/tags/kotlin/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Kotlin集合</title>
     <link href="http://rrxxpp.github.io/2022/01/10/kotlin-study-day6/"/>
     <id>http://rrxxpp.github.io/2022/01/10/kotlin-study-day6/</id>
     <published>2022-01-10T06:46:31.000Z</published>
-    <updated>2022-01-10T08:40:48.923Z</updated>
+    <updated>2022-01-11T02:22:25.612Z</updated>
     
     
     <summary type="html">&lt;p&gt;集合List相关&lt;/p&gt;</summary>
@@ -142,7 +237,7 @@
     <link href="http://rrxxpp.github.io/2022/01/03/kotlin-study-day2/"/>
     <id>http://rrxxpp.github.io/2022/01/03/kotlin-study-day2/</id>
     <published>2022-01-03T13:36:01.000Z</published>
-    <updated>2022-01-06T12:49:06.232Z</updated>
+    <updated>2022-01-12T02:26:59.379Z</updated>
     
     
     <summary type="html">&lt;p&gt;匿名函数与lambda&lt;/p&gt;</summary>

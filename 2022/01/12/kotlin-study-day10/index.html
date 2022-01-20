@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>接口、泛型 - 阿祥</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="接口与泛型
+
+
+1 接口接口定义Kotlin规定所有的...">
+  <meta name="author" content="Axiang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '江畔何人初见月，江月何年初照人？',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: 'search.xml'
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="阿祥" type="application/atom+xml">
+</head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">接口、泛型</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://gitee.com/rxp123/hexo-image/raw/master/photo-1453928582365-b6ad33cbcf64.jpeg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">接口、泛型</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>一月 12, 2022</span>
+      
+        <span class="post-info-item">
+          <i class="iconfont iconeye"></i><span id="/2022/01/12/kotlin-study-day10/" class="leancloud-counter" data-flag-title="接口、泛型"></span>
+        </span>
+        <span class="post-info-item">
+          <i class="iconfont iconheart"></i><span id="/2022/01/12/kotlin-study-day10/" class="leancloud-like" data-flag-title="接口、泛型"></span>
+        </span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5223</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+          <p><p>接口与泛型</p></p>
+        
+        <h2 id="1-接口"><a href="#1-接口" class="headerlink" title="1 接口"></a>1 接口</h2><h3 id="接口定义"><a href="#接口定义" class="headerlink" title="接口定义"></a>接口定义</h3><p>Kotlin规定所有的借口属性和函数实现都要使用<code>override</code>关键字，接口中定义的函数并不需要<code>open</code>关键字修饰，他们默认都是<code>open</code>的。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 定义接口</span><br><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Moveable</span></span>&#123;<br>    <span class="hljs-keyword">var</span> maxSpeed: <span class="hljs-built_in">Int</span><br>    <span class="hljs-keyword">var</span> wheels: <span class="hljs-built_in">Int</span><br>    <br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">move</span><span class="hljs-params">(moveable: <span class="hljs-type">Moveable</span>)</span></span>: String<br>&#125;<br><span class="hljs-comment">//实现</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span></span>(_name:String, <span class="hljs-keyword">override</span> <span class="hljs-keyword">var</span> maxSpeed: <span class="hljs-built_in">Int</span> = <span class="hljs-number">4</span>, <span class="hljs-keyword">override</span> <span class="hljs-keyword">var</span> wheels: <span class="hljs-built_in">Int</span> = <span class="hljs-number">4</span>) : Moveable &#123;<br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">move</span><span class="hljs-params">(moveable: <span class="hljs-type">Moveable</span>)</span></span>: String &#123;<br>        TODO(<span class="hljs-string">&quot;Not yet implemented&quot;</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>只要你愿意，你可以在接口里提供默认属性的getter方法和函数实现。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 定义接口</span><br><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Moveable</span></span>&#123;<br>    <span class="hljs-keyword">val</span> maxSpeed: <span class="hljs-built_in">Int</span><br>        <span class="hljs-keyword">get</span>() = (<span class="hljs-number">1.</span><span class="hljs-number">.500</span>).shuffled().last()<br>    <span class="hljs-keyword">var</span> wheels: <span class="hljs-built_in">Int</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">move</span><span class="hljs-params">(moveable: <span class="hljs-type">Moveable</span>)</span></span>: String<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>要定义一个抽象类，你需要在定义之前加上abstract关键字，除了具体的函数实现，抽象类也可以包含抽象函数 - 只有定义，没有函数实现。</p>
+<p>继承多个类，使用 <code>,</code> 分割。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Gun</span></span>(<span class="hljs-keyword">val</span> range: <span class="hljs-built_in">Int</span>)&#123;<br>    <span class="hljs-keyword">abstract</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">pullTrigger</span><span class="hljs-params">()</span></span>: String<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AK47</span>: <span class="hljs-type">Gun</span></span>(<span class="hljs-number">500</span>)&#123;<br>    <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">pullTrigger</span><span class="hljs-params">()</span></span>: String &#123;<br>        TODO(<span class="hljs-string">&quot;Not yet implemented&quot;</span>)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-泛型"><a href="#2-泛型" class="headerlink" title="2 泛型"></a>2 泛型</h2><h3 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h3><p>泛型类的构造函数可以接受任何类型。（ <code>T</code> ）</p>
+<p>示例：</p>
+<p>MagicBox类指定的泛型参数由放在一对<code>&lt;&gt;</code>里的字母 <code>T</code> 表示，T是个代表item类型的占位符。</p>
+<p>MagicBox类接收任何类型的item作为主构造函数值 <code>(item: T)</code>，并将item值赋给同样是T类型的<code>subject</code>私有属性。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> box =  MagicBox(Boy(<span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-number">20</span>))<br>    <span class="hljs-keyword">val</span> box2 = MagicBox(Dog(<span class="hljs-number">20</span>))<br>&#125;<br><span class="hljs-comment">// 定义泛型类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MagicBox</span>&lt;<span class="hljs-type">T</span>&gt;</span>(item: T)&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> subject: T = item<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Boy</span></span>(<span class="hljs-keyword">val</span> name: String, <span class="hljs-keyword">val</span> age: <span class="hljs-built_in">Int</span>)<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dog</span></span>(<span class="hljs-keyword">val</span> weight: <span class="hljs-built_in">Int</span>)<br></code></pre></td></tr></table></figure>
+
+<p><strong>Tip:</strong> 泛型参数常用字母T（代表英文type）表示，当然，想用其他字母，甚至是英文单词都是可以的。不过，其他支持泛型的语言都在用这个约定俗称的T，所以建议你继续用它，这样写出的代码更容易理解。</p>
+<h3 id="泛型函数"><a href="#泛型函数" class="headerlink" title="泛型函数"></a>泛型函数</h3><ul>
+<li>泛型参数也可以用于函数。</li>
+<li>定义一个函数用于获取元素，并且仅当MagicBox可用时，才能获取元素。</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MagicBox</span>&lt;<span class="hljs-type">T</span>&gt;</span>(item: T)&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> subject: T = item<br>    <span class="hljs-keyword">var</span> available = <span class="hljs-literal">false</span><br>    <br>    <span class="hljs-comment">// 泛型函数</span><br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">fetch</span><span class="hljs-params">()</span></span> : T?&#123;<br>        <span class="hljs-keyword">return</span> subject.takeIf &#123; available &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="多泛型参数"><a href="#多泛型参数" class="headerlink" title="多泛型参数"></a>多泛型参数</h3><p>泛型函数或泛型类也可以有多个泛型参数。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 定义泛型类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MagicBox</span>&lt;<span class="hljs-type">T</span>&gt;</span>(item: T)&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> subject: T = item<br>    <span class="hljs-keyword">var</span> available = <span class="hljs-literal">false</span><br>    <br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-type">&lt;R&gt;</span> <span class="hljs-title">fetch</span><span class="hljs-params">(subjectModFunction: (<span class="hljs-type">T</span>) -&gt; <span class="hljs-type">R</span>)</span></span>: R? &#123;<br>        <span class="hljs-keyword">return</span> subjectModFunction(subject).takeIf &#123; available &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Boy</span></span>(<span class="hljs-keyword">val</span> name: String, <span class="hljs-keyword">val</span> age: <span class="hljs-built_in">Int</span>)<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Man</span></span>(<span class="hljs-keyword">val</span> name: String, <span class="hljs-keyword">val</span> age: <span class="hljs-built_in">Int</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> box =  MagicBox(Boy(<span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-number">20</span>))<br>    box.fetch &#123; <br>        Man(it.name, it.age.plus(<span class="hljs-number">15</span>))<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="泛型类型约束"><a href="#泛型类型约束" class="headerlink" title="泛型类型约束"></a>泛型类型约束</h3><p>如果要确保MagicBox里面只能装指定类型的物品，如Human类型，怎么办？</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 只接收Human类型或子类型</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MagicBox</span>&lt;<span class="hljs-type">T : Human</span>&gt;</span>(item: T)&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> subject: T = item<br>&#125;<br><br><span class="hljs-keyword">open</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Human</span></span>(<span class="hljs-keyword">open</span> <span class="hljs-keyword">val</span> age: <span class="hljs-built_in">Int</span>)<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Boy</span></span>(<span class="hljs-keyword">val</span> name: String, <span class="hljs-keyword">override</span> <span class="hljs-keyword">val</span> age: <span class="hljs-built_in">Int</span>) : Human(age)<br></code></pre></td></tr></table></figure>
+
+<h3 id="vararg关键字和get函数"><a href="#vararg关键字和get函数" class="headerlink" title="vararg关键字和get函数"></a>vararg关键字和get函数</h3><p>MagicBox能存放任何类型的Human实例，但一次只能放一个，如果需要放入多个实例呢？</p>
+<p>使用可变参数<code>vararg</code>，类似java的 <code>..</code>。</p>
+<p>传入参数类型为 <code>Array&lt;out T&gt;</code>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 定义泛型类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MagicBox</span>&lt;<span class="hljs-type">T : Human</span>&gt;</span>(<span class="hljs-keyword">vararg</span> item: T)&#123;<br>    <span class="hljs-comment">// 接收可变参数</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> subject: Array&lt;<span class="hljs-keyword">out</span> T&gt; = item<br>    <span class="hljs-comment">// 使用时取值</span><br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">fetch</span><span class="hljs-params">(index: <span class="hljs-type">Int</span>)</span></span>&#123;<br>        println(subject[index])<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> box =  MagicBox(Boy(<span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-number">20</span>), Boy(<span class="hljs-string">&quot;Jimmy&quot;</span>,<span class="hljs-number">3</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="操作符取值"><a href="#操作符取值" class="headerlink" title="[] 操作符取值"></a>[] 操作符取值</h3><p>想通过[]操作符取值，可以重载运算符函数<code>get</code>函数。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 定义泛型类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MagicBox</span>&lt;<span class="hljs-type">T : Human</span>&gt;</span>(<span class="hljs-keyword">vararg</span> item: T)&#123;<br>    <span class="hljs-comment">// 接收可变参数</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">var</span> subject: Array&lt;<span class="hljs-keyword">out</span> T&gt; = item<br>    <span class="hljs-comment">// 重载 [] 方法</span><br>    <span class="hljs-keyword">operator</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">get</span><span class="hljs-params">(index: <span class="hljs-type">Int</span>)</span></span> : T? = subject[index]<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">val</span> box =  MagicBox(Boy(<span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-number">20</span>), Boy(<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-number">3</span>))<br>    println(box[<span class="hljs-number">0</span>])<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="out协变"><a href="#out协变" class="headerlink" title="out协变"></a>out协变</h3><p>如果泛型类只将泛型类型作为函数的输出（返回），那么使用out，可以称之为生产类/接口，因为它主要是用来生产指定的泛型对象。</p>
+<p><strong>此外，</strong>子类泛型对象可以赋值给父类泛型对象，也就是<code>out T</code>，可以传入其子类型。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Source</span>&lt;<span class="hljs-type">out T</span>&gt; </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">nextT</span><span class="hljs-params">()</span></span>: T<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">demo</span><span class="hljs-params">(strs: <span class="hljs-type">Source</span>&lt;<span class="hljs-type">String</span>&gt;)</span></span> &#123;<br>    <span class="hljs-keyword">val</span> objects: Source&lt;Any&gt; = strs <span class="hljs-comment">// 这个没问题，因为 T 是一个 out-参数</span><br>    <span class="hljs-comment">// ……</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="in逆变"><a href="#in逆变" class="headerlink" title="in逆变"></a>in逆变</h3><p>如果泛型类只将泛型类型作为函数的输入（入参），那么使用in，可以称之为消费者类/接口，因为它主要用来消费指定的泛型对象。</p>
+<p><strong>此外，</strong>父类泛型对象可以赋值给子类泛型对象，也就是福类型可以传入 <code>in T</code>。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Comparable</span>&lt;<span class="hljs-type">in T</span>&gt; </span>&#123;<br>    <span class="hljs-keyword">operator</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">compareTo</span><span class="hljs-params">(other: <span class="hljs-type">T</span>)</span></span>: <span class="hljs-built_in">Int</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">demo</span><span class="hljs-params">(x: <span class="hljs-type">Comparable</span>&lt;<span class="hljs-type">Number</span>&gt;)</span></span> &#123;<br>    x.compareTo(<span class="hljs-number">1.0</span>) <span class="hljs-comment">// 1.0 拥有类型 Double，它是 Number 的子类型</span><br>    <span class="hljs-comment">// 因此，我们可以将 x 赋给类型为 Comparable &lt;Double&gt; 的变量</span><br>    <span class="hljs-keyword">val</span> y: Comparable&lt;<span class="hljs-built_in">Double</span>&gt; = x <span class="hljs-comment">// OK！</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="invariant不变"><a href="#invariant不变" class="headerlink" title="invariant不变"></a>invariant不变</h3><p>如果泛型类即将泛型类型作为函数入参，又将函数作为函数的输出，那么既不用out也不用in。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ProductionConsumer</span>&lt;<span class="hljs-type">T</span>&gt; </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">product</span><span class="hljs-params">()</span></span> : T<br>    <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">consumer</span><span class="hljs-params">(item : <span class="hljs-type">T</span>)</span></span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="reified具体化"><a href="#reified具体化" class="headerlink" title="reified具体化"></a>reified具体化</h3><p>我们知道在java中使用泛型的时候，无法通过泛型来得到Class，一般我们会将Class通过参数传过去。</p>
+<p>在kotlin中一个内联函数（<code>inline</code>）可以被具体化（<code>reified</code>），这意味着我们可以得到使用泛型类型的Class。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MagicBox</span>&lt;<span class="hljs-type">T : Human</span>&gt;</span>&#123;<br>    <span class="hljs-comment">// 随机产生一个对象，如果不是指定类型，通过backup函数生成一个</span><br>    <span class="hljs-keyword">inline</span> <span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-type">&lt;<span class="hljs-keyword">reified</span> T&gt;</span> <span class="hljs-title">randomOrBackup</span><span class="hljs-params">(backup: () -&gt; <span class="hljs-type">T</span>)</span></span> : T &#123;<br>        <span class="hljs-keyword">val</span> items = listOf(<br>            Boy(<span class="hljs-string">&quot;Jack&quot;</span>, <span class="hljs-number">20</span>),<br>            Man(<span class="hljs-string">&quot;John&quot;</span>, <span class="hljs-number">45</span>)<br>        )<br>        <span class="hljs-comment">// 随机生成</span><br>        <span class="hljs-keyword">val</span> random = items.shuffled().first()<br>        <span class="hljs-comment">// 使用 reified 以后，可以得到class</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">if</span> (random <span class="hljs-keyword">is</span> T)&#123;<br>            random<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            backup()<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">open</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Human</span></span>(<span class="hljs-keyword">open</span> <span class="hljs-keyword">val</span> age: <span class="hljs-built_in">Int</span>)<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Boy</span></span>(<span class="hljs-keyword">val</span> name: String, age: <span class="hljs-built_in">Int</span>) : Human(age)<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Man</span></span>(<span class="hljs-keyword">val</span> name: String, age: <span class="hljs-built_in">Int</span>) : Human(age)<br><br><span class="hljs-function"><span class="hljs-keyword">fun</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">val</span> box1: MagicBox&lt;Man&gt; = MagicBox()<br>    <span class="hljs-keyword">val</span> subject = box1.randomOrBackup &#123; <br>        Man(<span class="hljs-string">&quot;Jimmy&quot;</span>, <span class="hljs-number">20</span>)<br>    &#125;<br>    println(subject)<br>&#125;<br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>Axiang</li>
+    <li><strong>本文链接：</strong><a href="http://rrxxpp.github.io/2022/01/12/kotlin-study-day10/index.html" title="http:&#x2F;&#x2F;rrxxpp.github.io&#x2F;2022&#x2F;01&#x2F;12&#x2F;kotlin-study-day10&#x2F;index.html">http:&#x2F;&#x2F;rrxxpp.github.io&#x2F;2022&#x2F;01&#x2F;12&#x2F;kotlin-study-day10&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/kotlin/" rel="tag">kotlin</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2022/01/18/kotlin-study-day11/"><i class="iconfont iconleft"></i>扩展函数相关</a>
+    <a href="/2022/01/12/kotlin-study-day9/">对象（单例）<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%8E%A5%E5%8F%A3"><span class="toc-text">1 接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%AE%9A%E4%B9%89"><span class="toc-text">接口定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-text">抽象类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%B3%9B%E5%9E%8B"><span class="toc-text">2 泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E7%B1%BB"><span class="toc-text">泛型类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E5%87%BD%E6%95%B0"><span class="toc-text">泛型函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%B3%9B%E5%9E%8B%E5%8F%82%E6%95%B0"><span class="toc-text">多泛型参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B%E7%B1%BB%E5%9E%8B%E7%BA%A6%E6%9D%9F"><span class="toc-text">泛型类型约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vararg%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8Cget%E5%87%BD%E6%95%B0"><span class="toc-text">vararg关键字和get函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%8F%96%E5%80%BC"><span class="toc-text">[] 操作符取值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#out%E5%8D%8F%E5%8F%98"><span class="toc-text">out协变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#in%E9%80%86%E5%8F%98"><span class="toc-text">in逆变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#invariant%E4%B8%8D%E5%8F%98"><span class="toc-text">invariant不变</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reified%E5%85%B7%E4%BD%93%E5%8C%96"><span class="toc-text">reified具体化</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=812316845 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="123 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/rrxxpp "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:812316845@qq.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+    <div class="fab fab-like">
+      <i class="iconfont iconheart"></i>
+    </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+  $.getScript("//cdn.jsdelivr.net/npm/leancloud-storage@4.1.0/dist/av-min.js", () => {
+
+    AV.init({
+      appId: 'IHSXqwgCzdyyFDMsJXdjkT8L-gzGzoHsz',
+      appKey: 'hawiDpU4FTIQ2WgLPDihOT4o',
+      serverURLs: 'https://leancloud.cn/',
+    });
+
+    const Counter = AV.Object.extend("Counter");
+    const Like = AV.Object.extend("Like");
+
+    const showCount = (Counter) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-counter").each(async (e) => {
+        const url = $(".leancloud-counter").eq(e).attr('id').trim();
+        const query = new AV.Query("Counter");
+        query.equalTo("words", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-counter").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addCount = (Counter) => {
+      const url = $(".leancloud-counter").length === 1 ? $(".leancloud-counter").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Counter;
+      query.save({
+        words: url
+      });
+    }
+
+    const showLike = (Like) => {
+      const asyncLimit = new AsyncLimit(2);
+      $(".leancloud-like").each(async (e) => {
+        const url = $(".leancloud-like").eq(e).attr('id').trim();
+        const query = new AV.Query("Like");
+        query.equalTo("path", url);
+        let count = await asyncLimit.run(() => query.count());
+        $(".leancloud-like").eq(e).text(count ? count : 0);
+      });
+    }
+
+    const addLike = (Like) => {
+      const url = $(".leancloud-like").length === 1 ? $(".leancloud-like").attr('id').trim() : 'http://rrxxpp.github.io';
+      var query = new Like;
+      query.save({
+        path: url,
+        nickName: 'Anonymous'
+      });
+      $(".leancloud-like").addClass('islike');
+      $(".fab-like").children(".iconfont").removeClass("iconheart").addClass("iconheart-fill").css("color", "#eb3223");
+      ZHAOO.zui.message({ text: '爱你哦~', type: 'success' });
+      setTimeout(() => showLike(Like), 1000);
+    }
+
+    const handleLikeClick = () => {
+      const isLike = $(".leancloud-like").length === 1 && $(".leancloud-like").hasClass('islike') ? true : false;
+      if (isLike) {
+        ZHAOO.zui.message({ text: '小心心不可以收回呢~', type: 'warning' });
+      } else {
+        addLike(Like);
+      }
+    }
+
+    $(function () {
+      addCount(Counter);
+      showCount(Counter);
+      showLike(Like);
+      $(".fab-like").on("click", function () {
+        handleLikeClick();
+      });
+    });
+
+  });
+</script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
